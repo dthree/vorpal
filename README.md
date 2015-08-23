@@ -3,23 +3,22 @@
 <img src="https://travis-ci.org/dthree/vorpal.svg" alt="Build Status" />
 <a href="https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
   <img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg" alt="Gitter" />
-</a><br>
+</a>
 <a href="https://www.npmjs.com/package/vorpal">
   <img src="https://img.shields.io/npm/v/vorpal.svg" alt="NPM Version" />
 </a>
-<a href="https://www.npmjs.com/package/vorpal">
-  <img src="https://img.shields.io/npm/dm/vorpal.svg" alt="NPM Downloads" />
-</a>
 
->                (O)
->                <M
->     o          <M  
->    /| ......  /:M\------------------------------------------------,,,,,,
->  (O)[ VORPAL ]::@+}==========================================------------>
->    \| ^^^^^^  \:W/------------------------------------------------''''''
->     o          <W  
->                <W
->                (O)
+```text
+              (O)
+              <M
+   o          <M  
+  /| ......  /:M\------------------------------------------------,,,,,,
+(O)[ VORPAL ]::@+}==========================================------------>
+  \| ^^^^^^  \:W/------------------------------------------------''''''
+   o          <W  
+              <W
+              (O)
+```
 
 Vorpal is Node's first framework for building immersive CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, interactive CLI environments like [wat](https://github.com/dthree/wat) and [vantage](https://github.com/dthree/vantage).
 
