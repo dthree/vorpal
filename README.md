@@ -1,5 +1,7 @@
 # Vorpal
 
+[![Join the chat at https://gitter.im/dthree/vorpal](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <img src="https://travis-ci.org/dthree/vorpal.svg" alt="Build Status" />
 <a href="https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
   <img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg" alt="Gitter" />
