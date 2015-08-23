@@ -20,7 +20,7 @@
               (O)
 ```
 
-Vorpal is Node's first framework for building immersive CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, interactive CLI environments like [wat](https://github.com/dthree/wat) and [vantage](https://github.com/dthree/vantage).
+Vorpal is Node's first framework for building [immersive](#What-is-an-immersive-cli-app) CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, interactive CLI environments like [wat](https://github.com/dthree/wat) and [vantage](https://github.com/dthree/vantage).
 
 ## Contents
 
@@ -727,15 +727,26 @@ The options exist so the user can pass in customizations to your module. In docu
 
 ### Why Vorpal?
 
-> *One, two! One, two! and through and through*
-> *The vorpal blade went snicker-snack!*
-> *He left it dead, and with its head*
-> *He went galumphing back.*
-> Lewis Carroll, Jabberwocky
+```text
+One, two! One, two! and through and through
+The vorpal blade went snicker-snack!
+He left it dead, and with its head
+He went galumphing back.
+
+Lewis Carroll, Jabberwocky
+```text
 
 ##### Life Goals:
 
-- <s>Build a popular software product based on the [Jabberwocky](https://en.wikipedia.org/wiki/Jabberwocky) poem.</s>
+- <s>Build a popular framework based on the [Jabberwocky](https://en.wikipedia.org/wiki/Jabberwocky) poem.</s>
+
+### What is an "immersive" CLI app?
+
+Node.js has a ton of really useful CLI applications. These are usually exposed through a single command, and often accompanied by subcommands. After the application is called from the CLI, the process executes the command and exits (the `git` command is an example).
+
+Immersive CLI applications don't exit after your first command. They enter you into an isolated CLI environment independent of your underlying terminal, with a record of its own state and its own suite of commands. 
+
+From this foundation, you can build applications with suites of commands and utilities for handling one particular thing very well.
 
 ### Uh, wasn't this called Vantage?
 
