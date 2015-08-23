@@ -734,7 +734,7 @@ He left it dead, and with its head
 He went galumphing back.
 
 Lewis Carroll, Jabberwocky
-```text
+```
 
 ##### Life Goals:
 
