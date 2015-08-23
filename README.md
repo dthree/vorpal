@@ -20,7 +20,7 @@
               (O)
 ```
 
-Vorpal is Node's first framework for building [immersive](#What-is-an-immersive-cli-app) CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, interactive CLI environments like [wat](https://github.com/dthree/wat) and [vantage](https://github.com/dthree/vantage).
+Vorpal is Node's first framework for building [immersive](#what-is-an-immersive-cli-app) CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, interactive CLI environments like [wat](https://github.com/dthree/wat) and [vantage](https://github.com/dthree/vantage).
 
 ## Contents
 
