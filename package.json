@@ -1,0 +1,73 @@
+{
+  "name": "vorpal",
+  "version": "1.0.0",
+  "description": "Node's first framework for building immersive CLI apps.",
+  "main": "./lib/vorpal.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dthree/vorpal.git"
+  },
+  "keywords": [
+    "api",
+    "cli",
+    "repl",
+    "shell",
+    "immersive",
+    "framework",
+    "app",
+    "application",
+    "command",
+    "commander",
+    "automated",
+    "prompt",
+    "inquirer"
+  ],
+  "author": "dthree",
+  "license": "MIT",
+  "preferGlobal": true,
+  "bugs": {
+    "url": "https://github.com/dthree/vorpal/issues"
+  },
+  "homepage": "https://github.com/dthree/vorpal#readme",
+  "devDependencies": {
+    "eslint": "^1.2.1",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^0.15.0",
+    "mocha": "^2.2.5",
+    "moment": "^2.10.3",
+    "request": "^2.58.0",
+    "should": "^6.0.3"
+  },
+  "dependencies": {
+    "chalk": "^1.1.0",
+    "commander": "^2.8.1",
+    "inquirer": "^0.8.5",
+    "lodash": "^3.10.0",
+    "minimist": "^1.1.2",
+    "native-promise-only": "^0.8.0-a"
+  },
+  "engines": {
+    "node": ">= 0.10.0",
+    "iojs": ">= 1.0.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "browser": false
+    },
+    "rules": {
+      "no-underscore-dangle": 0,
+      "no-process-exit": 0,
+      "no-undef": 0,
+      "no-proto": 0,
+      "no-use-before-define": 0,
+      "new-cap": 0
+    }
+  }
+}
