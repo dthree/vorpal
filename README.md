@@ -28,7 +28,7 @@ Vorpal is Node's first framework for building [immersive](#what-is-an-immersive-
 * [Getting Started](#getting-started)
   - [Community](#community)
   - [Quick Start](#quick-start)
-* [Methods](#methods)
+* [API](#api)
   - [.command](#commandcommand-description)
   - [.mode](#modecommand-description)
   - [.delimiter](#delimiterstring)
@@ -122,7 +122,7 @@ myapp~$
 
 That's the basic idea. Once you get the hang of it, read on to learn some of the fancier things Vorpal can do.
 
-## Methods
+## API
 
 ### .command(command, [description])
 
