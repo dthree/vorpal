@@ -101,15 +101,15 @@ myapp~$
 Try out your "foo" command.
 
 ```bash
-websvr~$ foo
+myapp~$ foo
 bar
-websvr~$
+myapp~$
 ```
 
 Now type "help" to see Vorpal's built in commands in addition to "foo":
 
 ```bash
-websvr~$ help
+myapp~$ help
 
   Commands
   
@@ -117,7 +117,7 @@ websvr~$ help
     exit [options]    Exits the app.
     foo               Outputs "bar".
 
-websvr~$
+myapp~$
 ```
 
 That's the basic idea. Once you get the hang of it, read on to learn some of the fancier things Vorpal can do.
@@ -173,7 +173,7 @@ Descriptions can optionally be passed in as the second parameter, which are used
 When displaying the help menu, sub-commands will be grouped separately:
 
 ```bash
-webapp~$ help
+myapp~$ help
 
   Commands: ( ... )
   
@@ -185,7 +185,7 @@ webapp~$ help
 Entering "farm" or "farm --help" would then drill down on the commands:
 
 ```bash
-webapp~$ farm
+myapp~$ farm
 
   Commands:
   
@@ -353,7 +353,7 @@ vorpal
 Args would be returned as follows:
 
 ```bash
-$webapp~$ order pizza pepperoni some other args -pod --size "medium" --no-anchovies
+$myapp~$ order pizza pepperoni some other args -pod --size "medium" --no-anchovies
 {
   "type": "pepperoni",
   "otherThings": ["some", "other", "args"]
