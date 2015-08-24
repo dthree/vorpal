@@ -33,6 +33,7 @@ Vorpal is Node's first framework for building [immersive](#what-is-an-immersive-
   - [.mode](#modecommand-description)
   - [.delimiter](#delimiterstring)
   - [.show](#show)
+  - [.find](#find)
 * [Events](#events)
 * [Automation](#automation)
 * [Extensions](#extensions)
@@ -217,6 +218,17 @@ Provides an alias to the command. If the user enters the alias, the original com
 #### .command.hidden()
 
 Makes the command invisible, though executable. Removes from all automated help menus.
+
+#### .command.remove()
+
+Deletes a given command. Useful for getting rid of unwanted functionality when importing external extensions.
+
+```js
+  var help = vorpal.find('help');
+  if (help) { 
+    help.remove() 
+  }
+```
 
 #### .command.option(string, [description])
 
@@ -602,6 +614,17 @@ instance0~$ switch 1
 instance1~$ switch 2
 instance2~$ switch 0
 instance0~$
+```
+
+### .find(string)
+
+Returns a given command by its name. This is used instead of `vantage.command()` as `.command` will overwrite a given command. If command is not found, `undefined` is returned.
+
+```js
+  var help = vorpal.find('help');
+  if (help) { 
+    help.hidden() 
+  }
 ```
 
 ## Events
