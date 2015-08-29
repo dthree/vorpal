@@ -1,10 +1,10 @@
 
 /**
- * Example of a Vantage server that uses a "mode"
+ * Example of a Vorpal server that uses a "mode"
  * command to create a simple REPL prompt.
  *
  * A "mode" is a special type of command that 
- * brings the vantage prompt into a specific
+ * brings the vorpal prompt into a specific
  * "mode", wherein the prompt changes, and all
  * commands typed fire the `action` function,
  * passing in the typed string as the first 
@@ -15,7 +15,7 @@
  * Module dependencies.
  */
 
-var Vantage = require('./../../lib/vantage')
+var Vorpal = require('./../../lib/vorpal')
   , colors = require('colors')
   , _ = require('lodash')
   ;
@@ -24,22 +24,22 @@ var Vantage = require('./../../lib/vantage')
  * Variable declarations.
  */
 
-var vantage
-  , banner = 'Welcome to the standalone Vantage server.'
+var vorpal
+  , banner = 'Welcome to the standalone Vorpal server.'
   , port = process.argv[2] || 5000
   , delimiter = String('svr:' + port + '~$').white
   , server
   ;
 
-server = Vantage()
+server = Vorpal()
  .banner(banner)
  .delimiter(delimiter)
  .listen(port)
  .show();
 
 /**
- * You use `vantage.mode` the same way you use
- * `vantage.command`, with the exception of a few
+ * You use `vorpal.mode` the same way you use
+ * `vorpal.command`, with the exception of a few
  * more sub-functions.
  *
  * `.delimiter` tags on an additional delimiter
