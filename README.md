@@ -32,6 +32,7 @@ Vorpal is Node's first framework for building [immersive](#what-is-an-immersive-
 * [API](#api)
   - [.command](#commandcommand-description)
   - [.mode](#modecommand-description)
+  - [.parse](#parseargv)
   - [.delimiter](#delimiterstring)
   - [.show](#show)
   - [.find](#find)
@@ -546,6 +547,27 @@ node~$
 #### .mode.action(function)
 
 Similar to `command.action`, `mode.action` differs in that it is repeatedly called on each command the user types until the mode is exited. Instead of `args` passed as the first argument, the full `command` string the user typed is passed and it is expected that `mode.action` appropriately handles the command. Example given above.
+
+### .parse(argv)
+
+Parses the process's `process.argv` arguments and executes the matching command.
+
+```js
+vorpal.command('foo', 'Outputs "bar".')
+  .action(function(args, cb){
+    this.log('bar');
+  });
+
+vorpal.delimiter('app$')
+  .show()
+  .parse(process.argv);
+```
+
+```bash
+~$ node app.js foo
+bar
+app$
+```
 
 ### .delimiter(string)
 

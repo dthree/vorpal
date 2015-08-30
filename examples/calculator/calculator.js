@@ -12,10 +12,6 @@ var Vorpal = require('./../../lib/vorpal');
 
 var vorpal = new Vorpal();
 
-vorpal
-  .delimiter('calc:')
-  .show();
-
 vorpal.command('add [numbers...]', 'Adds numbers together')
   .alias('addition')
   .alias('plus')
@@ -47,3 +43,17 @@ vorpal.command('double [values...]', 'Doubles a value on each tab press')
   .action(function (args, cb) {
     cb();
   });
+
+vorpal.command('args [item]', 'Shows args.')
+  .option('-d')
+  .option('-a')
+  .option('--save')
+  .action(function (args, cb) {
+    this.log(args);
+    cb();
+  });
+
+vorpal
+  .delimiter('calc:')
+  .show()
+  .parse(process.argv);

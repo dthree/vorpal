@@ -1,18 +1,10 @@
 # Examples
 
-## ./automation
+## Calculator
 
-Executes Vorpal commands programmatically.
+A simple calculator CLI app made with Vorpal.
 
-## ./extensions-usage
-
-Imports the Vorpal extension `vantage-repl` and uses this to create an interactive REPL for your app.
-
-## ./extensions-creation
-
-Template for creating your own Node module to extend Vorpal's API.
-
-## ./mode
+## Mode
 
 Using Vorpal's "mode" function.
 
