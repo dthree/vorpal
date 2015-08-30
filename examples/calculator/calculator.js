@@ -25,7 +25,25 @@ vorpal.command('add [numbers...]', 'Adds numbers together')
     for (var i = 0; i < numbers.length; ++i) {
       sum += parseFloat(numbers[i]);
     }
+    var self = this;
     this.log(sum);
     cb(undefined, sum);
   });
-  
+
+vorpal.command('double [values...]', 'Doubles a value on each tab press')
+  .autocompletion(function(text, iteration, cb) {
+    if (iteration > 1000000) {
+      cb(void 0, ['cows', 'hogs', 'horses']);  
+    } else {
+      let number = String(text).trim();
+      if (!isNaN(number)) {
+        number = (number < 1) ? 1 : number;
+        cb(void 0, 'double ' + number * 2);
+      } else {
+        cb(void 0, 'double 2');
+      }
+    }
+  })
+  .action(function (args, cb) {
+    cb();
+  });
