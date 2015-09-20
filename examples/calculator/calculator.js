@@ -1,3 +1,26 @@
+'use strict';
+
+/*
+var rl = require('readline');
+ 
+var i = rl.createInterface({
+  input: process.stdin,
+  output: process.stdout, 
+  terminal: true 
+});
+
+i.question("What do you think of node.js?", function(answer) {
+  console.log("Thank you for your valuable feedback.");
+  i.close();
+  process.stdin.destroy();
+});
+
+process.stdin.on('keypress', function(key, data){
+  console.log(data);
+});
+
+  return;
+*/
 
 /**
  * Module dependencies.
@@ -10,6 +33,29 @@ var Vorpal = require('./../../lib/vorpal');
  */
 
 var vorpal = new Vorpal();
+
+vorpal.command('say <words>', 'say something')
+  .action(function (args, cb) {
+    this.log(args.words);
+    cb();
+  });
+
+vorpal.command('reverse [words]', 'append bar to stdin')
+  .option('-r', 'rad')
+  .action(function (args, cb) {
+    let stdin = args.stdin || args.words;
+    stdin = String(stdin).split('').reverse().join('');
+    this.log(stdin);
+    cb();
+  });
+
+vorpal.command('array [string]', 'convert string to an array.')
+  .action(function (args, cb) {
+    let stdin = args.stdin || args.string;
+    stdin = String(stdin).split('');
+    this.log(stdin);
+    cb();
+  });
 
 vorpal.command('do [text...]', 'Recite')
   .alias('addition')
@@ -56,7 +102,7 @@ vorpal.command('double [values...]', 'Doubles a value on each tab press')
     cb();
   });
 
-vorpal.command('args [item]', 'Shows args.')
+vorpal.command('args [items...]', 'Shows args.')
   .option('-d')
   .option('-a')
   .option('--save')
@@ -64,6 +110,20 @@ vorpal.command('args [item]', 'Shows args.')
     this.log(args);
     cb();
   });
+
+  vorpal
+    .mode('repl', 'Enters REPL Mode.')
+    .init(function(args, cb){
+      this.log('Entering REPL Mode.');
+      cb();
+    })
+    .action(function(command, cb){
+      console.log(command)
+      var res = eval(command);
+      this.log(res);
+      cb(res);
+    });
+
 
 vorpal
   .delimiter('calc:')
@@ -74,29 +134,6 @@ vorpal
 /*
 
 Ignore - steps to reproduce a bug in Node IP handling.
-
-'use strict';
-
-var rl = require('readline');
- 
-var i = rl.createInterface(process.stdin, process.stdout, null);
-i.question("What do you think of node.js?", function(answer) {
-  console.log("Thank you for your valuable feedback.");
-  i.close();
-  process.stdin.destroy();
-});
-
-process.stdin.on('keypress', function(key, data){
-  console.log(data);
-});
-
-  { sequence: ',
-  name: 'backspace',
-  ctrl: false,        < -- should  be true
-  meta: false,
-  shift: false }
-
-  return;
 
 */
 
