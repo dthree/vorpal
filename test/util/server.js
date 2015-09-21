@@ -31,6 +31,29 @@ module.exports = function(vorpal) {
       });
     });
 
+  vorpal.command('say <words>', 'say something')
+    .action(function (args, cb) {
+      this.log(args.words);
+      cb();
+    });
+
+  vorpal.command('reverse [words]', 'append bar to stdin')
+    .alias('r')
+    .action(function (args, cb) {
+      var stdin = args.stdin || args.words;
+      stdin = String(stdin).split('').reverse().join('');
+      this.log(stdin);
+      cb();
+    });
+
+  vorpal.command('array [string]', 'convert string to an array.')
+    .action(function (args, cb) {
+      var stdin = args.stdin || args.string;
+      stdin = String(stdin).split('');
+      this.log(stdin);
+      cb();
+    });
+
   vorpal
     .command("fuzzy")
     .description("Should return 'wuzzy'.")

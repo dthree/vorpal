@@ -41,7 +41,7 @@ vorpal.command('say <words>', 'say something')
   });
 
 vorpal.command('reverse [words]', 'append bar to stdin')
-  .option('-r', 'rad')
+  .alias('r')
   .action(function (args, cb) {
     let stdin = args.stdin || args.words;
     stdin = String(stdin).split('').reverse().join('');

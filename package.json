@@ -56,18 +56,7 @@
   "files": [
     "lib"
   ],
-  "eslintConfig": {
-    "env": {
-      "node": true,
-      "browser": false
-    },
-    "rules": {
-      "no-underscore-dangle": 0,
-      "no-process-exit": 0,
-      "no-undef": 0,
-      "no-proto": 0,
-      "no-use-before-define": 0,
-      "new-cap": 0
-    }
+  "xo": {
+    "space": true
   }
 }
