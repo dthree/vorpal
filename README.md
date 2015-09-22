@@ -7,7 +7,9 @@
 <a href="https://www.npmjs.com/package/vorpal">
   <img src="https://img.shields.io/npm/v/vorpal.svg" alt="NPM Version" />
 </a>
-[![Wat: Cheat Sheeted](https://img.shields.io/badge/wat-cheat%20sheeted-blue.svg)](https://github.com/dthree/wat)
+<br>
+[![Wat: Documented](https://img.shields.io/badge/wat-documented-blue.svg)](https://github.com/dthree/wat)
+[![XO: Linted](https://img.shields.io/badge/xo-linted-blue.svg)](https://github.com/sindresorhus/xo)
 
 ```text
               (O)

@@ -1,19 +1,13 @@
-var assert = require("assert")
-  , should = require('should')
-  , vorpal = require('../')
-  , util = require('./util/util')
-  ;
+var vorpal = require('../');
+var should = require('should');
 
-describe('vorpal', function() {
+require('assert');
 
-  describe('constructor', function() {
-
-    it('should exist and be a function', function() {
+describe('vorpal', function () {
+  describe('constructor', function () {
+    it('should exist and be a function', function () {
       should.exist(vorpal);
       vorpal.should.be.type('function');
     });
-  
   });
-
 });
-

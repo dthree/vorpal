@@ -1,18 +1,16 @@
-var Vantage = require("../../")
-  , _ = require('lodash')
-  ;
+var Vantage = require('../../');
+var _ = require('lodash');
+var path = require('path');
 
 module.exports = {
 
   instances: [],
 
-  spawn: function(options, cb) {
-
-    options = options || {}
-
+  spawn: function (options, cb) {
+    options = options || {};
     options = _.defaults(options, {
       ports: [],
-      ssl: false,
+      ssl: false
     });
 
     for (var i = 0; i < options.ports.length; ++i) {
@@ -20,22 +18,16 @@ module.exports = {
       var port = options.ports[i];
       vorpal
         .delimiter(port + ':')
-        .use(__dirname + "/server")
-        .listen(port, function(){
-          // Callback shouldn't throw.
-        });
+        .use(path.join(__dirname, '/server'))
+        .listen(port);
       module.exports.instances.push(vorpal);
     }
 
-    cb(void 0, module.exports.instances);
+    cb(undefined, module.exports.instances);
     return;
   },
 
-  kill: function(what, cb) {
-    cb = cb || function(){}
-    for (var i = 0; i < module.exports.instances.length; ++i) {
-      // ...
-    }
-  },
-
-}
+  kill: function (what, cb) {
+    cb = cb || function () {};
+  }
+};

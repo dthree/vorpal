@@ -1,27 +1,5 @@
 'use strict';
 
-/*
-var rl = require('readline');
- 
-var i = rl.createInterface({
-  input: process.stdin,
-  output: process.stdout, 
-  terminal: true 
-});
-
-i.question("What do you think of node.js?", function(answer) {
-  console.log("Thank you for your valuable feedback.");
-  i.close();
-  process.stdin.destroy();
-});
-
-process.stdin.on('keypress', function(key, data){
-  console.log(data);
-});
-
-  return;
-*/
-
 /**
  * Module dependencies.
  */
@@ -43,7 +21,7 @@ vorpal.command('say <words>', 'say something')
 vorpal.command('reverse [words]', 'append bar to stdin')
   .alias('r')
   .action(function (args, cb) {
-    let stdin = args.stdin || args.words;
+    var stdin = args.stdin || args.words;
     stdin = String(stdin).split('').reverse().join('');
     this.log(stdin);
     cb();
@@ -51,7 +29,7 @@ vorpal.command('reverse [words]', 'append bar to stdin')
 
 vorpal.command('array [string]', 'convert string to an array.')
   .action(function (args, cb) {
-    let stdin = args.stdin || args.string;
+    var stdin = args.stdin || args.string;
     stdin = String(stdin).split('');
     this.log(stdin);
     cb();
@@ -60,11 +38,10 @@ vorpal.command('array [string]', 'convert string to an array.')
 vorpal.command('do [text...]', 'Recite')
   .alias('addition')
   .alias('plus')
-  .autocompletion(function(text, iteration, cb) {
-    cb(void 0, 'do ' + text + ' re');
+  .autocompletion(function (text, iteration, cb) {
+    cb(undefined, 'do ' + text + ' re');
   })
   .action(function (args, cb) {
-
     var result = this.match('r', ['red', 'reset']);
     this.log(result);
     cb();
@@ -79,22 +56,21 @@ vorpal.command('add [numbers...]', 'Adds numbers together')
     for (var i = 0; i < numbers.length; ++i) {
       sum += parseFloat(numbers[i]);
     }
-    var self = this;
     this.log(sum);
     cb(undefined, sum);
   });
 
 vorpal.command('double [values...]', 'Doubles a value on each tab press')
-  .autocompletion(function(text, iteration, cb) {
+  .autocompletion(function (text, iteration, cb) {
     if (iteration > 1000000) {
-      cb(void 0, ['cows', 'hogs', 'horses']);  
+      cb(undefined, ['cows', 'hogs', 'horses']);
     } else {
       var number = String(text).trim();
       if (!isNaN(number)) {
         number = (number < 1) ? 1 : number;
-        cb(void 0, 'double ' + number * 2);
+        cb(undefined, 'double ' + number * 2);
       } else {
-        cb(void 0, 'double 2');
+        cb(undefined, 'double 2');
       }
     }
   })
@@ -111,29 +87,20 @@ vorpal.command('args [items...]', 'Shows args.')
     cb();
   });
 
-  vorpal
-    .mode('repl', 'Enters REPL Mode.')
-    .init(function(args, cb){
-      this.log('Entering REPL Mode.');
-      cb();
-    })
-    .action(function(command, cb){
-      console.log(command)
-      var res = eval(command);
-      this.log(res);
-      cb(res);
-    });
-
+vorpal
+  .mode('repl', 'Enters REPL Mode.')
+  .init(function (args, cb) {
+    this.log('Entering REPL Mode.');
+    cb();
+  })
+  .action(function (command, cb) {
+    console.log(command);
+    var res = eval(command);
+    this.log(res);
+    cb(res);
+  });
 
 vorpal
   .delimiter('calc:')
   .show()
   .parse(process.argv);
-
-
-/*
-
-Ignore - steps to reproduce a bug in Node IP handling.
-
-*/
-

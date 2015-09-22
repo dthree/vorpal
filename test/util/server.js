@@ -1,20 +1,14 @@
-var assert = require("assert")
-  , should = require('should')
-  , Vantage = require('../../')
-  , http = require('http')
-  , _ = require('lodash')
-  , chalk = require("chalk")
-  ;
+require('assert');
+require('should');
 
-module.exports = function(vorpal) {
-
+module.exports = function (vorpal) {
   vorpal
     .mode('repl', 'Enters REPL Mode.')
-    .init(function(args, cb){
+    .init(function (args, cb) {
       this.log('Entering REPL Mode.');
       cb();
     })
-    .action(function(command, cb){
+    .action(function (command, cb) {
       var res = eval(command);
       this.log(res);
       cb(res);
@@ -22,10 +16,10 @@ module.exports = function(vorpal) {
 
   vorpal
     .command('foo')
-    .description('Should return "bar".')
-    .action(function(args, cb){
+    .description('Should return \'bar\'.')
+    .action(function () {
       var self = this;
-      return new Promise(function(resolve, reject){
+      return new Promise(function (resolve) {
         self.log('bar');
         resolve();
       });
@@ -55,12 +49,12 @@ module.exports = function(vorpal) {
     });
 
   vorpal
-    .command("fuzzy")
-    .description("Should return 'wuzzy'.")
-    .action(function(args, cb) {
+    .command('fuzzy')
+    .description('Should return \'wuzzy\'.')
+    .action(function () {
       var self = this;
-      return new Promise(function(resolve, reject){
-        self.log("wuzzy");
+      return new Promise(function (resolve) {
+        self.log('wuzzy');
         resolve();
       });
     });
@@ -68,9 +62,9 @@ module.exports = function(vorpal) {
   vorpal
     .command('optional [arg]')
     .description('Should optionally return an arg.')
-    .action(function(args, cb){
+    .action(function (args) {
       var self = this;
-      return new Promise(function(resolve, reject){
+      return new Promise(function (resolve) {
         self.log(args.arg || '');
         resolve();
       });
@@ -80,42 +74,39 @@ module.exports = function(vorpal) {
     .command('variadic [pizza] [ingredients...]')
     .description('Should optionally return an arg.')
     .option('-e, --extra', 'Extra complexity on the place.')
-    .action(function(args, cb){
-      var self = this;
-      cb(void 0, args);
+    .action(function (args, cb) {
+      cb(undefined, args);
     });
 
   vorpal
     .command('cmd [with] [one] [million] [arguments] [in] [it]')
     .description('Should deal with many args.')
     .option('-e, --extra', 'Extra complexity on the place.')
-    .action(function(args, cb){
-      var self = this;
-      cb(void 0, args);
+    .action(function (args, cb) {
+      cb(undefined, args);
     });
 
   vorpal
     .command('variadic-pizza [ingredients...]')
     .description('Should optionally return an arg.')
     .option('-e, --extra', 'Extra complexity on the place.')
-    .action(function(args, cb){
-      var self = this;
-      cb(void 0, args);
+    .action(function (args, cb) {
+      cb(undefined, args);
     });
 
   vorpal
     .command('port')
     .description('Returns port.')
-    .action(function(args, cb){
+    .action(function (args, cb) {
       this.log(this.server._port);
-      cb(void 0, this.parent.server._port);
+      cb(undefined, this.parent.server._port);
     });
 
   vorpal
     .command('i want')
     .description('Negative args.')
     .option('-N, --no-cheese', 'No chease please.')
-    .action(function(args, cb){
+    .action(function (args, cb) {
       this.log(args.options.cheese);
       cb();
     });
@@ -123,20 +114,17 @@ module.exports = function(vorpal) {
   vorpal
     .command('required <arg>')
     .description('Must return an arg.')
-    .action(function(args, cb){
-      var self = this;
-      self.log(args.arg);
-      cb(void 0, args);
+    .action(function (args, cb) {
+      this.log(args.arg);
+      cb(undefined, args);
     });
-
 
   vorpal
     .command('fail me <arg>')
     .description('Must return an arg.')
-    .action(function(args, cb){
-      var self = this;
-      return new Promise(function(resolve, reject){
-        if (args.arg == 'not') {
+    .action(function (args) {
+      return new Promise(function (resolve, reject) {
+        if (args.arg === 'not') {
           resolve('we are happy');
         } else {
           reject('we are not happy.');
@@ -147,9 +135,9 @@ module.exports = function(vorpal) {
   vorpal
     .command('deep command [arg]')
     .description('Tests execution of deep command.')
-    .action(function(args, cb){
+    .action(function (args) {
       var self = this;
-      return new Promise(function(resolve, reject){
+      return new Promise(function (resolve) {
         self.log(args.arg);
         resolve();
       });
@@ -158,9 +146,9 @@ module.exports = function(vorpal) {
   vorpal
     .command('very deep command [arg]')
     .description('Tests execution of three-deep command.')
-    .action(function(args, cb){
+    .action(function (args) {
       var self = this;
-      return new Promise(function(resolve, reject){
+      return new Promise(function (resolve) {
         self.log(args.arg);
         resolve();
       });
@@ -169,9 +157,9 @@ module.exports = function(vorpal) {
   vorpal
     .command('count <number>')
     .description('Tests execution of three-deep command.')
-    .action(function(args, cb){
+    .action(function (args) {
       var self = this;
-      return new Promise(function(resolve, reject){
+      return new Promise(function (resolve) {
         self.log(args.number);
         resolve();
       });
@@ -186,10 +174,9 @@ module.exports = function(vorpal) {
     .option('-t', 'Test Option.')
     .option('-i [param]', 'Test Option.')
     .description('Tests execution of three-deep command.')
-    .action(function(args, cb){
+    .action(function (args) {
       var self = this;
-      return new Promise(function(resolve, reject){
-
+      return new Promise(function (resolve) {
         var str = '';
         str = (args.options.r === true) ? str + 'r' : str;
         str = (args.options.a === true) ? str + 'a' : str;
@@ -197,12 +184,9 @@ module.exports = function(vorpal) {
         str = (args.options.t === true) ? str + 't' : str;
         str = (args.options.i === 'j') ? str + args.options.i : str;
         str = (args.options.sleep === 'well') ? str + args.options.sleep : str;
-        str = str + (args.arg || '');
-
+        str += (args.arg || '');
         self.log(str);
         resolve();
       });
     });
-
-}
-
+};
