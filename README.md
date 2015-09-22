@@ -122,40 +122,50 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 
 ## API
 
-- [Command](#command-object)
+##### [Command](#command-object)
 - [.command](#commandcommand-description)
-  * [`command.description`](#commanddescriptionstring)
-  * [`command.alias`](#commandaliasstring)
-  * [`command.option`](#commandoptionstring)
-  * [`command.hidden`](#commandhidden)
-  * [`command.remove`](#commandremove)
-  * [`command.autocompletion`](#commandautocompletiontextiterationcallback)
-  * [`command.action`](#commandactionfunction)
+- [`command.description`](#commanddescriptionstring)
+- [`command.alias`](#commandaliasstring)
+- [`command.option`](#commandoptionstring)
+- [`command.hidden`](#commandhidden)
+- [`command.remove`](#commandremove)
+- [`command.autocompletion`](#commandautocompletiontextiterationcallback)
+- [`command.action`](#commandactionfunction)
 
-- [Mode](#mode-object)
+##### [Mode](#mode-object)
 - [.mode](#modecommand-description)
-  * [`mode.delimiter`](#modedelimiterstring)
-  * [`mode.init`](#modeinitfunction)
-  * [`mode.action`](#modeactionfunction)
+- [`mode.delimiter`](#modedelimiterstring)
+- [`mode.init`](#modeinitfunction)
+- [`mode.action`](#modeactionfunction)
 
-- [Catch](#catch-object)
+##### [Catch](#catch-object)
 - [.catch](#catchcommand-description)
 
-- [Session](#session-object)
-  * [`session.log`](#sessionlogstring)
-  * [`session.prompt`](#sessionpromptobjectcallback)
-  * [`session.delimiter`](#sessiondelimiterstring)
+##### [Session](#session-object)
+- [`session.log`](#sessionlogstring)
+- [`session.prompt`](#sessionpromptobjectcallback)
+- [`session.delimiter`](#sessiondelimiterstring)
 
-- [Vorpal](#API)
-  - [.parse](#parseargv)
-  - [.delimiter](#delimiterstring)
-  - [.show](#show)
-  - [.find](#find)
-  - [.exec](#execcommandcallback)
-  - [.pipe](#pipefunction)
-  - [.use](#vorpaluseextension)
+##### [Vorpal](#API)
+- [.parse](#parseargv)
+- [.delimiter](#delimiterstring)
+- [.show](#show)
+- [.find](#find)
+- [.exec](#execcommandcallback)
+- [.pipe](#pipefunction)
+- [.use](#vorpaluseextension)
 
-### .command(command, [description])
+### Command Object
+
+* [`.description`](#commanddescriptionstring): Used in automated help for your command.
+* [`.alias`](#commandaliasstring): Gives an alias to execute the command with.
+* [`.option`](#commandoptionstring-description): Provides command options, as in `-f` or `--force`.
+* [`.hidden`](#commandhidden): Removes command from help menus.
+* [`.remove`](#commandremove): Removes a command.
+* [`.autocompletion`](#commandautocompletiontextiterationcallback): Command-specific tabbed auto-completion.
+* [`.action`](#commandactionfunction): Function to execute when command is executed.
+
+#### .command(command, [description])
 
 Adds a new command to your command line API. Returns a `Command` object, with several chainable methods.
 
@@ -223,16 +233,6 @@ myapp~$ farm
     farm with *          1 sub-command.
     
 ```
-
-#### Command Object
-
-* [`.description`](#commanddescriptionstring): Used in automated help for your command.
-* [`.alias`](#commandaliasstring): Gives an alias to execute the command with.
-* [`.option`](#commandoptionstring-description): Provides command options, as in `-f` or `--force`.
-* [`.hidden`](#commandhidden): Removes command from help menus.
-* [`.remove`](#commandremove): Removes a command.
-* [`.autocompletion`](#commandautocompletiontextiterationcallback): Command-specific tabbed auto-completion.
-* [`.action`](#commandactionfunction): Function to execute when command is executed.
 
 #### .command.description(string)
 
@@ -556,7 +556,7 @@ Similar to `command.action`, `mode.action` differs in that it is repeatedly call
 
 Catch is a special type of `Command` object, and is returned after `vorpal.catch` is used. 
 
-### .catch(command, [description])
+#### .catch(command, [description])
 
 The `.catch` method is identical to `vorpal.command`, with the exception that only parameters are passed in. When the user types an invalid command, the `.catch` method's `.action` method is fired.
 
@@ -568,6 +568,7 @@ vorpal
   .action(function (args, cb) {
     this.log(args.words.join(' ') + ' is not a valid command.');
   });
+```
 
 ### Session Object
 
