@@ -31,15 +31,9 @@ Vorpal is Node's first framework for building [immersive](#what-is-an-immersive-
   - [Community](#community)
   - [Quick Start](#quick-start)
 * [API](#api)
-  - [.command](#commandcommand-description)
-  - [.mode](#modecommand-description)
-  - [.parse](#parseargv)
-  - [.delimiter](#delimiterstring)
-  - [.show](#show)
-  - [.find](#find)
-* [Events](#events)
 * [Automation](#automation)
 * [Extensions](#extensions)
+* [Events](#events)
 * [FAQ](#faq)
 * [License](#license)
 
@@ -128,16 +122,42 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 
 ## API
 
+- [Command](#command-object)
+- [.command](#commandcommand-description)
+  * [`command.description`](#commanddescriptionstring)
+  * [`command.alias`](#commandaliasstring)
+  * [`command.option`](#commandoptionstring)
+  * [`command.hidden`](#commandhidden)
+  * [`command.remove`](#commandremove)
+  * [`command.autocompletion`](#commandautocompletiontextiterationcallback)
+  * [`command.action`](#commandactionfunction)
+
+- [Mode](#mode-object)
+- [.mode](#modecommand-description)
+  * [`mode.delimiter`](#modedelimiterstring)
+  * [`mode.init`](#modeinitfunction)
+  * [`mode.action`](#modeactionfunction)
+
+- [Catch](#catch-object)
+- [.catch](#catchcommand-description)
+
+- [Session](#session-object)
+  * [`session.log`](#sessionlogstring)
+  * [`session.prompt`](#sessionpromptobjectcallback)
+  * [`session.delimiter`](#sessiondelimiterstring)
+
+- [Vorpal](#API)
+  - [.parse](#parseargv)
+  - [.delimiter](#delimiterstring)
+  - [.show](#show)
+  - [.find](#find)
+  - [.exec](#execcommandcallback)
+  - [.pipe](#pipefunction)
+  - [.use](#vorpaluseextension)
+
 ### .command(command, [description])
 
-Adds a new command to your command line API. Returns a `Command` object, with the following chainable functions:
-
-* [`.description(string)`](#commanddescriptionstring): Used in automated help for your command.
-* [`.alias()`](#commandaliasstring): Gives an alias to execute the command with.
-* [`.hidden()`](#commandhidden): Removes command from help menus.
-* [`.option(string, [description])`](#commandoptionstring-description): Provides command options, as in `-f` or `--force`.
-* [`.autocompletion(function(text, iteration, callback))`](#commandautocompletiontextiterationcallback): Command-specific tabbed auto-completion.
-* [`.action(function(args, callback))`](#commandactionfunction): Function to execute when command is executed.
+Adds a new command to your command line API. Returns a `Command` object, with several chainable methods.
 
 ```js
 vorpal
@@ -149,6 +169,7 @@ vorpal
     callback();
   });
 ```
+
 The syntax is similar to `commander.js` with the exception of allowing nested sub-commands for grouping large APIs into manageable chunks.
 
 ```js
@@ -203,9 +224,19 @@ myapp~$ farm
     
 ```
 
+#### Command Object
+
+* [`.description`](#commanddescriptionstring): Used in automated help for your command.
+* [`.alias`](#commandaliasstring): Gives an alias to execute the command with.
+* [`.option`](#commandoptionstring-description): Provides command options, as in `-f` or `--force`.
+* [`.hidden`](#commandhidden): Removes command from help menus.
+* [`.remove`](#commandremove): Removes a command.
+* [`.autocompletion`](#commandautocompletiontextiterationcallback): Command-specific tabbed auto-completion.
+* [`.action`](#commandactionfunction): Function to execute when command is executed.
+
 #### .command.description(string)
 
-If you don't pass a description into `vorpal.command(...)` above, you can use the `description` function as an alternative.
+If you don't pass a description into `vorpal.command(...)`, you can use the `description` function as an alternative.
 
 ```js
 vorpal
@@ -218,19 +249,16 @@ vorpal
 
 Provides an alias to the command. If the user enters the alias, the original command will be fired.
 
-#### .command.hidden()
-
-Makes the command invisible, though executable. Removes from all automated help menus.
-
-#### .command.remove()
-
-Deletes a given command. Useful for getting rid of unwanted functionality when importing external extensions.
-
 ```js
-  var help = vorpal.find('help');
-  if (help) { 
-    help.remove() 
-  }
+vorpal
+  .command("foo", "Outputs bar.")
+  .alias("foobar")
+  // ...
+```
+```bash
+app~$ foobar
+bar
+app~$
 ```
 
 #### .command.option(string, [description])
@@ -248,9 +276,53 @@ vorpal
   // ...
 ```
 
+#### .command.hidden()
+
+Makes the command invisible, though executable. Removes from all automated help menus.
+
+```js
+vorpal
+  .command("hidden", "Secret command.")
+  .hidden()
+  // ...
+```
+
+#### .command.remove()
+
+Deletes a given command. Useful for getting rid of unwanted functionality when importing external extensions.
+
+```js
+  var help = vorpal.find('help');
+  if (help) { 
+    help.remove() 
+  }
+```
+
 #### .command.autocompletion(text, iteration, callback)
 
 Registers a custom tabbed autocompletion for this command. 
+
+```js
+vorpal
+  .command("bake", "Bakes a meal.")
+  .autocompletion(function(text, iteration, cb) {
+    var meals = ["cookies", "pie", "cake"];
+    if (iteration > 1) {
+      cb(void 0, meals);
+    } else {
+      var match = this.match(text, meals);
+      if (match) {
+        cb(void 0, meals);
+      } else {
+        cb(void 0, void 0);
+      }
+    }
+  })
+  .action(...);
+
+```
+
+##### Explanation
 
 If a user has typed part of a registered command, the default auto-completion will fill in the rest of the command:
 
@@ -258,7 +330,6 @@ If a user has typed part of a registered command, the default auto-completion wi
 node~$ co
 node~$ cook
 ```
-
 However, after the user has fully typed the command `cook`, you can now implement command-specific auto-completion:
 
 ```bash
@@ -267,8 +338,7 @@ node~$ bake cookies        # tab is pressed again
 cake  cookies  pie
 node~$ bake cookies 
 ```
-
-This is implemented as follows:
+To further describe the implementation:
 
 ```js
 vorpal
@@ -382,9 +452,130 @@ $myapp~$ order pizza pepperoni some other args -pod --size "medium" --no-anchovi
 }
 ```
 
-##### Action Context (Session)
+##### Session
 
-The `this` variable in a `command.action` function is exposed to a special "Session" context. This context has a few functions to make use of:
+The `this` in a Vorpal action exposes a Session object with several methods. See Session section for more detail.
+
+### Mode Object
+
+Mode is an extension of the `Command` object, and is returned after `vorpal.mode` is used. The `Mode` object has the following altered / additional methods:
+
+* [`.delimiter`](#modedelimiterstring): Tacks on an additional prompt delimiter for orientation.
+* [`.init`](#modeinitfunction): Same as `command`'s `.action`, called once on entering the mode.
+* [`.action`](#modeactionfunction): Called on each command submission while in the mode.
+
+### .mode(command, [description])
+
+Mode is a special type of `command` that brings the user into a given `mode`, wherein regular Vorpal commands are ignored and the full command strings are interpreted literally by the `mode.action` function. This will continue until the user exits the mode by typing `exit`.
+
+```js
+vorpal
+  .mode("repl")
+  .description("Enters the user into a REPL session.")
+  .delimiter("repl:")
+  .action(function(command, callback) {
+    this.log(eval(command));
+  });
+```
+```bash
+$ node server.js
+node~$ 
+node~$ repl
+node~$ repl: 
+node~$ repl: 6 * 7
+42
+node~$ repl: Math.random();
+0.62392647205
+node~$ repl: exit
+node~$ 
+```
+
+#### .mode.delimiter(string)
+
+This will add on an additional delimiter string to one's Vorpal prompt upon entering the mode, so the user can differentiate what state he is in.
+
+```js
+vorpal
+  .mode('repl')
+  .delimiter('you are in repl>')
+  .action(function(command, callback) {
+    this.log(eval(command));
+  });
+```
+
+```bash
+node~$ 
+node~$ repl
+node~$ you are in repl>  
+```
+#### .mode.init(function)
+
+Behaves exactly like `command.action`, where the function passed in is fired once when the user enters the given mode. Passed the same parameters as `command.action`: `args` and `callback`. `init` is helpful when one needs to set up the mode or inform the user of what is happening.
+
+```js
+vorpal
+  .mode('sql')
+  .delimiter('sql:')
+  .init(function(args, callback){
+    this.log('Welcome to SQL mode.\nYou can now directly enter arbitrary SQL commands. To exit, type `exit`.');
+    callback();
+  })
+  .action(function(command, callback) {
+    var self = this;
+    app.query(command, function(res){
+      self.log(res);
+      callback();
+    });
+  });
+```
+
+```bash
+node~$
+node~$ sql
+Welcome to SQL mode.
+You can now directly enter arbitrary SQL commands. To exit, type `exit`.
+node~$ sql: 
+node~$ sql: select first_name, last_name from persons where first_name = 'George';
+
+first_name        last_name
+----------------  ----------------
+George            Clooney
+George            Smith
+George            Stevens
+
+node~$ sql: 
+node~$ sql: exit
+node~$
+```
+
+#### .mode.action(function)
+
+Similar to `command.action`, `mode.action` differs in that it is repeatedly called on each command the user types until the mode is exited. Instead of `args` passed as the first argument, the full `command` string the user typed is passed and it is expected that `mode.action` appropriately handles the command. Example given above.
+
+### Catch Object
+
+Catch is a special type of `Command` object, and is returned after `vorpal.catch` is used. 
+
+### .catch(command, [description])
+
+The `.catch` method is identical to `vorpal.command`, with the exception that only parameters are passed in. When the user types an invalid command, the `.catch` method's `.action` method is fired.
+
+There can only be one `.catch` method defined in an application.
+
+```js
+vorpal
+  .catch('[words...]', 'Catches incorrect commands')
+  .action(function (args, cb) {
+    this.log(args.words.join(' ') + ' is not a valid command.');
+  });
+
+### Session Object
+
+The `this` in a Vorpal action exposes a Session object with several methods.
+
+* [`.log`](#sessionlogstring): Logs to the session's `stdout`.
+* [`.prompt`](#sessionpromptobjectcallback): Exposes `inquirer.js`'s prompt.
+* [`.delimiter`](#sessiondelimiterstring): Changes the session's prompt delimiter.
 
 ##### session.log(string)
 
@@ -455,111 +646,14 @@ websvr~$ delimiter unicornsvr~$
 unicornsvr~$
 ```
 
-### .mode(command, [description])
+### Vorpal Object
 
-Mode is a special type of `command` that brings the user into a given `mode`, wherein regular Vorpal commands are ignored and the full command strings are interpreted literally by the `mode.action` function. This will continue until the user exits the mode by typing `exit`.
-
-```js
-vorpal
-  .mode("repl")
-  .description("Enters the user into a REPL session.")
-  .delimiter("repl:")
-  .action(function(command, callback) {
-    this.log(eval(command));
-  });
-```
-```bash
-$ node server.js
-node~$ 
-node~$ repl
-node~$ repl: 
-node~$ repl: 6 * 7
-42
-node~$ repl: Math.random();
-0.62392647205
-node~$ repl: exit
-node~$ 
-```
-
-`mode`'s syntax is a duplicate of `command`'s, with the following additional / altered commands:
-
-* [`.delimiter(string)`](#modedelimiterstring): Tacks on an additional prompt delimiter for orientation.
-* [`.init(function)`](#modeinitfunction): Same as `command`'s `.action`, called once on entering the mode.
-* [`.action(function)`](#modeactionfunction): Called on each command submission while in the mode.
-
-#### .mode.delimiter(string)
-
-This will add on an additional delimiter string to one's Vorpal prompt upon entering the mode, so the user can differentiate what state he is in.
-
-```js
-vorpal
-  .mode('repl')
-  .delimiter('you are in repl>')
-  .action(function(command, callback) {
-    this.log(eval(command));
-  });
-```
-
-```bash
-node~$ 
-node~$ repl
-node~$ you are in repl>  
-```
-#### .mode.init(function)
-
-Behaves exactly like `command.action`, where the function passed in is fired once when the user enters the given mode. Passed the same parameters as `command.action`: `args` and `callback`. `init` is helpful when one needs to set up the mode or inform the user of what is happening.
-
-```js
-vorpal
-  .mode('sql')
-  .delimiter('sql:')
-  .init(function(args, callback){
-    this.log('Welcome to SQL mode.\nYou can now directly enter arbitrary SQL commands. To exit, type `exit`.');
-    callback();
-  })
-  .action(function(command, callback) {
-    var self = this;
-    app.query(command, function(res){
-      self.log(res);
-      callback();
-    });
-  });
-```
-
-```bash
-node~$
-node~$ sql
-Welcome to SQL mode.
-You can now directly enter arbitrary SQL commands. To exit, type `exit`.
-node~$ sql: 
-node~$ sql: select first_name, last_name from persons where first_name = 'George';
-
-first_name        last_name
-----------------  ----------------
-George            Clooney
-George            Smith
-George            Stevens
-
-node~$ sql: 
-node~$ sql: exit
-node~$
-```
-
-#### .mode.action(function)
-
-Similar to `command.action`, `mode.action` differs in that it is repeatedly called on each command the user types until the mode is exited. Instead of `args` passed as the first argument, the full `command` string the user typed is passed and it is expected that `mode.action` appropriately handles the command. Example given above.
-
-### .parse(argv)
+### .parse(argv, options)
 
 Parses the process's `process.argv` arguments and executes the matching command.
 
 ```js
-vorpal.command('foo', 'Outputs "bar".')
-  .action(function(args, cb){
-    this.log('bar');
-  });
-
-vorpal.delimiter('app$')
+vorpal
   .show()
   .parse(process.argv);
 ```
@@ -568,6 +662,22 @@ vorpal.delimiter('app$')
 ~$ node app.js foo
 bar
 app$
+```
+
+#### Options
+
+##### use: 'minimist'
+
+When `use: 'minimist'` is passed in as an option, `.parse` will instead expose the `minimist` module's main method and return the results, executing no commands.
+
+```js
+var results = vorpal.parse('foo -baz', {use: 'minimist'});
+/* { _: ['foo'],
+  b: true,
+  a: true,
+  z: true
+} */
+
 ```
 
 ### .delimiter(string)
@@ -650,20 +760,6 @@ Returns a given command by its name. This is used instead of `vantage.command()`
     help.hidden() 
   }
 ```
-
-## Events
-
-Vorpal extends `EventEmitter.prototype`. Simply use `vorpal.on('event', fn)` and `vorpal.emit('event', data)`. The following events are supported:
-
-- `command_registered`: Fires when `vorpal.command` registers a new command.
-
-- `client_keypress`: Fires on keypress on local client terminal.
-
-- `client_prompt_submit`: Fires when the CLI prompt has been submitted with a command, including ''.
-
-- `client_command_executed`: Fires at the client once the command has been received back as executed.
-
-- `client_command_error`: Fires at the client if a command comes back with an error thrown.
 
 ## Automation
 
@@ -769,6 +865,20 @@ module.exports = function(vorpal, options) {
 ```
 
 The options exist so the user can pass in customizations to your module. In documenting your `vorpal` extension, you would lay out your supported options for the user.
+
+## Events
+
+Vorpal extends `EventEmitter.prototype`. Simply use `vorpal.on('event', fn)` and `vorpal.emit('event', data)`. The following events are supported:
+
+- `command_registered`: Fires when `vorpal.command` registers a new command.
+
+- `client_keypress`: Fires on keypress on local client terminal.
+
+- `client_prompt_submit`: Fires when the CLI prompt has been submitted with a command, including ''.
+
+- `client_command_executed`: Fires at the client once the command has been received back as executed.
+
+- `client_command_error`: Fires at the client if a command comes back with an error thrown.
 
 ## FAQ
 
