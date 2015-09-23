@@ -12,6 +12,12 @@ var Vorpal = require('./../../lib/vorpal');
 
 var vorpal = new Vorpal();
 
+vorpal.command('delim <string>', 'change delimiter to something else.')
+  .action(function (args, cb) {
+    this.delimiter(args.string);
+    cb();
+  });
+
 vorpal.command('say <words>', 'say something')
   .action(function (args, cb) {
     this.log(args.words);
