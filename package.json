@@ -4,7 +4,7 @@
   "description": "Node's first framework for building immersive CLI apps.",
   "main": "./lib/vorpal.js",
   "scripts": {
-    "test": "mocha && xo"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
