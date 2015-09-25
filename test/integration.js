@@ -135,6 +135,13 @@ describe('integration tests:', function () {
         });
       });
 
+      it('should execute a custom help command.', function (done) {
+        exec('custom-help --help', done, function (err) {
+          String(stdout()).should.containEql('This is a custom help output.');
+          done(err);
+        });
+      });
+
       it('should chain two async commands', function (done) {
         vorpal.exec('foo').then(function () {
           stdout().should.equal('bar');

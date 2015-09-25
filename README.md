@@ -129,6 +129,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 - [`command.option`](#commandoptionstring)
 - [`command.hidden`](#commandhidden)
 - [`command.remove`](#commandremove)
+- [`command.help`](#commandhelp)
 - [`command.autocompletion`](#commandautocompletiontextiterationcallback)
 - [`command.action`](#commandactionfunction)
 
@@ -162,6 +163,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 * [`.option`](#commandoptionstring-description): Provides command options, as in `-f` or `--force`.
 * [`.hidden`](#commandhidden): Removes command from help menus.
 * [`.remove`](#commandremove): Removes a command.
+* [`.help`](#commandhelp): Overrides the auto-generated help method.
 * [`.autocompletion`](#commandautocompletiontextiterationcallback): Command-specific tabbed auto-completion.
 * [`.action`](#commandactionfunction): Function to execute when command is executed.
 
@@ -296,6 +298,21 @@ Deletes a given command. Useful for getting rid of unwanted functionality when i
   if (help) { 
     help.remove() 
   }
+```
+
+#### .command.help()
+
+Overrides the auto-generated help method for a given command, which is invoked through `[command] --help` or `[command] /?`.
+
+```js
+vorpal
+  .command('foo')
+  .help(function (args) {
+    this.log('This command outputs "bar".');
+  })
+  .action(function(args, cb){
+    this.log('bar');
+  });
 ```
 
 #### .command.autocompletion(text, iteration, callback)

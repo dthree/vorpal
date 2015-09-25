@@ -31,6 +31,15 @@ module.exports = function (vorpal) {
       cb();
     });
 
+  vorpal.command('custom-help', 'Outputs custom help.')
+    .help(function (args, cb) {
+      this.log('This is a custom help output.');
+      cb();
+    })
+    .action(function (args, cb) {
+      cb();
+    });
+
   vorpal.command('reverse [words]', 'append bar to stdin')
     .alias('r')
     .action(function (args, cb) {
