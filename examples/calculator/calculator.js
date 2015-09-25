@@ -48,7 +48,7 @@ vorpal.command('c', 'say something')
       for (var i = 0; i < process.stdout.rows - 1; ++i) {
         arr.push(Math.random());
       }
-      logUpdate(arr.join('\n'));
+      vorpal.ui.rewrite(arr.join('\n'));
     }, 10)
     cb();
   });
@@ -302,7 +302,7 @@ vorpal.command('less', 'less function')
       }
       stdn = stdn.split('\n').slice(self._less[cursor], self._less[cursor] + numRows).join('\n');
       stdn = stdn;
-      logUpdate(stdn + '#' + append + '#' + stdn.split('\n').length + '|||' + self._less[cursor]);
+      vorpal.ui.rewrite(stdn + '#' + append + '#' + stdn.split('\n').length + '|||' + self._less[cursor]);
     }
 
     function keyHandler(data) {
@@ -422,8 +422,8 @@ vorpal.command('less', 'less function')
     function quit() {
       vorpal.removeListener('keypress', keyHandler);
       vorpal.ui.submit('');
-      logUpdate(padRows('', process.stdout.rows - 1));
-      logUpdate.done();
+      vorpal.ui.rewrite(padRows('', process.stdout.rows - 1));
+      //logUpdate.done();
       cb();
     }
 
