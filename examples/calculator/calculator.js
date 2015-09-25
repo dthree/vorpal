@@ -86,9 +86,25 @@ function padRows(str, n) {
   return str;
 }
 
+function b(str) {
+  return chalk.blue(str);
+}
+function y(str) {
+  return chalk.yellow(str);
+}
+function r(str) {
+  return chalk.red(str);
+}
+function c(str) {
+  return chalk.cyan(str);
+}
+function g(str) {
+  return chalk.grey(str);
+}
+
 var help = `
 
-                   SUMMARY OF LESS COMMANDS
+                   ${chalk.bold(`SUMMARY OF LESS COMMANDS`)}
 
       Commands marked with * may be preceded by a number, N.
       Notes in parentheses indicate the behavior if N is given.
@@ -96,86 +112,32 @@ var help = `
 
   h  H                 Display this help.
   q  :q  Q  :Q  ZZ     Exit.
-  ---------------------------------------------------------------------------
+  ${g(`---------------------------------------------------------------------------`)}
 
                            MOVING
 
-  e  ^E  j  ^N  CR  *  Forward  one line   (or N lines).
-  y  ^Y  k  ^K  ^P  *  Backward one line   (or N lines).
-  f  ^F  ^V  SPACE  *  Forward  one window (or N lines).
-  b  ^B  ESC-v      *  Backward one window (or N lines).
-  z                 *  Forward  one window (and set window to N).
-  w                 *  Backward one window (and set window to N).
-  ESC-SPACE         *  Forward  one window, but don't stop at end-of-file.
-  d  ^D             *  Forward  one half-window (and set half-window to N).
-  u  ^U             *  Backward one half-window (and set half-window to N).
-  ESC-)  RightArrow *  Left  one half screen width (or N positions).
-  ESC-(  LeftArrow  *  Right one half screen width (or N positions).
-  F                    Forward forever; like "tail -f".
-  r  ^R  ^L            Repaint screen.
-  R                    Repaint screen, discarding buffered input.
+  ${b(`e  ${y(`^`)}E  j  ^N  CR  ${r(`*`)}`)}  Forward  one line   (or N lines).
+  ${b(`y  ${y(`^`)}Y  k  ${y(`^`)}K  ${y(`^`)}P  ${r(`*`)}`)}  Backward one line   (or N lines).
+  ${b(`f  ${y(`^`)}F  ${y(`^`)}V  ${c(`SPACE`)}  ${r(`*`)}`)}  Forward  one window (or N lines).
+  ${b(`b  ${y(`^`)}B  ${c(`ESC-v`)}      ${r(`*`)}`)}  Backward one window (or N lines).
+  ${b(`z                 ${r(`*`)}`)}  Forward  one window (and set window to N).
+  ${b(`w                 ${r(`*`)}`)}  Backward one window (and set window to N).
+  ${b(`${c(`ESC-SPACE`)}         ${r(`*`)}`)}  Forward  one window, but don't stop at end-of-file.
+  ${b(`d  ${y(`^`)}D             ${r(`*`)}`)}  Forward  one half-window (and set half-window to N).
+  ${b(`u  ${y(`^`)}U             ${r(`*`)}`)}  Backward one half-window (and set half-window to N).
+  ${b(`${c(`ESC-`)})  ${c(`RightArrow`)} ${r(`*`)}`)}  Left  one half screen width (or N positions).
+  ${b(`${c(`ESC-`)}(  ${c(`LeftArrow`)}  ${r(`*`)}`)}  Right one half screen width (or N positions).
         ---------------------------------------------------
         Default "window" is the screen height.
         Default "half-window" is half of the screen height.
-  ---------------------------------------------------------------------------
-
-                          SEARCHING
-
-  /pattern          *  Search forward for (N-th) matching line.
-  ?pattern          *  Search backward for (N-th) matching line.
-  n                 *  Repeat previous search (for N-th occurrence).
-  N                 *  Repeat previous search in reverse direction.
-  ESC-n             *  Repeat previous search, spanning files.
-  ESC-N             *  Repeat previous search, reverse dir. & spanning files.
-  ESC-u                Undo (toggle) search highlighting.
-  &pattern          *  Display only matching lines
-        ---------------------------------------------------
-        A search pattern may be preceded by one or more of:
-        ^N or !  Search for NON-matching lines.
-        ^E or *  Search multiple files (pass thru END OF FILE).
-        ^F or @  Start search at FIRST file (for /) or last file (for ?).
-        ^K       Highlight matches, but don't move (KEEP position).
-        ^R       Don't use REGULAR EXPRESSIONS.
-  ---------------------------------------------------------------------------
+  ${g(`---------------------------------------------------------------------------`)}
 
                            JUMPING
 
   g  <  ESC-<       *  Go to first line in file (or line N).
   G  >  ESC->       *  Go to last line in file (or line N).
   p  %              *  Go to beginning of file (or N percent into file).
-  t                 *  Go to the (N-th) next tag.
-  T                 *  Go to the (N-th) previous tag.
-  {  (  [           *  Find close bracket } ) ].
-  }  )  ]           *  Find open bracket { ( [.
-  ESC-^F <c1> <c2>  *  Find close bracket <c2>.
-  ESC-^B <c1> <c2>  *  Find open bracket <c1>
         ---------------------------------------------------
-        Each "find close bracket" command goes forward to the close bracket
-          matching the (N-th) open bracket in the top line.
-        Each "find open bracket" command goes backward to the open bracket
-          matching the (N-th) close bracket in the bottom line.
-
-  m<letter>            Mark the current position with <letter>.
-  '<letter>            Go to a previously marked position.
-  ''                   Go to the previous position.
-  ^X^X                 Same as '.
-        ---------------------------------------------------
-        A mark is any upper-case or lower-case letter.
-        Certain marks are predefined:
-             ^  means  beginning of the file
-             $  means  end of the file
-  ---------------------------------------------------------------------------
-
-                        CHANGING FILES
-
-  :e [file]            Examine a new file.
-  ^X^V                 Same as :e.
-  :n                *  Examine the (N-th) next file from the command line.
-  :p                *  Examine the (N-th) previous file from the command line.
-  :x                *  Examine the first (or N-th) file from the command line.
-  :d                   Delete the current file from the command line list.
-  =  ^G  :f            Print current file name.
- ---------------------------------------------------------------------------
 
                     MISCELLANEOUS COMMANDS
 
@@ -183,13 +145,9 @@ var help = `
   --<name>             Toggle a command line option, by name.
   _<flag>              Display the setting of a command line option.
   __<name>             Display the setting of an option, by name.
-  +cmd                 Execute the less cmd each time a new file is examined.
 
-  !command             Execute the shell command with $SHELL.
-  |Xcommand            Pipe file between current pos & mark X to shell command.
-  v                    Edit the current file with $VISUAL or $EDITOR.
   V                    Print version number of "less".
- ---------------------------------------------------------------------------
+ ${g(`---------------------------------------------------------------------------`)}
 
                            OPTIONS
 
@@ -292,7 +250,7 @@ var help = `
                   The F command changes files if the input file is renamed.
 
 
- ---------------------------------------------------------------------------
+ ${g(`---------------------------------------------------------------------------`)}
 
                           LINE EDITING
 
@@ -377,6 +335,7 @@ vorpal.command('less', 'less function')
 
       var match = true;
       var stop = true;
+      var version = false;
       var cursor = (self._less.helpMode) ? 'helpCursor' : 'cursor';
       var alreadyBelowBottom = (self._less.cursor > bottom);
       var crs = self._less[cursor];
@@ -398,12 +357,20 @@ vorpal.command('less', 'less function')
         crs -= (Math.floor(numRows / 2) * factor);
       } else if (has(['d', '^d'])) {
         crs += (Math.floor(numRows / 2) * factor);
-      } else if (has(['g', 'home'])) {
+      } else if (has(['g', 'home', '<', 'ESC<'])) {
         crs = 0;
-      } else if (has(['G', 'end'])) {
+      } else if (has(['p', '%'])) {
+        // Take the number given and compute percentage
+        // of the document.
+        var lines = String((self._less.helpMode) ? self._less.help : self._less.stdin).split('\n').length;
+        factor = (factor > 100) ? 100 : factor;
+        crs = (factor === 1) ? 0 : Math.floor(lines * (factor / 100));
+      } else if (has(['G', 'end', '>', 'ESC>'])) {
         crs = bottom;
       } else if (has(['h', 'H'])) {
         self._less.helpMode = true;
+      } else if (has('V')) {
+        version = true;
       } else if (has(['q', ':q', 'Q', ':Q', 'ZZ'])) {
         if (self._less.helpMode) {
           self._less.helpMode = false;
@@ -422,7 +389,9 @@ vorpal.command('less', 'less function')
       crs = (crs > bottom && (stop === true) && !alreadyBelowBottom) ? bottom : crs;
 
       var delimiter;
-      if (crs >= bottom && self._less.helpMode) {
+      if (version) {
+        delimiter = chalk.inverse('vorpal-less 0.0.1 (press RETURN) ');
+      } else if (crs >= bottom && self._less.helpMode) {
         delimiter = chalk.inverse('HELP -- END -- Press g to see it again, or q when done ');
       } else if (crs >= bottom) {
         delimiter = chalk.inverse('END ');
@@ -433,25 +402,26 @@ vorpal.command('less', 'less function')
       } else {
         delimiter = ':';
       }
-      //vorpal.ui._activePrompt.opt.message = delimiter;
       vorpal.ui.delimiter(delimiter);
 
       // Re-assign the permanent cursor.
       self._less[cursor] = crs;
 
-      render('|||||||||' + chalk.yellow(factor) + '|' + numCache + '|' + chalk.cyan(require('util').inspect( + '|' + key + '|' + keyMods + '|' + keyCache + '|' + eValue + '@@' + eName + '@@')));
+      render(crs + '%%' + factor + '%%' + lines + '|||||||||' + chalk.yellow(factor) + '|' + numCache + '|' + chalk.cyan(require('util').inspect( + '|' + key + '|' + keyMods + '|' + keyCache + '|' + eValue + '@@' + eName + '@@')));
 
       if (crs < bottom && !self._less.helpMode) {
         vorpal.ui.write(self._less.cache);
         // Want to put cursor (inverse), but 
         // backspace then gives ansi whackiness.
         // vorpal.ui.write(self._less.cache + chalk.inverse(' '));
+      } else {
+        vorpal.ui.write('');
       }
     }
 
     function quit() {
       vorpal.removeListener('keypress', keyHandler);
-      vorpal.ui._activePrompt.onEnd({isValid: true, value: ''});
+      vorpal.ui.submit('');
       logUpdate(padRows('', process.stdout.rows - 1));
       logUpdate.done();
       cb();
