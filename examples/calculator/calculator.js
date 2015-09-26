@@ -12,6 +12,14 @@ var Vorpal = require('./../../lib/vorpal');
 
 var vorpal = new Vorpal();
 
+
+vorpal.catch('[commands...]')
+  .option('-r, --read')
+  .action(function (args, cb) {
+    this.log(args);
+    cb();
+  });
+
 vorpal
   .command('foor')
   .help(function (args, cb) {
