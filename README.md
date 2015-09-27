@@ -126,6 +126,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 - [.command](#commandcommand-description)
 - [`command.description`](#commanddescriptionstring)
 - [`command.alias`](#commandaliasstring)
+- [`command.parse`](#commandparseparseFunction)
 - [`command.option`](#commandoptionstring)
 - [`command.hidden`](#commandhidden)
 - [`command.remove`](#commandremove)
@@ -261,6 +262,19 @@ vorpal
 app~$ foobar
 bar
 app~$
+```
+
+#### .command.parse(parseFunction)
+
+Allows you to parse and alter the raw command entered by the user before it is executing. Useful for things such as appending pipes to the command.
+
+```js
+vorpal
+  .command("blabber", "Outputs a whole bunch of text.")
+  .parse(function (command, args) { 
+    return command + ' | less';   
+  })
+  // ...
 ```
 
 #### .command.option(string, [description])

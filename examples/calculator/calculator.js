@@ -1,3 +1,5 @@
+// Please ignore this file, it's currently a playground...
+
 'use strict';
 
 /**
@@ -11,17 +13,35 @@ var Vorpal = require('./../../lib/vorpal');
  */
 
 var vorpal = new Vorpal();
+var less = require('vorpal-less');
 
+vorpal.use(less);
 
+/*
 vorpal.catch('[commands...]')
   .option('-r, --read')
   .action(function (args, cb) {
     this.log(args);
     cb();
+  }).done(function(){
+    var self = this;
+    var mid = vorpal.ui.midPrompt();
+    if (mid) {
+      vorpal.ui.cancel();
+    }
+    vorpal.exec('less', { stdin: 'foobar'}, function(){
+      vorpal.ui.rewrite('chocolate/pudding.')
+      if (mid) {
+      }
+    });
   });
+*/
 
 vorpal
   .command('foor')
+  .parse(function(str) {
+    return str + ' | reverse';
+  })
   .help(function (args, cb) {
     this.log('This command outputs \'bar\'.');
     cb();
