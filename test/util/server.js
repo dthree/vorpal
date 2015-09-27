@@ -31,6 +31,15 @@ module.exports = function (vorpal) {
       cb();
     });
 
+  vorpal.command('parse me <words>', 'Takes input and adds a reverse pipe to it.')
+    .parse(function (str) {
+      return str + ' | reverse';
+    })
+    .action(function (args, cb) {
+      this.log(args.words);
+      cb();
+    });
+
   vorpal.command('custom-help', 'Outputs custom help.')
     .help(function (args, cb) {
       this.log('This is a custom help output.');

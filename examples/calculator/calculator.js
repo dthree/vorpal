@@ -17,29 +17,10 @@ var less = require('vorpal-less');
 
 vorpal.use(less);
 
-/*
-vorpal.catch('[commands...]')
-  .option('-r, --read')
-  .action(function (args, cb) {
-    this.log(args);
-    cb();
-  }).done(function(){
-    var self = this;
-    var mid = vorpal.ui.midPrompt();
-    if (mid) {
-      vorpal.ui.cancel();
-    }
-    vorpal.exec('less', { stdin: 'foobar'}, function(){
-      vorpal.ui.rewrite('chocolate/pudding.')
-      if (mid) {
-      }
-    });
-  });
-*/
-
 vorpal
   .command('foor')
-  .parse(function(str) {
+  .option('-f, --foo')
+  .parse(function (str) {
     return str + ' | reverse';
   })
   .help(function (args, cb) {
@@ -47,7 +28,6 @@ vorpal
     cb();
   })
   .action(function (args, cb) {
-    this.log('bar');
     cb();
   });
 

@@ -135,13 +135,6 @@ describe('integration tests:', function () {
         });
       });
 
-      it('should execute a custom help command.', function (done) {
-        exec('custom-help --help', done, function (err) {
-          String(stdout()).should.containEql('This is a custom help output.');
-          done(err);
-        });
-      });
-
       it('should chain two async commands', function (done) {
         vorpal.exec('foo').then(function () {
           stdout().should.equal('bar');
@@ -201,6 +194,24 @@ describe('integration tests:', function () {
           should += i;
           vorpal.exec('count ' + i).then(hnFn).catch(cFn);
         }
+      });
+    });
+
+    describe('.command.help', function () {
+      it('should execute a custom help command.', function (done) {
+        exec('custom-help --help', done, function (err) {
+          String(stdout()).should.containEql('This is a custom help output.');
+          done(err);
+        });
+      });
+    });
+
+    describe('.command.parse', function () {
+      it('should add on details to an existing command.', function (done) {
+        exec('parse me in-reverse', done, function (err) {
+          String(stdout()).should.containEql('esrever-ni');
+          done(err);
+        });
       });
     });
 
