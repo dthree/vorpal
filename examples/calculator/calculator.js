@@ -7,6 +7,7 @@
  */
 
 var Vorpal = require('./../../lib/vorpal');
+var _ = require('lodash');
 
 /**
  * Variable declarations.
@@ -14,8 +15,9 @@ var Vorpal = require('./../../lib/vorpal');
 
 var vorpal = new Vorpal();
 var less = require('vorpal-less');
+var repl = require('vorpal-repl');
 
-vorpal.use(less);
+vorpal.use(less).use(repl);
 
 vorpal.command('test').action(function (args, cbk) {
   function keyhandle() {
@@ -56,6 +58,47 @@ vorpal.command('delim <string>', 'change delimiter to something else.')
     this.delimiter(args.string);
     cb();
   });
+
+
+function compare(a, b) {
+  for (let item in a) {
+    if (a.hasOwnProperty[item]) {
+      if (a[item] !== b[item]) {
+        console.log('----------')
+        console.log(item);
+        console.log(a[item])
+        console.log(b[item])
+      }
+      if (_.isObject(a[item])) {
+        compare(a[item], b[item]);
+      }
+    }
+  }
+}
+
+
+//\var escapes = require('ansi-escapes')
+
+vorpal.command('gg', '')
+  .action(function (args, cb) {
+    setTimeout(function(){
+      //console.log(vorpal.ui._activePrompt.screen.rl._getDisplayPos())
+      //console.log(vorpal.ui._activePrompt.screen.rl._getCursorPos())
+      //console.log(vorpal.ui._activePrompt.screen.rl._getDisplayPos())
+      //console.log(vorpal.ui._activePrompt.screen.rl._getCursorPos())
+    }, 500)
+      vorpal.ui.rewrite('cows');
+      //vorpal.ui.print();
+      //vorpal.ui._activePrompt.screen.rl.cursor = 0;
+      //vorpal.ui._activePrompt.screen.rl.cursorTo(process.stdin, 0, 0);
+      vorpal.ui.write('foo:');
+
+      //escapes.show
+    cb();
+  });
+
+
+
 
 vorpal.command('say <words>', 'say something')
   .action(function (args, cb) {
@@ -158,20 +201,31 @@ vorpal.command('args [items...]', 'Shows args.')
   });
 
 vorpal
-  .mode('repl', 'Enters REPL Mode.')
-  .init(function (args, cb) {
-    this.log('Entering REPL Mode.');
-    cb();
-  })
-  .action(function (command, cb) {
-    console.log(command);
-    var res = eval(command);
+  .catch('[commands...]')
+  .action(function (args, cb) {
+    args.commands = args.commands || [];
+    var pipes = args.commands.indexOf('|');
+    args.commands = (pipes > -1) ? args.commands.slice(0, pipes) : args.commands;
+    var cmd = args.commands.join(' ');
+    var res;
+    try {
+      res = eval(cmd);
+    } catch(e) {
+      res = e;
+    }
     this.log(res);
-    cb(res);
+    cb();
   });
 
 vorpal
   .delimiter('calc:')
   .show()
   .parse(process.argv);
+
+/*
+console.log('WTF\n\n\n');
+setTimeout(function () {
+  console.log('hi')
+}, 4000);
+*/
 
