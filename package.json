@@ -27,7 +27,6 @@
   ],
   "author": "dthree",
   "license": "MIT",
-  "preferGlobal": true,
   "bugs": {
     "url": "https://github.com/dthree/vorpal/issues"
   },
