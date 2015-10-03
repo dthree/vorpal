@@ -34,4 +34,97 @@ vorpal.command('a').action(function (args, cbk) {
   }, 2000);
 });
 
+
+var cow = {
+
+  obj: function() {
+    console.log('Hi');
+
+  },
+
+
+}
+
+
 vorpal.show();
+
+return;
+setTimeout(function() {
+  vorpal.ui.cancel();
+}, 2000);
+
+
+return;
+
+setTimeout(function() {
+  vorpal.ui.imprint();
+  vorpal.log('cheese  pepperoni  olives  anchovies');
+}, 2000);
+
+return;
+
+vorpal.ui.delimiter('cows: ');
+vorpal.log(vorpal.ui.delimiter());
+
+vorpal.ui.delimiter('NaN: ');
+setInterval(function() {
+  vorpal.ui.delimiter(vorpal.ui.delimiter() + 'NaN: ');
+}, 1000);
+
+
+return;
+
+setInterval(function() {
+  vorpal.ui.input(vorpal.ui.input() + 'NaN');
+  vorpal.log(vorpal.ui.input());
+}, 1000);
+
+return; 
+var ctr = 0;
+vorpal.ui.redraw('\n\n\n\n');
+vorpal.ui.redraw('\n\n\n\n');
+function draw() {
+  vorpal.ui.redraw('\n\n' + Math.random() + '\n\n');
+  if (ctr < 10) {
+    ctr++;
+    setTimeout(function (){
+      draw();
+    }, 200)
+  } else {
+    vorpal.ui.redraw.clear();
+    vorpal.ui.redraw.done();
+    ctr = 0;
+    setTimeout(function() {
+      vorpal.ui.redraw('\n\n\n\n');
+      draw();
+    }, 500)
+  }
+}
+draw();
+
+
+return;
+setTimeout(function () {
+
+  //vorpal.ui.redraw('');
+  //vorpal.ui.redraw.clear();
+  //vorpal.ui.redraw('cows');
+  vorpal.ui.delimiter('hesheeeeee: ');
+
+  setTimeout(function () {
+
+    //vorpal.ui.redraw.clear();
+    //vorpal.ui.redraw.done();
+    vorpal.ui.input('wassoosah');
+
+    setTimeout(function () {
+
+      //vorpal.ui.refresh();
+      vorpal.ui.delimiter('a: ');
+
+    }, 1000);
+
+  }, 1000);
+
+}, 1000);
+
