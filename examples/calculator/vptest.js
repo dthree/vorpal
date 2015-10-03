@@ -48,21 +48,13 @@ var cow = {
 
 vorpal.show();
 
-return;
-setTimeout(function() {
-  vorpal.ui.cancel();
-}, 2000);
-
-
-return;
-
+/*
 setTimeout(function() {
   vorpal.ui.imprint();
   vorpal.log('cheese  pepperoni  olives  anchovies');
 }, 2000);
 
 return;
-
 vorpal.ui.delimiter('cows: ');
 vorpal.log(vorpal.ui.delimiter());
 
@@ -80,6 +72,7 @@ setInterval(function() {
 }, 1000);
 
 return; 
+
 var ctr = 0;
 vorpal.ui.redraw('\n\n\n\n');
 vorpal.ui.redraw('\n\n\n\n');
@@ -128,3 +121,4 @@ setTimeout(function () {
 
 }, 1000);
 
+*/
