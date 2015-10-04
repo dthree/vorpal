@@ -163,6 +163,7 @@ vorpal.command('do [text...]', 'Recite')
 
 vorpal.command('grungy <commands...>', 'Recite')
   .autocompletion(function (text, iteration, cb) {
+    vorpal.log('|', text, iteration);
     cb(undefined, [chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome')]);
   })
   .action(function (args, cb) {
@@ -213,8 +214,7 @@ vorpal.command('args [items...]', 'Shows args.')
 vorpal
   .catch('[commands...]')
   .autocompletion(function (text, iteration, cb) {
-    //cb(undefined, [a, b, c]);
-    //cb('foobar', 'fizzle');
+    vorpal.log('|||', text, iteration);
     cb(undefined, [chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome'), chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome'), chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome')]);
   })
   .action(function (args, cb) {
