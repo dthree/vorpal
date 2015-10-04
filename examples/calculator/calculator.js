@@ -8,6 +8,7 @@
 
 var Vorpal = require('./../../lib/vorpal');
 var _ = require('lodash');
+var chalk = require('chalk');
 
 /**
  * Variable declarations.
@@ -160,6 +161,15 @@ vorpal.command('do [text...]', 'Recite')
     cb();
   });
 
+vorpal.command('grungy <commands...>', 'Recite')
+  .autocompletion(function (text, iteration, cb) {
+    cb(undefined, [chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome')]);
+  })
+  .action(function (args, cb) {
+    console.log('HI');
+    cb();
+  });
+
 vorpal.command('add [numbers...]', 'Adds numbers together')
   .alias('addition')
   .alias('plus')
@@ -202,6 +212,11 @@ vorpal.command('args [items...]', 'Shows args.')
 
 vorpal
   .catch('[commands...]')
+  .autocompletion(function (text, iteration, cb) {
+    //cb(undefined, [a, b, c]);
+    //cb('foobar', 'fizzle');
+    cb(undefined, [chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome'), chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome'), chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome')]);
+  })
   .action(function (args, cb) {
     args.commands = args.commands || [];
     var pipes = args.commands.indexOf('|');
