@@ -62,7 +62,7 @@ vorpal.command('delim <string>', 'change delimiter to something else.')
 
 
 function compare(a, b) {
-  for (let item in a) {
+  for (var item in a) {
     if (a.hasOwnProperty[item]) {
       if (a[item] !== b[item]) {
         console.log('----------')
