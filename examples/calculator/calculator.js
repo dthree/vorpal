@@ -120,6 +120,9 @@ vorpal.command('destroy database').action(function (args, cb) {
   });
 });
 
+vorpal.command('goat1 [andsome...] <required> [optional]').action(function(args, cb) { cb(); console.log(args); });
+vorpal.command('goat2 [optional] [andsome...] <required>').action(function(args, cb) { cb(); console.log(args); });
+
 vorpal.command('c', 'say something')
   .action(function (args, cb) {
     setInterval(function () {
@@ -133,10 +136,12 @@ vorpal.command('c', 'say something')
   });
 
 vorpal.command('reverse [words]', 'append bar to stdin')
+  .option('-a, --append <text>')
   .alias('r')
   .action(function (args, cb) {
     var stdin = args.stdin || args.words;
     stdin = String(stdin).split('').reverse().join('');
+    stdin += (args.options.append) ? args.options.append : '';
     this.log(stdin);
     cb();
   });
@@ -213,22 +218,17 @@ vorpal.command('args [items...]', 'Shows args.')
 
 vorpal
   .catch('[commands...]')
+  .option('-d, --detail')
   .autocompletion(function (text, iteration, cb) {
     vorpal.log('|||', text, iteration);
     cb(undefined, [chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome'), chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome'), chalk.yellow('fooandsomething'), chalk.red('fizzle'), chalk.green('bumcrumandsome')]);
   })
   .action(function (args, cb) {
+
+    console.log(args);
+
     args.commands = args.commands || [];
-    var pipes = args.commands.indexOf('|');
-    args.commands = (pipes > -1) ? args.commands.slice(0, pipes) : args.commands;
-    var cmd = args.commands.join(' ');
-    var res;
-    try {
-      res = eval(cmd);
-    } catch(e) {
-      res = e;
-    }
-    this.log(res);
+    this.log('You said ' + args.commands.join(' '));
     cb();
   });
 
