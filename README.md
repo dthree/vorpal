@@ -22,7 +22,7 @@
               (O)
 ```
 
-Vorpal is Node's first framework for building [immersive](#what-is-an-immersive-cli-app) CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, interactive CLI environments like [wat](https://github.com/dthree/wat) and [vantage](https://github.com/dthree/vantage).
+Vorpal is Node's first framework for building interactive CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, immersive CLI environments like [wat](https://github.com/dthree/wat) and [vantage](https://github.com/dthree/vantage).
 
 ## Contents
 
@@ -41,16 +41,17 @@ Vorpal is Node's first framework for building [immersive](#what-is-an-immersive-
 
 Inspired by and based on [commander.js](https://www.npmjs.com/package/commander), Vorpal is a framework for building immersive CLI applications built on an interactive prompt provided by [inquirer.js](https://www.npmjs.com/package/inquirer). Vorpal launches Node into an isolated CLI environment and provides a suite of API commands and functionality including:
 
-- Commander.js-flavored command creation, including optional, required and variadic commands, arguments and aliases
+- Commander.js-flavored command creation, including optional, required and variadic commands, args and aliases
 - Built-in help
 - Built-in tabbed auto-completion
-- Customizable command-specific auto-completion
+- Command-specific auto-completion
+- Command piping
 - Persistent command history
 - Prompts
-- Live delimiter control
+- Extension TTY control
 - Action-based event listeners
 
-Vorpal supports community extensions, which empower it to do such things as [auto-reloading commands](https://github.com/vorpaljs/vorpal-watch), [live command imports](https://github.com/vorpaljs/vorpal-use) or even supporting a [built-in REPL](https://github.com/vorpaljs/vorpal-repl).
+Vorpal supports [community extensions](https://github.com/vorpaljs/awesome-vorpaljs), which empower it to do such things as [auto-reloading commands](https://github.com/vorpaljs/vorpal-watch), [live command imports](https://github.com/vorpaljs/vorpal-use) or even supporting a [built-in REPL](https://github.com/vorpaljs/vorpal-repl).
 
 ## Getting Started
 
