@@ -58,6 +58,7 @@ Vorpal supports [community extensions](https://github.com/vorpaljs/awesome-vorpa
 ##### Community
 
 - [Q&A? Join Gitter Chat](https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+- [Stack Overflow](http://stackoverflow.com/questions/tagged/vorpal.js)
 - [Projects Made with Vorpal](https://github.com/vorpaljs/awesome-vorpaljs)
 - [List of Vorpal Extensions](https://github.com/vorpaljs/awesome-vorpaljs#extensions)
 
