@@ -48,7 +48,7 @@
     "inquirer": "0.10.1",
     "lodash": "^3.10.1",
     "log-update": "^1.0.2",
-    "minimist": "^1.1.2",
+    "minimist": "^1.2.0",
     "native-promise-only": "^0.8.0-a",
     "strip-ansi": "^3.0.0"
   },

@@ -36,13 +36,10 @@ vorpal.command('a').action(function (args, cbk) {
 
 
 var cow = {
-
   obj: function() {
     console.log('Hi');
 
   },
-
-
 }
 
 

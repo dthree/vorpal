@@ -123,6 +123,14 @@ vorpal.command('destroy database').action(function (args, cb) {
 vorpal.command('goat1 [andsome...] <required> [optional]').action(function(args, cb) { cb(); console.log(args); });
 vorpal.command('goat2 [optional] [andsome...] <required>').action(function(args, cb) { cb(); console.log(args); });
 
+vorpal.command('t')
+  .option('-i, --index <index>')
+  .action(function (args, cb) {
+    this.log(args);
+    cb();
+  });
+
+
 vorpal.command('c', 'say something')
   .action(function (args, cb) {
     setInterval(function () {
