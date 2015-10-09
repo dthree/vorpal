@@ -128,12 +128,12 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 - [.command](#commandcommand-description)
 - [`command.description`](#commanddescriptionstring)
 - [`command.alias`](#commandaliasstring)
-- [`command.parse`](#commandparseparseFunction)
-- [`command.option`](#commandoptionstring)
+- [`command.parse`](#commandparseparsefunction)
+- [`command.option`](#commandoptionstring-description)
 - [`command.hidden`](#commandhidden)
 - [`command.remove`](#commandremove)
 - [`command.help`](#commandhelp)
-- [`command.autocompletion`](#commandautocompletiontextiterationcallback)
+- [`command.autocompletion`](#commandautocompletiontext-iteration-callback)
 - [`command.action`](#commandactionfunction)
 
 ##### [Mode](#mode-object)
@@ -147,15 +147,15 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 
 ##### [Session](#session-object)
 - [`session.log`](#sessionlogstring)
-- [`session.prompt`](#sessionpromptobjectcallback)
+- [`session.prompt`](#sessionpromptobject-callback)
 - [`session.delimiter`](#sessiondelimiterstring)
 
 ##### [Vorpal](#API)
-- [.parse](#parseargv)
+- [.parse](#parseargv-options)
 - [.delimiter](#delimiterstring)
 - [.show](#show)
-- [.find](#find)
-- [.exec](#execcommandcallback)
+- [.find](#findstring)
+- [.exec](#execcommand-callback)
 - [.pipe](#pipefunction)
 - [.use](#vorpaluseextension)
 
@@ -167,7 +167,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 * [`.hidden`](#commandhidden): Removes command from help menus.
 * [`.remove`](#commandremove): Removes a command.
 * [`.help`](#commandhelp): Overrides the auto-generated help method.
-* [`.autocompletion`](#commandautocompletiontextiterationcallback): Command-specific tabbed auto-completion.
+* [`.autocompletion`](#commandautocompletiontext-iteration-callback): Command-specific tabbed auto-completion.
 * [`.action`](#commandactionfunction): Function to execute when command is executed.
 
 #### .command(command, [description])
@@ -608,7 +608,7 @@ vorpal
 The `this` in a Vorpal action exposes a Session object with several methods.
 
 * [`.log`](#sessionlogstring): Logs to the session's `stdout`.
-* [`.prompt`](#sessionpromptobjectcallback): Exposes `inquirer.js`'s prompt.
+* [`.prompt`](#sessionpromptobject-callback): Exposes `inquirer.js`'s prompt.
 * [`.delimiter`](#sessiondelimiterstring): Changes the session's prompt delimiter.
 
 ##### session.log(string)
