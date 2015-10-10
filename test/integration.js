@@ -80,6 +80,16 @@ describe('integration tests:', function () {
       }
       go();
     });
+
+    it('should fail on duplicate alias', function (done) {
+      (function () {
+        vorpal
+          .command('This command should crash!', 'Any moment now...')
+          .alias('Oh no!')
+          .alias('Here it comes!')
+          .alias('Oh no!')}).should.throw(Error);
+      done();
+    });
   });
 
   describe('vorpal execution', function () {
