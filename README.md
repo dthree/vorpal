@@ -51,7 +51,7 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
 * [x] Custom event listeners
 * [x] And more!
 
-Vorpal supports [community extensions](https://github.com/vorpaljs/awesome-vorpaljs), which empower it to do such things as [auto-reloading commands](https://github.com/vorpaljs/vorpal-watch), [live command imports](https://github.com/vorpaljs/vorpal-use) or even supporting a [built-in REPL](https://github.com/vorpaljs/vorpal-repl).
+Vorpal supports [community extensions](https://github.com/vorpaljs/awesome-vorpaljs), which empower it to do awesome things such as [piping commands to less](https://github.com/vorpaljs/vorpal-less), [importing commands on the fly](https://github.com/vorpaljs/vorpal-use) or even supporting a [built-in REPL](https://github.com/vorpaljs/vorpal-repl).
 
 ## Getting Started
 
@@ -122,7 +122,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 ## [API](https://github.com/dthree/vorpal/wiki)
 
 ##### [Command](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command)
-- [.command](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandcommand-description)
+- [`vorpal.command`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandcommand-description)
 - [`command.description`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commanddescriptionstring)
 - [`command.alias`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandaliasstring)
 - [`command.parse`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandparseparsefunction)
@@ -134,27 +134,38 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 - [`command.action`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandactionfunction)
 
 ##### [Mode](https://github.com/dthree/vorpal/wiki/API-|-vorpal.mode)
-- [.mode](https://github.com/dthree/vorpal/wiki/API-|-vorpal.mode#modecommand-description)
+- [`vorpal.mode`](https://github.com/dthree/vorpal/wiki/API-|-vorpal.mode#modecommand-description)
 - [`mode.delimiter`](https://github.com/dthree/vorpal/wiki/API-|-vorpal.mode#modedelimiterstring)
 - [`mode.init`](https://github.com/dthree/vorpal/wiki/API-|-vorpal.mode#modeinitfunction)
 - [`mode.action`](https://github.com/dthree/vorpal/wiki/API-|-vorpal.mode#modeactionfunction)
 
 ##### [Catch](https://github.com/dthree/vorpal/wiki/API-|-vorpal.catch)
-- [.catch](https://github.com/dthree/vorpal/wiki/API-|-vorpal.catch#catchcommand-description)
+- [`vorpal.catch`](https://github.com/dthree/vorpal/wiki/API-|-vorpal.catch#catchcommand-description)
 
 ##### [CommandInstance](https://github.com/dthree/vorpal/wiki/API-|-CommandInstance)
 - [`commandInstance.log`](https://github.com/dthree/vorpal/wiki/API-|-CommandInstance#commandInstancelogstring)
 - [`commandInstance.prompt`](https://github.com/dthree/vorpal/wiki/API-|-CommandInstance#commandInstancepromptobject-callback)
 - [`commandInstance.delimiter`](https://github.com/dthree/vorpal/wiki/API-|-CommandInstance#commandInstancedelimiterstring)
 
+##### [UI](https://github.com/dthree/vorpal/wiki/api-|-vorpal.ui)
+- [`ui.delimiter`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.ui#uidelimitertext)
+- [`ui.input`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.ui#uiinputtext)
+- [`ui.imprint`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.ui#uiimprint)
+- [`ui.submit`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.ui#uisubmittext)
+- [`ui.cancel`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.ui#uicancel)
+- [`ui.imprint`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.ui#uiimprint)
+- [`ui.redraw`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.ui#uiredrawtext-text)
+- [`ui.redraw.clear`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.ui#uiredrawclear)
+- [`ui.redraw.done`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.ui#uiredrawdone)
+
 ##### [Vorpal](https://github.com/dthree/vorpal/wiki/API-|-vorpal)
-- [.parse](https://github.com/dthree/vorpal/wiki/API-|-vorpal#parseargv-options)
-- [.delimiter](https://github.com/dthree/vorpal/wiki/API-|-vorpal#delimiterstring)
-- [.show](https://github.com/dthree/vorpal/wiki/API-|-vorpal#show)
-- [.find](https://github.com/dthree/vorpal/wiki/API-|-vorpal#findstring)
-- [.exec](https://github.com/dthree/vorpal/wiki/API-|-vorpal#execcommand-callback)
-- [.pipe](https://github.com/dthree/vorpal/wiki/API-|-vorpal#pipefunction)
-- [.use](https://github.com/dthree/vorpal/wiki/API-|-vorpal#vorpaluseextension)
+- [`.parse`](https://github.com/dthree/vorpal/wiki/API-|-vorpal#parseargv-options)
+- [`.delimiter`](https://github.com/dthree/vorpal/wiki/API-|-vorpal#delimiterstring)
+- [`.show`](https://github.com/dthree/vorpal/wiki/API-|-vorpal#show)
+- [`.find`](https://github.com/dthree/vorpal/wiki/API-|-vorpal#findstring)
+- [`.exec`](https://github.com/dthree/vorpal/wiki/API-|-vorpal#execcommand-callback)
+- [`.pipe`](https://github.com/dthree/vorpal/wiki/API-|-vorpal#pipefunction)
+- [`.use`](https://github.com/dthree/vorpal/wiki/API-|-vorpal#vorpaluseextension)
 
 ##### [Events](https://github.com/dthree/vorpal/wiki/Creating-Extensions)
 
