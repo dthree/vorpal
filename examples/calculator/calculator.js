@@ -30,6 +30,11 @@ vorpal.command('add [numbers...]', 'Adds numbers together')
     cb(undefined, sum);
   });
 
+vorpal.command('alphabet').alias('a', 'b', 'c').action(function(args, cb) {
+  this.log('alphabet!');
+  cb();
+});
+
 vorpal.command('double [values...]', 'Doubles a value on each tab press')
   .autocompletion(function (text, iteration, cb) {
     if (iteration > 1000000) {
