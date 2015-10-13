@@ -75,8 +75,62 @@ vorpal
   .show()
   .parse(process.argv);
 
-setTimeout(function(){
-  vorpal.exec('promptme', function() {
-});
 
-}, 1000)
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+vorpal.ui.submit(' ');
+
+/*
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+vorpal.ui.cancel();
+vorpal._prompt();
+*/
+//setTimeout(function(){
+  //vorpal.exec('promptme', function() {
+//});
+
+//}, 1000)
