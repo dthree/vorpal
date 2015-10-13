@@ -55,7 +55,7 @@ describe('integration tests:', function () {
       vorpal
         .command('i go by other names', 'This command has many aliases.')
         .alias('donald trump')
-        .alias('sinterclaus', 'linus torvalds', 'nan nan nan nan nan nan nan watman!')
+        .alias('sinterclaus', ['linus torvalds', 'nan nan nan nan nan nan nan watman!'])
         .action(function (args, cb) {
           cb(undefined, 'You have found me.');
         });

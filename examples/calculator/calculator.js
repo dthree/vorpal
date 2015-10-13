@@ -30,7 +30,7 @@ vorpal.command('add [numbers...]', 'Adds numbers together')
     cb(undefined, sum);
   });
 
-vorpal.command('alphabet').alias('a', 'b', 'c').action(function(args, cb) {
+vorpal.command('alphabet').alias('a', ['b', 'c']).action(function(args, cb) {
   this.log('alphabet!');
   cb();
 });
