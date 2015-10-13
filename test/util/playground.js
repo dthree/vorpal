@@ -49,13 +49,25 @@ vorpal.command('double [values...]', 'Doubles a value on each tab press')
     cb();
   });
 
-vorpal.command('args [items...]', 'Shows args.')
-  .option('-d')
-  .option('-a')
-  .option('--save')
+vorpal.command('promptme')
   .action(function (args, cb) {
-    this.log(args);
-    cb();
+
+     this.prompt({
+       type: 'list',
+       name: 'data',
+       choices: ['a', 'c', 'd'],
+       message: 'test',
+     }, function(result){
+          console.log(result);
+         cb();
+     });
+
+    setTimeout(function() {
+      vorpal.ui._activePrompt.rl.emit('\u001b[B');
+      vorpal.ui._activePrompt.rl.emit('\u001b[B');
+      //console.log(vorpal.ui._activePrompt.rl.emit('line'));
+    }, 1000);
+
   });
 
 vorpal
@@ -63,3 +75,8 @@ vorpal
   .show()
   .parse(process.argv);
 
+setTimeout(function(){
+vorpal.ui._activePrompt.rl.emit('d');
+vorpal.ui._activePrompt.rl.emit('d');
+
+}, 1000)
