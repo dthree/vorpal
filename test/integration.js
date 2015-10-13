@@ -254,6 +254,14 @@ describe('integration tests:', function () {
         });
       });
 
+      it('should use minimist\'s parse through the .types() method', function (done) {
+        exec('typehappy --numberify 4 -s 5', done, function (err, data) {
+          data.options.numberify.should.equal(4);
+          data.options.stringify.should.equal('5');
+          done();
+        });
+      });
+
       it('should ignore variadic arguments when not warranted', function (done) {
         exec('required something with extra something', done, function (err, data) {
           (err === undefined).should.be.true;

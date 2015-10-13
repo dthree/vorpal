@@ -97,6 +97,17 @@ module.exports = function (vorpal) {
     });
 
   vorpal
+    .command('typehappy')
+    .option('-n, --numberify <that>', 'Should be a number')
+    .option('-s, --stringify <me>', 'Should be a string')
+    .types({
+      string: ['s', 'stringify']
+    })
+    .action(function (args, cb) {
+      cb(undefined, args);
+    });
+
+  vorpal
     .command('cmd [with] [one] [million] [arguments] [in] [it]')
     .description('Should deal with many args.')
     .option('-e, --extra', 'Extra complexity on the place.')

@@ -30,11 +30,6 @@ vorpal.command('add [numbers...]', 'Adds numbers together')
     cb(undefined, sum);
   });
 
-vorpal.command('alphabet').alias('a', ['b', 'c']).action(function(args, cb) {
-  this.log('alphabet!');
-  cb();
-});
-
 vorpal.command('double [values...]', 'Doubles a value on each tab press')
   .autocompletion(function (text, iteration, cb) {
     if (iteration > 1000000) {
@@ -52,25 +47,6 @@ vorpal.command('double [values...]', 'Doubles a value on each tab press')
   .action(function (args, cb) {
     cb();
   });
-
-
-vorpal.command('foo <word>')
-  .parse(function (str) {
-    let res = `${str} | less -F`;
-    if (String(str).indexOf('--no-less') > -1) {
-      res = str;
-    }
-    return res;
-  })
-  .option('-l, --lucky', 'Have Wat pick the best result for you.')
-  .option('--less', 'Pipe into less. Defaults to true.')
-  .action(function(args, cb){
-
-    console.log(args);
-    cb();
-  })
-  
-
 
 vorpal.command('args [items...]', 'Shows args.')
   .option('-d')
