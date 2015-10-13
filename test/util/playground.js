@@ -63,8 +63,8 @@ vorpal.command('promptme')
      });
 
     setTimeout(function() {
-      vorpal.ui._activePrompt.rl.emit('\u001b[B');
-      vorpal.ui._activePrompt.rl.emit('\u001b[B');
+      //vorpal.ui._activePrompt.rl.emit('\u001b[B');
+      //vorpal.ui._activePrompt.rl.emit('\u001b[B');
       //console.log(vorpal.ui._activePrompt.rl.emit('line'));
     }, 1000);
 
@@ -76,7 +76,7 @@ vorpal
   .parse(process.argv);
 
 setTimeout(function(){
-vorpal.ui._activePrompt.rl.emit('d');
-vorpal.ui._activePrompt.rl.emit('d');
+  vorpal.exec('promptme', function() {
+});
 
 }, 1000)
