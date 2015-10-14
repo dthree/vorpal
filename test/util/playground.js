@@ -75,26 +75,12 @@ vorpal
   .show()
   .parse(process.argv);
 
-
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-vorpal.ui.submit(' ');
-
+vorpal.sigint(function() {
+  console.log('HI');
+  setTimeout(function() {
+    console.log('bye');
+  }, 10)
+})
 /*
 vorpal.ui.cancel();
 vorpal._prompt();
