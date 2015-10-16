@@ -10,7 +10,7 @@
 [![Wat: Documented](https://img.shields.io/badge/wat-documented-blue.svg)](https://github.com/dthree/wat)
 [![XO: Linted](https://img.shields.io/badge/xo-linted-blue.svg)](https://github.com/sindresorhus/xo)
 
-> Conquer the command line.
+> Conquer the command-line.
 
 ```text
               (O)
