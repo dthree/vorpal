@@ -1,22 +1,11 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-
 var Vorpal = require('./../../lib/vorpal');
-var _ = require('lodash');
-var chalk = require('chalk');
-
-/**
- * Variable declarations.
- */
 
 var vorpal = new Vorpal();
 var less = require('vorpal-less');
 var repl = require('vorpal-repl');
 vorpal.use(less).use(repl);
-
 
 vorpal.command('add [numbers...]', 'Adds numbers together')
   .alias('addition')
@@ -51,72 +40,18 @@ vorpal.command('double [values...]', 'Doubles a value on each tab press')
 
 vorpal.command('promptme')
   .action(function (args, cb) {
-
-     this.prompt({
-       type: 'list',
-       name: 'data',
-       choices: ['a', 'c', 'd'],
-       message: 'test',
-     }, function(result){
-          console.log(result);
-         cb();
-     });
-
-    setTimeout(function() {
-      //vorpal.ui._activePrompt.rl.emit('\u001b[B');
-      //vorpal.ui._activePrompt.rl.emit('\u001b[B');
-      //console.log(vorpal.ui._activePrompt.rl.emit('line'));
-    }, 1000);
-
+    this.prompt({
+      type: 'list',
+      name: 'data',
+      choices: ['a', 'c', 'd'],
+      message: 'test'
+    }, function (result) {
+      console.log(result);
+      cb();
+    });
   });
 
 vorpal
   .delimiter('calc:')
   .show()
   .parse(process.argv);
-
-vorpal.sigint(function() {
-  console.log('HI');
-  setTimeout(function() {
-    console.log('bye');
-  }, 10)
-})
-/*
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-vorpal.ui.cancel();
-vorpal._prompt();
-*/
-//setTimeout(function(){
-  //vorpal.exec('promptme', function() {
-//});
-
-//}, 1000)

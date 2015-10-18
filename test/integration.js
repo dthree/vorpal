@@ -85,7 +85,8 @@ describe('integration tests:', function () {
           .command('This command should crash!', 'Any moment now...')
           .alias('Oh no!')
           .alias('Here it comes!')
-          .alias('Oh no!')}).should.throw(Error);
+          .alias('Oh no!');
+      }).should.throw(Error);
       done();
     });
   });
@@ -256,6 +257,7 @@ describe('integration tests:', function () {
 
       it('should use minimist\'s parse through the .types() method', function (done) {
         exec('typehappy --numberify 4 -s 5', done, function (err, data) {
+          (err === undefined).should.be.true;
           data.options.numberify.should.equal(4);
           data.options.stringify.should.equal('5');
           done();

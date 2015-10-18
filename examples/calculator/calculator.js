@@ -1,22 +1,9 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-
-var Vorpal = require('./../../lib/vorpal');
-var _ = require('lodash');
-var chalk = require('chalk');
-
-/**
- * Variable declarations.
- */
-
-var vorpal = new Vorpal();
+var vorpal = require('./../../lib/vorpal')();
 var less = require('vorpal-less');
 var repl = require('vorpal-repl');
 vorpal.use(less).use(repl);
-
 
 vorpal.command('add [numbers...]', 'Adds numbers together')
   .alias('addition')
