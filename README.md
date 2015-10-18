@@ -10,12 +10,14 @@
 [![Wat: Documented](https://img.shields.io/badge/wat-documented-blue.svg)](https://github.com/dthree/wat)
 [![XO: Linted](https://img.shields.io/badge/xo-linted-blue.svg)](https://github.com/sindresorhus/xo)
 
+> Conquer the command-line.
+
 ```text
               (O)
               <M
    o          <M  
   /| ......  /:M\------------------------------------------------,,,,,,
-(O)[ VORPAL ]::@+}==========================================------------>
+(O)[ vorpal ]::@+}==========================================------------>
   \| ^^^^^^  \:W/------------------------------------------------''''''
    o          <W  
               <W
@@ -32,8 +34,6 @@ Vorpal is Node's first framework for building interactive CLI applications. With
 * [Extensions](#extensions)
 * [FAQ](#faq)
 * [License](#license)
-
-Made with :heart: by [dthree](https://github.com/dthree).
 
 ## Introduction
 
@@ -52,6 +52,8 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
 * [x] And more!
 
 Vorpal supports [community extensions](https://github.com/vorpaljs/awesome-vorpaljs), which empower it to do awesome things such as [piping commands to less](https://github.com/vorpaljs/vorpal-less), [importing commands on the fly](https://github.com/vorpaljs/vorpal-use) or even supporting a [built-in REPL](https://github.com/vorpaljs/vorpal-repl).
+
+Made with :heart: by [dthree](https://github.com/dthree).
 
 ## Getting Started
 
@@ -74,18 +76,18 @@ vorpal
     this.log('bar');
     callback();
   });
-  
+
 vorpal
   .delimiter('myapp$')
   .show();
 ```
-This creates an instance of Vorpal, adds a command which logs "bar", sets the prompt delimiter to say "myapp$", and shows the prompt. 
+This creates an instance of Vorpal, adds a command which logs "bar", sets the prompt delimiter to say "myapp$", and shows the prompt.
 
 Run your project file. You Node app has become a CLI:
 
 ```bash
 $ node server.js
-myapp~$ 
+myapp~$
 ```
 
 Try out your "foo" command.
@@ -102,7 +104,7 @@ Now type "help" to see Vorpal's built in commands in addition to "foo":
 myapp~$ help
 
   Commands
-  
+
     help [command]    Provides help for a given command.
     exit [options]    Exits the app.
     foo               Outputs "bar".
@@ -116,7 +118,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 
 - [Q&A? Gitter chat](https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 - [Stack Overflow](http://stackoverflow.com/questions/tagged/vorpal.js)
-- [Vorpal extensions](https://github.com/vorpaljs/awesome-vorpaljs#extensions)
+- [Vorpal extensions](https://github.com/vorpaljs/awesome-vorpaljs#vorpal-extensions)
 - [Projects made with Vorpal](https://github.com/vorpaljs/awesome-vorpaljs)
 
 ## [API](https://github.com/dthree/vorpal/wiki)
@@ -173,7 +175,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 
 You can build your own Vorpal commands and extensions!
 
-- [List of awesome extensions](https://github.com/vorpaljs/awesome-vorpal#extensions)
+- [List of awesome extensions](https://github.com/vorpaljs/awesome-vorpaljs#vorpal-extensions)
 - [Building your own extension](https://github.com/dthree/vorpal/wiki/Creating-Extensions)
 
 ## [FAQ](https://github.com/dthree/vorpal/wiki/FAQ)
