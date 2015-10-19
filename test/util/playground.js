@@ -38,6 +38,28 @@ vorpal.command('double [values...]', 'Doubles a value on each tab press')
     cb();
   });
 
+
+vorpal.catch('[commands...]')
+  .option('-d, --dog')
+  .parse(function(str){
+    return str  + ' | reverse -c';
+  })
+  .action(function (args, cb) {
+    if (args.commands) {
+      console.log(args);
+      this.log(args.commands.join(' '))
+    }
+    cb();
+  })
+
+
+vorpal.command('reverse')
+  .option('-c, --cow')
+  .action(function (args, cb) {
+    this.log(String(args.stdin || '').split('').reverse().join(''));
+    cb();
+  })
+
 vorpal.command('promptme')
   .action(function (args, cb) {
     this.prompt({
