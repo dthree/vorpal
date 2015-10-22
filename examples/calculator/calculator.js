@@ -49,4 +49,3 @@ vorpal
   .delimiter('calc:')
   .show()
   .parse(process.argv);
-
