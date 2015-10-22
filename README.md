@@ -1,6 +1,7 @@
 # Vorpal
 
-<img src="https://travis-ci.org/dthree/vorpal.svg" alt="Build Status" />
+
+[![Build Status](https://travis-ci.org/dthree/vorpal.svg)](https://travis-ci.org/dthree/vorpal/)
 <a href="https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
   <img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg" alt="Gitter" />
 </a>
@@ -8,7 +9,7 @@
   <img src="https://img.shields.io/npm/v/vorpal.svg" alt="NPM Version" />
 </a>
 [![Wat: Documented](https://img.shields.io/badge/wat-documented-blue.svg)](https://github.com/dthree/wat)
-[![XO: Linted](https://img.shields.io/badge/xo-linted-blue.svg)](https://github.com/sindresorhus/xo)
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 > Conquer the command-line.
 
