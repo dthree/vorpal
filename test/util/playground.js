@@ -51,6 +51,13 @@ vorpal.catch('[commands...]')
     cb();
   });
 
+vorpal.command('foo <word>')
+  .option('-m, --more')
+  .action(function (args, cb) {
+    this.log(args);
+    cb();
+  });
+
 vorpal.command('reverse')
   .option('-c, --cow')
   .action(function (args, cb) {
@@ -75,3 +82,5 @@ vorpal
   .delimiter('calc:')
   .show()
   .parse(process.argv);
+
+// vorpal.exec('foo "bar and" -m "so and so"');
