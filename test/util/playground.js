@@ -1,6 +1,5 @@
-'use strict';
 
-var Vorpal = require('./../../lib/vorpal');
+'use strict';
 
 var vorpal = new Vorpal();
 var less = require('vorpal-less');
@@ -37,21 +36,6 @@ vorpal.command('double [values...]', 'Doubles a value on each tab press')
   .action(function (args, cb) {
     cb();
   });
-
-/*
-vorpal.catch('[commands...]')
-  .option('-d, --dog')
-  .parse(function (str) {
-    return str + ' | reverse -c';
-  })
-  .action(function (args, cb) {
-    if (args.commands) {
-      console.log(args);
-      this.log(args.commands.join(' '));
-    }
-    cb();
-  });
-*/
 
 vorpal.command('fdsdf <word>')
   .option('-m, --more')
@@ -99,3 +83,18 @@ vorpal
   .parse(process.argv);
 
 // vorpal.exec('foo "bar and" -m "so and so"');
+
+/*
+vorpal.catch('[commands...]')
+  .option('-d, --dog')
+  .parse(function (str) {
+    return str + ' | reverse -c';
+  })
+  .action(function (args, cb) {
+    if (args.commands) {
+      console.log(args);
+      this.log(args.commands.join(' '));
+    }
+    cb();
+  });
+*/
