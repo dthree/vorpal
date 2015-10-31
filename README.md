@@ -84,7 +84,7 @@ vorpal
 ```
 This creates an instance of Vorpal, adds a command which logs "bar", sets the prompt delimiter to say "myapp$", and shows the prompt.
 
-Run your project file. You Node app has become a CLI:
+Run your project file. Your Node app has become a CLI:
 
 ```bash
 $ node server.js
