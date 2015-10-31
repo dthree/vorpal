@@ -50,6 +50,7 @@ vorpal.command('foo <word>')
     cb(undefined, 'foo ' + text + '1');
   })
   .action(function (args, cb) {
+    vorpal.activeCommand.log('aaaaaaaaaaaa');
     this.log(args);
     cb();
   });
