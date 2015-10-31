@@ -38,6 +38,7 @@ vorpal.command('double [values...]', 'Doubles a value on each tab press')
     cb();
   });
 
+/*
 vorpal.catch('[commands...]')
   .option('-d, --dog')
   .parse(function (str) {
@@ -50,9 +51,23 @@ vorpal.catch('[commands...]')
     }
     cb();
   });
+*/
+
+vorpal.command('fdsdf <word>')
+  .option('-m, --more')
+  .action(function (args, cb) {
+    this.log('BAMSHLACK');
+    cb();
+  });
 
 vorpal.command('foo <word>')
   .option('-m, --more')
+  .action(function (args, cb) {
+    this.log(args);
+    cb();
+  });
+
+vorpal.command('bar <word>')
   .action(function (args, cb) {
     this.log(args);
     cb();
