@@ -1,6 +1,6 @@
-
 'use strict';
 
+var Vorpal = require('./../../lib/vorpal');
 var vorpal = new Vorpal();
 var less = require('vorpal-less');
 var repl = require('vorpal-repl');
@@ -46,6 +46,9 @@ vorpal.command('fdsdf <word>')
 
 vorpal.command('foo <word>')
   .option('-m, --more')
+  .autocompletion(function (text, iter, cb) {
+    cb(undefined, 'foo ' + text + '1');
+  })
   .action(function (args, cb) {
     this.log(args);
     cb();
