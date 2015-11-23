@@ -52,7 +52,7 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
 * [x] Custom event listeners
 * [x] And more!
 
-Vorpal supports [community extensions](https://github.com/vorpaljs/awesome-vorpaljs), which empower it to do awesome things such as [piping commands to less](https://github.com/vorpaljs/vorpal-less), [importing commands on the fly](https://github.com/vorpaljs/vorpal-use) or even supporting a [built-in REPL](https://github.com/vorpaljs/vorpal-repl).
+Vorpal supports [community extensions](https://github.com/vorpaljs/awesome-vorpaljs), which empower it to do awesome things such as [piping commands to less](https://github.com/vorpaljs/vorpal-less), [importing commands live](https://github.com/vorpaljs/vorpal-use) or even supporting a [built-in REPL](https://github.com/vorpaljs/vorpal-repl).
 
 Made with :heart: by [dthree](https://github.com/dthree).
 
