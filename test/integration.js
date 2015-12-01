@@ -240,7 +240,28 @@ describe('integration tests:', function () {
       });
     });
 
-    describe('command validation', function () {
+    describe('command parsing and validation', function () {
+      it('should parse double quoted command option', function (done) {
+        exec('say "Vorpal\'s command parsing is great"', done, function () {
+          stdout().should.equal('Vorpal\'s command parsing is great');
+          done();
+        });
+      });
+
+      it('should parse single quoted command option', function (done) {
+        exec('say \'My name is "Vorpal"\', done', function () {
+          stdout().should.equal('My name is "Vorpal"');
+          done();
+        });
+      });
+
+      it('should parse angle quoted command option', function (done) {
+        exec('say `He\'s "Vorpal"`, done', function () {
+          stdout().should.equal('He\'s "Vorpal"');
+          done();
+        });
+      });
+
       it('should execute a command when not passed an optional variable', function (done) {
         exec('optional', done, function () {
           stdout().should.equal('');
@@ -274,6 +295,17 @@ describe('integration tests:', function () {
 
       it('should receive variadic arguments as array', function (done) {
         exec('variadic pepperoni olives pineapple anchovies', done, function (err, data) {
+          (err === undefined).should.be.true;
+          data.pizza.should.equal('pepperoni');
+          data.ingredients[0].should.equal('olives');
+          data.ingredients[1].should.equal('pineapple');
+          data.ingredients[2].should.equal('anchovies');
+          done();
+        });
+      });
+
+      it('should receive variadic arguments as array when quoted', function (done) {
+        exec('variadic "pepperoni" \'olives\' `pineapple` anchovies', done, function (err, data) {
           (err === undefined).should.be.true;
           data.pizza.should.equal('pepperoni');
           data.ingredients[0].should.equal('olives');
