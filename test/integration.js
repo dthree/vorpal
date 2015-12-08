@@ -399,5 +399,41 @@ describe('integration tests:', function () {
         });
       });
     });
+
+    describe('events', function () {
+      it('should handle event command_registered', function (done) {
+        vorpal.on('command_registered', function () {
+          true.should.be.true; done();
+        }).command('newMethod');
+      });
+      it('should handle event client_keypress', function (done) {
+        vorpal.on('client_keypress', function () {
+          vorpal.hide();
+          done();
+        }).delimiter('').show()
+          .ui._activePrompt.onKeypress({key: 'k'});
+      });
+      it('should handle event client_prompt_submit', function (done) {
+        vorpal.on('client_prompt_submit', function (result) {
+          result.should.equal('');
+          vorpal.hide();
+          done();
+        }).delimiter('')
+          .show()
+          .ui.submit('');
+      });
+      it('should handle event client_command_executed', function (done) {
+        vorpal.on('client_command_executed', function () {
+          true.should.be.true; done();
+        });
+        vorpal.exec('help');
+      });
+      it('should handle event client_command_error', function (done) {
+        vorpal.on('client_command_error', function () {
+          true.should.be.true; done();
+        });
+        vorpal.exec('fail me plzz');
+      });
+    });
   });
 });
