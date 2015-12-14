@@ -89,6 +89,28 @@ describe('integration tests:', function () {
       }).should.throw(Error);
       done();
     });
+
+    it('should validate arguments', function (done) {
+      var errorThrown = new Error('Invalid Argument');
+      vorpal
+          .command('ValidateMe [myArg]', 'This command only allows argument -CorrectArgument-')
+          .validate(function (args) {
+            if (!args || args.myArg !== 'CorrectArgument') {
+              throw errorThrown;
+            }
+          })
+          .action(function (args, cb) {
+            cb(undefined, 'Correct');
+          });
+
+      vorpal.exec('ValidateMe CorrectArgument', function (err) {
+        (err === undefined).should.be.true;
+        vorpal.exec('ValidateMe IncurrectArgument', function (err) {
+          err.should.equal(errorThrown);
+          done();
+        });
+      });
+    });
   });
 
   describe('vorpal execution', function () {
