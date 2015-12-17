@@ -345,6 +345,13 @@ describe('integration tests:', function () {
         });
       });
 
+      it('should show help when not passed a required option', function (done) {
+        exec('required-option', done, function () {
+          (stdout().indexOf('Missing required option') > -1).should.equal(true);
+          done();
+        });
+      });
+
       it('should should execute a command when passed a required variable', function (done) {
         exec('required foobar', done, function () {
           stdout().should.equal('foobar');
