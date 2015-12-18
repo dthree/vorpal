@@ -510,6 +510,17 @@ describe('integration tests:', function () {
         });
         vorpal.exec('fail me plzz');
       });
+      it('should handle piped event client_command_error', function (done) {
+        var vorpal2 = new Vorpal();
+        vorpal2.on('client_command_error', function () {
+          true.should.be.true; done();
+        })
+        .command('fail')
+        .action(function (args, cb) {
+          cb('failed');
+        });
+        vorpal2.exec('help | fail | help');
+      });
     });
   });
 });
