@@ -149,6 +149,15 @@ module.exports = function (vorpal) {
     });
 
   vorpal
+    .command('required-option')
+    .description('Must return an arg.')
+    .option('--arg <arg>', 'Arg to return.')
+    .action(function (args, cb) {
+      this.log(args.options.arg);
+      cb(undefined, args);
+    });
+
+  vorpal
     .command('fail me <arg>')
     .description('Must return an arg.')
     .action(function (args) {
