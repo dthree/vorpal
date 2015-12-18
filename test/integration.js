@@ -2,6 +2,7 @@
 
 var Vorpal = require('../');
 var commands = require('./util/server');
+var BlueBirdPromise = require('bluebird');
 
 require('assert');
 require('should');
@@ -422,6 +423,59 @@ describe('integration tests:', function () {
       });
     });
 
+    describe('cancel', function () {
+      var longRunningCommand;
+      before(function () {
+        longRunningCommand = vorpal
+          .command('LongRunning', 'This command keeps running.')
+          .action(function () {
+            const self = this;
+            self._cancelled = false;
+            var cancelInt = setInterval(function () {
+              if (self._cancelled) {
+                // break off
+                clearInterval(cancelInt);
+              }
+            }, 1000);
+            var p = new BlueBirdPromise(function () {});
+            p.cancellable();
+            return p;
+          });
+      });
+      it('should cancel promise', function (done) {
+        vorpal.exec('LongRunning')
+          .then(function () {
+            true.should.not.be.true;
+            done();
+          }).catch(function (instance) {
+            instance._cancelled = true;
+            done();
+          });
+        vorpal.session.cancelCommands();
+      });
+      it('should call registered cancel function', function (done) {
+        longRunningCommand
+          .cancel(function () {
+            this._cancelled = true;
+            done();
+          });
+        vorpal.exec('LongRunning');
+        vorpal.session.cancelCommands();
+      });
+      it('should handle event client_command_cancelled', function (done) {
+        vorpal.on('client_command_cancelled', function () {
+          true.should.be.true;
+          done();
+        });
+        longRunningCommand
+            .cancel(function () {
+              this._cancelled = true;
+            });
+        vorpal.exec('LongRunning');
+        vorpal.session.cancelCommands();
+      });
+    });
+
     describe('events', function () {
       it('should handle event command_registered', function (done) {
         vorpal.on('command_registered', function () {
@@ -455,6 +509,17 @@ describe('integration tests:', function () {
           true.should.be.true; done();
         });
         vorpal.exec('fail me plzz');
+      });
+      it('should handle piped event client_command_error', function (done) {
+        var vorpal2 = new Vorpal();
+        vorpal2.on('client_command_error', function () {
+          true.should.be.true; done();
+        })
+        .command('fail')
+        .action(function (args, cb) {
+          cb('failed');
+        });
+        vorpal2.exec('help | fail | help');
       });
     });
   });
