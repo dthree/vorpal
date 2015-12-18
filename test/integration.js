@@ -2,6 +2,7 @@
 
 var Vorpal = require('../');
 var commands = require('./util/server');
+var BlueBirdPromise = require('bluebird');
 
 require('assert');
 require('should');
@@ -419,6 +420,59 @@ describe('integration tests:', function () {
         }).catch(function (err) {
           done(err);
         });
+      });
+    });
+
+    describe('cancel', function () {
+      var longRunningCommand;
+      before(function () {
+        longRunningCommand = vorpal
+          .command('LongRunning', 'This command keeps running.')
+          .action(function () {
+            const self = this;
+            self._cancelled = false;
+            var cancelInt = setInterval(function () {
+              if (self._cancelled) {
+                // break off
+                clearInterval(cancelInt);
+              }
+            }, 1000);
+            var p = new BlueBirdPromise(function () {});
+            p.cancellable();
+            return p;
+          });
+      });
+      it('should cancel promise', function (done) {
+        vorpal.exec('LongRunning')
+          .then(function () {
+            true.should.not.be.true;
+            done();
+          }).catch(function (instance) {
+            instance._cancelled = true;
+            done();
+          });
+        vorpal.session.cancelCommands();
+      });
+      it('should call registered cancel function', function (done) {
+        longRunningCommand
+          .cancel(function () {
+            this._cancelled = true;
+            done();
+          });
+        vorpal.exec('LongRunning');
+        vorpal.session.cancelCommands();
+      });
+      it('should handle event client_command_cancelled', function (done) {
+        vorpal.on('client_command_cancelled', function () {
+          true.should.be.true;
+          done();
+        });
+        longRunningCommand
+            .cancel(function () {
+              this._cancelled = true;
+            });
+        vorpal.exec('LongRunning');
+        vorpal.session.cancelCommands();
       });
     });
 
