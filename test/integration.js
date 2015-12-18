@@ -429,7 +429,7 @@ describe('integration tests:', function () {
         longRunningCommand = vorpal
           .command('LongRunning', 'This command keeps running.')
           .action(function () {
-            const self = this;
+            var self = this;
             self._cancelled = false;
             var cancelInt = setInterval(function () {
               if (self._cancelled) {
