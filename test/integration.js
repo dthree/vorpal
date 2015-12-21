@@ -462,15 +462,28 @@ describe('integration tests:', function () {
         vorpal.exec('LongRunning');
         vorpal.session.cancelCommands();
       });
+      it('should be able to call cancel in action', function (done) {
+        vorpal
+          .command('SelfCancel', 'This command cancels itself.')
+          .action(function () {
+            this.cancel();
+          })
+          .cancel(function () {
+            true.should.be.true;
+            done();
+          });
+
+        vorpal.exec('SelfCancel');
+      });
       it('should handle event client_command_cancelled', function (done) {
         vorpal.on('client_command_cancelled', function () {
           true.should.be.true;
           done();
         });
         longRunningCommand
-            .cancel(function () {
-              this._cancelled = true;
-            });
+          .cancel(function () {
+            this._cancelled = true;
+          });
         vorpal.exec('LongRunning');
         vorpal.session.cancelCommands();
       });
