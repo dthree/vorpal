@@ -96,11 +96,13 @@ describe('integration tests:', function () {
       vorpal
           .command('ValidateMe [myArg]', 'This command only allows argument -CorrectArgument-')
           .validate(function (args) {
+            this.checkInstance = 'this is the instance';
             if (!args || args.myArg !== 'CorrectArgument') {
               throw errorThrown;
             }
           })
           .action(function (args, cb) {
+            this.checkInstance.should.equal('this is the instance');
             cb(undefined, 'Correct');
           });
 
