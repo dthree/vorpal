@@ -425,6 +425,36 @@ describe('integration tests:', function () {
       });
     });
 
+    describe('history', function () {
+      before(function () {
+        vorpal.exec('command1');
+        vorpal.exec('command2');
+      });
+
+      it('should be able to get history', function () {
+        vorpal.session.getHistory('up').should.equal('command2');
+        vorpal.session.getHistory('up').should.equal('command1');
+        vorpal.session.getHistory('down').should.equal('command2');
+        vorpal.session.getHistory('down').should.equal('');
+      });
+
+      it('should keep separate history for mode', function () {
+        vorpal.cmdHistory.enterMode();
+        vorpal.exec('command3');
+
+        vorpal.session.getHistory('up').should.equal('command3');
+        vorpal.session.getHistory('up').should.equal('command3');
+        vorpal.session.getHistory('down').should.equal('');
+
+        vorpal.cmdHistory.exitMode();
+
+        vorpal.session.getHistory('up').should.equal('command2');
+        vorpal.session.getHistory('up').should.equal('command1');
+        vorpal.session.getHistory('down').should.equal('command2');
+        vorpal.session.getHistory('down').should.equal('');
+      });
+    });
+
     describe('cancel', function () {
       var longRunningCommand;
       before(function () {
