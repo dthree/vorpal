@@ -3,6 +3,7 @@
 var Vorpal = require('../');
 var commands = require('./util/server');
 var BlueBirdPromise = require('bluebird');
+var fs = require('fs');
 
 require('assert');
 require('should');
@@ -426,32 +427,57 @@ describe('integration tests:', function () {
     });
 
     describe('history', function () {
+      var vorpalHistory;
+      var UNIT_TEST_STORAGE_PATH = './.unit_test_cmd_history';
       before(function () {
-        vorpal.exec('command1');
-        vorpal.exec('command2');
+        vorpalHistory = new Vorpal();
+        vorpalHistory.historyStoragePath(UNIT_TEST_STORAGE_PATH);
+        vorpalHistory.history('unit_test');
+        vorpalHistory.exec('command1');
+        vorpalHistory.exec('command2');
+      });
+
+      after(function (done) {
+        // Clean up history
+        vorpalHistory.cmdHistory.clear();
+
+        // Clean up directory created to store history
+        fs.rmdir(UNIT_TEST_STORAGE_PATH, function () {
+          done();
+        });
       });
 
       it('should be able to get history', function () {
-        vorpal.session.getHistory('up').should.equal('command2');
-        vorpal.session.getHistory('up').should.equal('command1');
-        vorpal.session.getHistory('down').should.equal('command2');
-        vorpal.session.getHistory('down').should.equal('');
+        vorpalHistory.session.getHistory('up').should.equal('command2');
+        vorpalHistory.session.getHistory('up').should.equal('command1');
+        vorpalHistory.session.getHistory('down').should.equal('command2');
+        vorpalHistory.session.getHistory('down').should.equal('');
       });
 
       it('should keep separate history for mode', function () {
-        vorpal.cmdHistory.enterMode();
-        vorpal.exec('command3');
+        vorpalHistory.cmdHistory.enterMode();
+        vorpalHistory.exec('command3');
 
-        vorpal.session.getHistory('up').should.equal('command3');
-        vorpal.session.getHistory('up').should.equal('command3');
-        vorpal.session.getHistory('down').should.equal('');
+        vorpalHistory.session.getHistory('up').should.equal('command3');
+        vorpalHistory.session.getHistory('up').should.equal('command3');
+        vorpalHistory.session.getHistory('down').should.equal('');
 
-        vorpal.cmdHistory.exitMode();
+        vorpalHistory.cmdHistory.exitMode();
 
-        vorpal.session.getHistory('up').should.equal('command2');
-        vorpal.session.getHistory('up').should.equal('command1');
-        vorpal.session.getHistory('down').should.equal('command2');
-        vorpal.session.getHistory('down').should.equal('');
+        vorpalHistory.session.getHistory('up').should.equal('command2');
+        vorpalHistory.session.getHistory('up').should.equal('command1');
+        vorpalHistory.session.getHistory('down').should.equal('command2');
+        vorpalHistory.session.getHistory('down').should.equal('');
+      });
+
+      it('should persist history', function () {
+        var vorpalHistory2 = new Vorpal();
+        vorpalHistory2.historyStoragePath(UNIT_TEST_STORAGE_PATH);
+        vorpalHistory2.history('unit_test');
+        vorpalHistory2.session.getHistory('up').should.equal('command2');
+        vorpalHistory2.session.getHistory('up').should.equal('command1');
+        vorpalHistory2.session.getHistory('down').should.equal('command2');
+        vorpalHistory2.session.getHistory('down').should.equal('');
       });
     });
 
