@@ -61,6 +61,12 @@ vorpal.command('bar <word>')
     cb();
   });
 
+vorpal.command('sub command', 'does things')
+  .option('-c, --cow')
+  .action(function (args, cb) {
+    cb();
+  });
+
 vorpal.command('reverse')
   .option('-c, --cow')
   .action(function (args, cb) {
