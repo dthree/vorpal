@@ -107,7 +107,7 @@ myapp~$ help
   Commands
 
     help [command]    Provides help for a given command.
-    exit [options]    Exits the app.
+    exit [options]    Exits instance of Vorpal.
     foo               Outputs "bar".
 
 myapp~$
