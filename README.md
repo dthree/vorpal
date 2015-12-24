@@ -135,6 +135,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 - [`command.help`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandhelp)
 - [`command.autocompletion`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandautocompletiontext-iteration-callback)
 - [`command.action`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandactionfunction)
+- [`command.cancel`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandcancelfunction)
 
 ##### [Mode](https://github.com/dthree/vorpal/wiki/API-|-vorpal.mode)
 - [`vorpal.mode`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal.mode#vorpalmodecommand-description)
