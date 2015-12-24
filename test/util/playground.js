@@ -81,6 +81,28 @@ vorpal.command('promptme')
     });
   });
 
+vorpal.command('cancelme')
+  .action(function (args, cb) {
+    setTimeout(function () {
+      cb();
+    }, 10000)
+  })
+  .cancel(function (a, b) {
+    console.log('cancelled!', a, b);
+  });
+
+vorpal.command('inputme')
+  .action(function (args, cb) {
+    this.prompt({
+      type: 'input',
+      name: 'data',
+      message: 'say something im giving up on you: '
+    }, function (result) {
+      console.log(result);
+      cb();
+    });
+  });
+
 vorpal
   .delimiter('calc:')
   .show()
