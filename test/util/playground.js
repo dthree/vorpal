@@ -67,6 +67,33 @@ vorpal.command('sub command', 'does things')
     cb();
   });
 
+vorpal.command('login [userkey] [usersecret]', 'does things')
+  .action(function (args, cb) {
+    var self = this;
+    this.prompt([
+      { type: 'input',
+        name: 'userKey',
+        message: 'User Key:',
+        validate: function(input) {
+          return input.length > 10;
+        }
+      }
+    ], function() {
+      self.prompt([
+        { type: 'input',
+          name: 'userSecret',
+          message: 'User Secret:',
+          validate: function(input) {
+            return input.length > 20;
+          }
+        },
+      ], function() {
+        console.log('BACK');
+        cb();
+      });      
+    })
+  });
+
 vorpal.command('reverse')
   .option('-c, --cow')
   .action(function (args, cb) {
@@ -108,6 +135,10 @@ vorpal.command('inputme')
       cb();
     });
   });
+
+setTimeout(function() {
+  console.log('HI')
+}, 10000);
 
 vorpal
   .delimiter('calc:')
