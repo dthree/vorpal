@@ -6,10 +6,10 @@
   <img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg" alt="Gitter" />
 </a>
 <a href="https://www.npmjs.com/package/vorpal">
-  <img src="https://img.shields.io/npm/v/vorpal.svg" alt="NPM Version" />
+  <img src="https://img.shields.io/npm/dt/vorpal.svg" alt="NPM Downloads" />
 </a>
 <a href="https://www.npmjs.com/package/vorpal">
-  <img src="https://img.shields.io/npm/dt/vorpal.svg" alt="NPM Downloads" />
+  <img src="https://img.shields.io/npm/v/vorpal.svg" alt="NPM Version" />
 </a>
 [![Wat: Documented](https://img.shields.io/badge/wat-documented-blue.svg)](https://github.com/dthree/wat)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
