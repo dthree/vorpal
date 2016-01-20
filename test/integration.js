@@ -198,8 +198,8 @@ describe('integration tests:', function () {
       });
 
       it('should execute a long command with arguments', function (done) {
-        exec('very complicated deep command abc123 -rad -sleep \'well\' -t -i \'j\' ', done, function () {
-          stdout().should.equal('radtjabc123');
+        exec('very complicated deep command abc123 -rad --sleep \'well\' -t -i \'j\' ', done, function () {
+          stdout().should.equal('radtjwellabc123');
           done();
         });
       });
@@ -374,6 +374,13 @@ describe('integration tests:', function () {
       it('should show help when not passed a required option', function (done) {
         exec('required-option', done, function () {
           (stdout().indexOf('Missing required option') > -1).should.equal(true);
+          done();
+        });
+      });
+
+      it('should show help when passed an unknown option', function (done) {
+        exec('unknown-option --unknown-opt', done, function () {
+          (stdout().indexOf('Invalid option') > -1).should.equal(true);
           done();
         });
       });

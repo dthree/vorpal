@@ -158,6 +158,14 @@ module.exports = function (vorpal) {
     });
 
   vorpal
+    .command('unknown-option')
+    .description('shows help if we pass any unknown option.')
+    .action(function (args, cb) {
+      this.log('should never see this');
+      cb(undefined, args);
+    });
+
+  vorpal
     .command('fail me <arg>')
     .description('Must return an arg.')
     .action(function (args) {
