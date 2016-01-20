@@ -378,6 +378,13 @@ describe('integration tests:', function () {
         });
       });
 
+      it('should show help when passed an unknown option and disallowUnknownOptions is set', function (done) {
+        exec('unknown-option --unknown-opt', done, function () {
+          (stdout().indexOf('Unknown option') > -1).should.equal(true);
+          done();
+        });
+      });
+
       it('should should execute a command when passed a required variable', function (done) {
         exec('required foobar', done, function () {
           stdout().should.equal('foobar');
