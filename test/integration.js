@@ -250,7 +250,7 @@ describe('integration tests:', function () {
 
       it('should fail loudly if you tell it to', function () {
         (function () {
-          vorpal.execSync('sync throwme', null, {fatal: true});
+          vorpal.execSync('sync throwme', {fatal: true});
         }).should.throw();
       });
     });
