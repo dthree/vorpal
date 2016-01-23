@@ -232,6 +232,29 @@ describe('integration tests:', function () {
       });
     });
 
+    describe('synchronous execution', function () {
+      it('should execute a sync command', function () {
+        var result = vorpal.execSync('sync');
+        result.should.equal('no args were passed');
+      });
+
+      it('should execute a sync command with args', function () {
+        var result = vorpal.execSync('sync foobar');
+        result.should.equal('you said foobar');
+      });
+
+      it('should fail silently', function () {
+        var result = vorpal.execSync('sync throwme');
+        result.message.should.equal('You said so...');
+      });
+
+      it('should fail loudly if you tell it to', function () {
+        (function () {
+          vorpal.execSync('sync throwme', null, {fatal: true});
+        }).should.throw();
+      });
+    });
+
     describe('.command.help', function () {
       it('should execute a custom help command.', function (done) {
         exec('custom-help --help', done, function (err) {

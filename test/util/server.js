@@ -58,6 +58,17 @@ module.exports = function (vorpal) {
       cb();
     });
 
+  vorpal.command('sync [word]', 'run sync')
+    .action(function (args) {
+      if (args.word === undefined) {
+        return 'no args were passed';
+      }
+      if (args.word === 'throwme') {
+        throw new Error('You said so...');
+      }
+      return 'you said ' + args.word;
+    });
+
   vorpal.command('array [string]', 'convert string to an array.')
     .action(function (args, cb) {
       var stdin = args.stdin || args.string;
