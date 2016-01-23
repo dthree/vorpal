@@ -46,14 +46,14 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
 * [x] Simple, powerful command creation
 * [x] Supports optional, required and variadic arguments and options
 * [x] Piped commands
-* [x] Command history
+* [x] Persistent Command history
 * [x] Built-in help
 * [x] Built-in tabbed auto-completion
 * [x] Command-specific auto-completion
 * [x] Customizable prompts
 * [x] Extensive terminal control
 * [x] Custom event listeners
-* [x] And more!
+* [x] And more
 
 Vorpal supports [community extensions](https://github.com/vorpaljs/awesome-vorpaljs), which empower it to do awesome things such as [piping commands to less](https://github.com/vorpaljs/vorpal-less), [importing commands live](https://github.com/vorpaljs/vorpal-use) or even supporting a [built-in REPL](https://github.com/vorpaljs/vorpal-repl).
 
@@ -171,6 +171,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 - [`.show`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalshow)
 - [`.find`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalfindstring)
 - [`.exec`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalexeccommand-callback)
+- [`.execSync`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalexecsynccommand-options)
 - [`.log`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpallogstring-strings)
 - [`.pipe`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalpipefunction)
 - [`.use`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpaluseextension)
