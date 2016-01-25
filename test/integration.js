@@ -9,6 +9,7 @@ require('assert');
 require('should');
 
 var vorpal = new Vorpal();
+
 var _all = '';
 var _stdout = '';
 var _excess = '';
