@@ -46,7 +46,7 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
 * [x] Simple, powerful command creation
 * [x] Supports optional, required and variadic arguments and options
 * [x] Piped commands
-* [x] Persistent Command history
+* [x] Persistent command history
 * [x] Built-in help
 * [x] Built-in tabbed auto-completion
 * [x] Command-specific auto-completion
@@ -120,7 +120,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 
 ##### Community
 
-- [Q&A? Gitter chat](https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+- [Q&A? Chat](https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 - [Stack Overflow](http://stackoverflow.com/questions/tagged/vorpal.js)
 - [Vorpal extensions](https://github.com/vorpaljs/awesome-vorpaljs#vorpal-extensions)
 - [Projects made with Vorpal](https://github.com/vorpaljs/awesome-vorpaljs)
@@ -136,7 +136,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 - [`command.hidden`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandhidden)
 - [`command.remove`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandremove)
 - [`command.help`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandhelp)
-- [`command.autocompletion`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandautocompletiontext-iteration-callback)
+- [`command.autocomplete`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandautocompletearray-or-object-or-function)
 - [`command.action`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandactionfunction)
 - [`command.cancel`](https://github.com/dthree/vorpal/wiki/api-|-vorpal.command#commandcancelfunction)
 
@@ -173,10 +173,12 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 - [`.exec`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalexeccommand-callback)
 - [`.execSync`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalexecsynccommand-options)
 - [`.log`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpallogstring-strings)
+- [`.history`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalhistoryid)
 - [`.pipe`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalpipefunction)
 - [`.use`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpaluseextension)
 
 ##### [Events](https://github.com/dthree/vorpal/wiki/Events)
+
 
 ## Extensions
 
@@ -185,10 +187,12 @@ You can build your own Vorpal commands and extensions!
 - [List of awesome extensions](https://github.com/vorpaljs/awesome-vorpaljs#vorpal-extensions)
 - [Building your own extension](https://github.com/dthree/vorpal/wiki/Creating-Extensions)
 
+
 ## [FAQ](https://github.com/dthree/vorpal/wiki/FAQ)
 
 - [What is an "immersive CLI app?"](https://github.com/dthree/vorpal/wiki/FAQ#what-is-an-immersive-cli-app)
 - [Wasn't this called Vantage?](https://github.com/dthree/vorpal/wiki/FAQ#uh-wasnt-this-called-vantage)
+
 
 ## Why Vorpal?
 
@@ -201,13 +205,11 @@ He went galumphing back.
 Lewis Carroll, Jabberwocky
 ```
 
+
 ##### Life Goals:
 
 - <s>Build a popular framework based on the [Jabberwocky](https://en.wikipedia.org/wiki/Jabberwocky) poem.</s>
 
-## Roadmap
-
-- Suggest something!
 
 ## License
 
