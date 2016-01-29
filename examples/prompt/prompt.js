@@ -21,7 +21,7 @@ vorpal.command('login', 'Login (u: root p: vorpal)')
       if (answers.username === 'root' && answers.password === 'vorpal') {
         self.log('Successful login.');
       } else {
-        self.log('Login failed! Try username "root" and password "vorpal"!')
+        self.log('Login failed! Try username "root" and password "vorpal"!');
       }
       cb();
     });
