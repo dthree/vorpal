@@ -1,0 +1,391 @@
+/* General Styles
+   ------------------------------------------ */
+
+body {
+  font-family: "Exo 2", "Helvetica", "Arial", sans-serif;
+  color: #fff;
+  background-color: #222;
+}
+
+
+h1, h2, h3, h4 {
+  font-weight: 400;
+}
+
+a {
+ color: #39AEC6;
+ text-decoration: none;
+}
+
+a:hover {
+  color: #39AEC6;
+  text-decoration: underline;
+}
+
+a.no-hover-dec:hover {
+  text-decoration: none;
+}
+
+.inline-list {
+  list-style: none;
+  padding: 0; margin: 0;
+}
+
+.inline-list li {
+  display: inline-block;
+  padding: 0 36px 0 0;
+  margin: 0;
+
+}
+
+.text-right {
+  text-align: right;
+}
+
+pre, code {
+  font-family: "Source Code Pro", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+}
+
+pre code {
+  color: #C5F3FC;
+  border: none;
+  background-color: #076274;
+  overflow-x: auto;
+}
+
+code {
+  background-color: #EAE5DE;
+  border: none;
+  overflow-x: scroll;
+}
+
+.header-link .octicon {
+  color: #dcd9d6;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* Sections
+   ------------------------------------------ */
+
+section {
+  padding: 60px 0;
+}
+
+.features {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 16px;
+}
+
+.features .mega-octicon {
+  margin-bottom: 10px;
+}
+
+.hero, .built-on, .get-started,
+.electron-does, .more-features {
+  text-align: center;
+}
+
+/* Header Nav */
+
+header {
+  padding: 30px 0;
+  background: none;
+  font-size: .8em;
+  font-weight: 400;
+  position: absolute; z-index: 100;
+  width: 100%; 
+}
+@media (max-width: 550px) {
+  header,
+  header .text-right  {
+    text-align: center;
+  }
+}
+
+header a {
+  color: #FAF7F3;
+}
+
+header a:hover {
+  color: #FAF7F3;
+}
+
+/* Hero */
+
+.hero {
+  padding: 160px 0 100px 0;
+}
+
+.hero .mega-octicon {
+  font-size: 24px;
+}
+
+.electron-word {
+  background: url('../images/electron-logo.svg') no-repeat 0 0, center;
+  background-size: 100% auto;
+  padding-bottom: 15.3%; /* Keeps aspect ratio. Original img ratio: 980x150. 150/980*100=15.3% */
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 800px;
+  display: inline-block;
+  font: 0/0 a;
+  color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* More Features */
+
+.more-features {
+  background-color: #7BDCEF;
+}
+
+.more-features .features {
+  padding: 20px 0 0 0;
+}
+
+.more-features .features .columns {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.more-features span {
+  padding: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 990px;
+  margin-bottom: 20px;
+  background-color: #A5ECFA;
+}
+
+.octicon-gift::before {
+  position: relative;
+  top: -1px;
+}
+
+.octicon-tools::before, .octicon-bug::before,
+.octicon-evice-desktop::before {
+  position: relative;
+  left: -1px;
+}
+
+/* Built With */
+
+.built-on {
+  background-color: #FAF7F3;
+}
+
+.built-on li {
+  text-align: left;
+}
+
+.center { text-align: center; margin-left: 0; margin-right: 0;}
+
+.vorpal-front {
+  min-height: 720px;
+  background: linear-gradient(20deg, #337496 0%, #367699 12%, #4281A3 100%) no-repeat;
+  text-align: center;
+}
+
+.logo { width: 260px; text-align: center; margin-top: 144px; }
+
+.button-front { width: 160px; border: 2px solid white; text-align: center; font-size: .8em; padding: 12px; box-sizing: border-box; margin-right: auto; margin-left: auto; margin-top: 144px; cursor: pointer; }
+.button-front:hover { background: rgba(255, 255, 255, .1); }
+.button-front:active { background: rgba(255, 255, 255, .2); }
+
+.vorpal-intro {
+  min-height: 600px;
+  background: background: #222;
+}
+
+
+
+/* Electron Does */
+
+.electron-does img {
+  padding-bottom: 20px;
+  max-width: 100%;
+}
+
+.other-logo {
+  width: 72px;
+  padding: 10px;
+}
+
+
+/* Get Started
+   ------------------------------------------ */
+
+.electron-vers {
+  display: inline-block;
+  border: 2px solid #448691;
+  margin-bottom: 16px;
+  border-radius: 3px;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 12px;
+  padding: 0 2px;
+}
+
+.electron-vers span {
+  float: left;
+  display: inline-block;
+  line-height: 1;
+  padding: 6px 6px;
+}
+
+.main-ver {
+  border-right: 2px solid #448691;
+  font-weight: bold;
+}
+
+/* Footer
+   ------------------------------------------ */
+
+footer {
+  padding: 15px 0;
+  background-color: #FAF7F3;
+}
+@media (max-width: 550px) {
+  footer,
+  footer .text-right {
+    text-align: center;
+  }
+}
+
+/* Releases
+   ------------------------------------------ */
+
+.page-template h1 {
+  font-weight: 300;
+  font-size: 4em;
+}
+
+.jump-to-release {
+  text-align: center;
+  background: #A5ECFA;
+}
+.jump-to-release.is-compact {
+  padding: 2rem 0;
+}
+.jump-to-release.is-compact h1 {
+  font-size: 1.8em;
+  margin-bottom: 0.2em;
+}
+@media (min-width: 1000px) {
+  .jump-to-release.is-compact h1 {
+    display: inline-block;
+    margin: 0 2rem 0 0;
+  }
+}
+.jump-to-release .electron-icon {
+  height: 1.5em;
+  margin-right: 0.4em;
+  margin-top: -0.4em;
+  vertical-align: middle;
+}
+
+.releases {
+  background-color: #FAF7F3;
+}
+
+.releases h3 em {
+  font-style: normal;
+  font-size: .5em;
+  font-weight: 300;
+  color: #76C7D7;
+}
+
+.jump-to-item + .jump-to-item::before {
+  content: '○ ';
+}
+
+/* Docs
+   ------------------------------------------ */
+
+.docs {
+  background-color: #fff;
+  color: #39555D;
+}
+
+.docs h1 {
+  font-size: 3em;
+  font-weight: 500;
+  margin-bottom: 4rem;
+}
+
+.docs h2 {
+  font-size: 2em;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+.docs h3 {
+  font-size: 1.5em;
+  font-weight: 300;
+  letter-spacing: .001em;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.docs-breadcumb {
+ font-weight: 300;
+}
+
+.docs-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.docs-footer .octicon {
+  padding-right: 8px;
+}
+
+.docs pre code,
+.docs code {
+  color: #38535B;
+  border: none;
+  background-color: #FAF7F3;
+}
+
+.docs blockquote {
+  color: #557F8B;
+  border-left: 1px solid #76C7D7;
+  padding-left: 20px;
+}
+
+.all-of-the-latest-documentation h1:first-child {
+  padding: 0;
+}
+
+.docs ul {
+  margin-left: 0;
+  text-indent: -1em;
+  padding-left: 1em;
+}
+
+.docs h3,
+.docs h3 code {
+  color: #39AEC6;
+}
+
+.docs h3 code {
+  margin: 0;
+  font-weight: 400;
+  background-color: rgba(57, 174, 198, 0.1);
+}
+
+.docs h3 code > em,
+.docs h3 > em {
+  background: #76C7D7;
+  padding: 3px 6px;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-style: normal;
+  font-family: Source Code Pro;
+  border-radius: 2px;
+  color: #fff;
+  vertical-align: middle;
+}
