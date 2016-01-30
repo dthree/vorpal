@@ -69,6 +69,7 @@ code {
 /* Sections
    ------------------------------------------ */
 
+
 section {
   padding: 60px 0;
 }
@@ -93,7 +94,7 @@ section {
 header {
   padding: 30px 0;
   background: none;
-  font-size: .8em;
+  font-size: .9em;
   font-weight: 400;
   position: absolute; z-index: 100;
   width: 100%; 
@@ -192,7 +193,7 @@ header a:hover {
 
 .logo { width: 260px; text-align: center; margin-top: 144px; }
 
-.button-front { width: 160px; border: 2px solid white; text-align: center; font-size: .8em; padding: 12px; box-sizing: border-box; margin-right: auto; margin-left: auto; margin-top: 144px; cursor: pointer; }
+.button-front { width: 160px; border: 2px solid white; text-align: center; font-size: .9em; padding: 12px; box-sizing: border-box; margin-right: auto; margin-left: auto; margin-top: 144px; cursor: pointer; }
 .button-front:hover { background: rgba(255, 255, 255, .1); }
 .button-front:active { background: rgba(255, 255, 255, .2); }
 
