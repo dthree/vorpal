@@ -6,7 +6,7 @@ vorpal.command('login', 'Login (u: root p: vorpal)')
   .action(function (args, cb) {
     var self = this;
 
-    this.prompt([
+    var promise = this.prompt([
       {
         type: 'input',
         name: 'username',
@@ -18,6 +18,11 @@ vorpal.command('login', 'Login (u: root p: vorpal)')
         message: 'Password: '
       }
     ], function (answers) {
+      // You can use callbacks...
+    });
+
+    promise.then(function(answers) {
+      // Or promises!
       if (answers.username === 'root' && answers.password === 'vorpal') {
         self.log('Successful login.');
       } else {
