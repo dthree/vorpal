@@ -186,6 +186,7 @@ header a:hover {
 
 .center { text-align: center; margin-left: 0; margin-right: 0;}
 
+.console { width: 160px; text-align: center; margin-top: 64px; }
 .vorpal-front {
   min-height: 720px;
   text-align: center;
