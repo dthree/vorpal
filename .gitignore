@@ -31,3 +31,5 @@ test/util/playground.js
 
 .idea/
 dist/
+
+electron*
