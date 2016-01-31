@@ -92,11 +92,10 @@ section {
 /* Header Nav */
 
 header {
-  padding: 30px 0;
+  padding: 10px 0;
   background: none;
   font-size: .9em;
   font-weight: 400;
-  position: absolute; z-index: 100;
   width: 100%; 
 }
 @media (max-width: 550px) {
@@ -187,9 +186,12 @@ header a:hover {
 
 .vorpal-front {
   min-height: 720px;
-  background: linear-gradient(20deg, #337496 0%, #367699 12%, #4281A3 100%) no-repeat;
   text-align: center;
 }
+
+.accent { color: #4281a3; }
+
+.front-page { background: linear-gradient(20deg, #337496 0%, #367699 12%, #4281A3 100%) no-repeat; padding: 0px; }
 
 .logo { width: 260px; text-align: center; margin-top: 144px; }
 
@@ -198,10 +200,16 @@ header a:hover {
 .button-front:active { background: rgba(255, 255, 255, .2); }
 
 .vorpal-intro {
-  min-height: 600px;
-  background: background: #222;
+  min-height: 400px;
+  background: #222;
+  padding-bottom: 128px;
 }
 
+.vorpal-features {
+  min-height: 600px;
+  background: #fff;
+  color: #222;
+}
 
 
 /* Electron Does */
