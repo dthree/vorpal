@@ -14,12 +14,19 @@ if (1 === 2) {
 
 $(document).ready(function() {
 
+  function onFeatureSelect(id) {
+    $('.feature-header .btn').removeClass('active');
+    $('.sample-code pre').css('display', 'none');
+    $('#source-' + id).css('display', 'block');
+    $('#' + id).addClass('active');
+    execScript(scripts[id] || scripts['feature1']);
+  }
+
   $('.feature-header .btn').click(function (e) {
     var id = $(e.currentTarget).attr('id');
-    console.log(id);
-    $('.feature-header .btn').removeClass('active');
-    $(e.currentTarget).addClass('active');
-    execScript(scripts[id] || scripts['feature1']);
+    onFeatureSelect(id);
   });
+
+  onFeatureSelect('feature1');
 
 });

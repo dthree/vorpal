@@ -105,16 +105,16 @@
         <p>Commands</p>
       </div></div>
       <div class='two columns'><div id='feature3' class='btn'>
-        <p>Autocomplete</p>
+        <p>Piping</p>
       </div></div>
       <div class='two columns'><div id='feature4' class='btn'>
         <p>Prompts</p>
       </div></div>
       <div class='two columns'><div id='feature5' class='btn'>
-        <p>UI</p>
+        <p>Autocomplete</p>
       </div></div>
       <div class='two columns'><div id='feature6' class='btn'>
-        <p>Help</p>
+        <p>Customization</p>
       </div></div>
     </div>
   </div>
@@ -127,25 +127,49 @@
           <img class='terminal center' src='images/terminal.png' alt=''></a>
           <div class='term-code'><div class='code'>$</div></div>
           <div class='sample-code'>
-            <pre id='feature-source1' style='display: block'><code class='language-js'>
+            <pre id='source-feature1' style='display: block'><code class='language-js'>
+            </code></pre>
+            <pre id='source-feature2' style='display: none'><code class='language-js'>
 const vorpal = require('vorpal')();
 
 vorpal
   .command('say [words...]')
+  .option('-b, --backwards')
   .action(function (args, callback) {
-    this.log(args.words.join(' '));
+    let str = args.words.join(' ');
+    str = (args.options.backwards) ? 
+      str.split('').reverse().join('') : 
+      str;
+    this.log(str);
     callback();
   });
             </code></pre>
-            <pre id='feature-source2' style='display: none'><code class='language-js'>
+            <pre id='source-feature3' style='display: none'><code class='language-js'>
 const vorpal = require('vorpal')();
 
 vorpal
   .command('say [words...]')
-  .action(function (args, callback) {
+  .action(function (args, cb) {
     this.log(args.words.join(' '));
-    callback();
+    cb();
   });
+
+vorpal
+  .command('reverse [words...]')
+  .action(function (args, cb) {
+    this.log(args.stdin.split('').reverse().join(''));
+    cb();
+  });
+
+vorpal
+  .command('color [text...]')
+  .action(function (args, cb) {
+    this.log(vorpal.chalk(args.stdin));
+    cb();
+  });
+
+
+
             </code></pre>
           </div>
         </div>

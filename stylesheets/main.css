@@ -46,6 +46,7 @@ a.no-hover-dec:hover {
 pre, code {
   font-family: "Source Code Pro", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   text-align: left;
+  color: rgb(204, 204, 204);
 }
 
 /*
@@ -192,9 +193,9 @@ header a:hover {
 .terminal { max-width: 834px; width: auto; height: auto; text-align: center; margin-top: 0px; }
 .terminal-short { max-width: 575px; width: auto; height: auto; text-align: center; margin-top: 0px; }
 .term-code {
-  position: absolute; left: 0; top: 36px; font-family: Consolas, Courier New; color: white; width: 834px; right: 0; margin-left: auto; margin-right: auto; font-size: .82em;
+  position: absolute; left: 0; top: 36px; font-family: Consolas, Courier New; color: rgb(204, 204, 204); width: 834px; right: 0; margin-left: auto; margin-right: auto; font-size: .82em;
 }
-.sample-code { position: absolute; left: 413px; border-left: 4px solid #2b2b2b; top: 25px; width: 417px; height: 277px; font-size: .9em; }
+.sample-code { position: absolute; left: 413px; border-left: 4px solid #2b2b2b; top: 26px; width: 413px; height: 276px; font-size: .9em; overflow-y: auto; }
 
 .console { width: 160px; text-align: center; margin-top: 64px; }
 .vorpal-front {
@@ -229,6 +230,7 @@ header a:hover {
   background: #fff;
   color: #222;
 }
+.vorpal-features .container { width: 832px; }
 
 
 .feature-header { background: #fafafa; border-bottom: 1px solid #eee; height: 128px;  

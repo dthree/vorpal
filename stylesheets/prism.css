@@ -1,13 +1,6 @@
-/* http://prismjs.com/download.html?themes=prism-dark&languages=css+clike+javascript+bash */
-/**
- * prism.js Dark theme for JavaScript, CSS and HTML
- * Based on the slides of the talk “/Reg(exp){2}lained/”
- * @author Lea Verou
- */
-
 code[class*="language-"],
 pre[class*="language-"] {
-	color: white;
+	color: rgb(204, 204, 204);
 	background: none;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	direction: ltr;
@@ -74,7 +67,7 @@ pre[class*="language-"] {
 .token.number,
 .token.constant,
 .token.symbol {
-	color: hsl(350, 40%, 70%);
+	color: rgb(226, 119, 122);
 }
 
 .token.selector,
@@ -83,7 +76,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: hsl(75, 70%, 60%);
+	color: rgb(126, 198, 153);
 }
 
 .token.operator,
@@ -98,7 +91,7 @@ pre[class*="language-"] {
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-	color: hsl(350, 40%, 70%);
+	color: rgb(226, 119, 122);
 }
 
 .token.regex,

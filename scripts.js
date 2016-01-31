@@ -32,16 +32,17 @@ var scripts = {
   'feature2': [
     ['send', '<span class=\'blue\'>vorpal~$ </span>'],
     ['sleep', 400],
-    ['type', 'say hello how are you?', speed],
+    ['type', 'say I just built a cli.', speed],
     ['sleep', 200],
-    ['send', '<br>hello how are you?'],
+    ['send', '<br>I just built a cli.'],
     ['send', '<br><span class=\'blue\'>vorpal~$ </span>'],
     ['sleep', 1000],
   ],
 }
 
 var config = {
-  cancel: false
+  cancel: false,
+  wait: 0,
 }
 
 function execScript(script) {
@@ -52,7 +53,7 @@ function execScript(script) {
     $('.term-code .code').html('');
     config.cancel = false;
     handleScript(copy);
-  }, 100);
+  }, config.wait + 10);
 }
 
 function handleScript(script) {
@@ -78,7 +79,9 @@ function handleScript(script) {
     $('.term-code .code').append(param);
     done();
   } else if (action === 'sleep') {
+    config.wait = param;
     setTimeout(function() {
+      config.wait = 0;
       done();
     }, param);
   }
@@ -89,7 +92,9 @@ function renderType(str, time, cb) {
   var remainder = str.split('');
   function go() {
     var deviation = time * (1 - Math.random() / 2);
+    config.wait = deviation;
     setTimeout(function () {
+      config.wait = 0;
       var out = remainder.splice(0, 1);
       if (config.cancel === true) {
         return;
