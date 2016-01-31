@@ -1,6 +1,6 @@
 'use strict';
 
-var vorpal = require('./../../lib/vorpal')();
+var vorpal = require('./../../dist/vorpal')();
 var less = require('vorpal-less');
 var repl = require('vorpal-repl');
 vorpal.use(less).use(repl);
