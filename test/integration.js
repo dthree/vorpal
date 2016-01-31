@@ -298,14 +298,14 @@ describe('integration tests:', function () {
       });
 
       it('should parse single quoted command option', function (done) {
-        exec('say \'My name is "Vorpal"\', done', function () {
+        exec('say \'My name is "Vorpal"\', done', done, function () {
           stdout().should.equal('My name is "Vorpal"');
           done();
         });
       });
 
       it('should parse angle quoted command option', function (done) {
-        exec('say `He\'s "Vorpal"`, done', function () {
+        exec('say `He\'s "Vorpal"`, done', done, function () {
           stdout().should.equal('He\'s "Vorpal"');
           done();
         });
