@@ -16,7 +16,7 @@ gulp.task('build', ['lint'], () => {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('watch', () => {
+gulp.task('watch', ['build'], () => {
   gulp.watch(paths.src, ['build']);
 });
 
