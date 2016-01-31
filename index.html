@@ -7,8 +7,12 @@
     <link rel='stylesheet' href='stylesheets/normalize.css'>
     <link rel='stylesheet' href='stylesheets/skeleton.css'>
     <link rel='stylesheet' href='stylesheets/main.css'>
-    <link rel='stylesheet' href='stylesheets/pygments.css'>
+    <link rel='stylesheet' href='stylesheets/prism.css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/fonts.css" media="screen">
+    <script type="text/javascript" src="zepto.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="scripts.js"></script>
+    <script type="text/javascript" src="prism.js"></script>
   </head>
   <body>
 
@@ -88,20 +92,62 @@
     </div>
   </div>
 </section>
+<section class='feature-header'>
+  <div class='container'>
+    <div class='row center'>
+    <h4><br>Try it Out<br><br></h4>
+    </div>
+    <div class='row center'>
+      <div class='two columns'><div id='feature1' class='btn active'>
+        <p>Installation</p>
+      </div></div>
+      <div class='two columns'><div id='feature2' class='btn'>
+        <p>Commands</p>
+      </div></div>
+      <div class='two columns'><div id='feature3' class='btn'>
+        <p>Autocomplete</p>
+      </div></div>
+      <div class='two columns'><div id='feature4' class='btn'>
+        <p>Prompts</p>
+      </div></div>
+      <div class='two columns'><div id='feature5' class='btn'>
+        <p>UI</p>
+      </div></div>
+      <div class='two columns'><div id='feature6' class='btn'>
+        <p>Help</p>
+      </div></div>
+    </div>
+  </div>
+</section>
 <section class='vorpal-features'>
   <div class='container'>
     <div class='twelve columns center'>
-      <h4><br>Getting Started<br><br></h4>
       <div class='row'>
         <div class='twelve columns relative'>
-          <img class='terminal-short center' src='images/terminal-short.png' alt=''></a>
-          <div class='term-code'><div class='code'>
-            $ npm install vorpal <br>
-            $ echo "require('vorpal')().show();" > cli.js <br>
-            $ node cli.js <br>
-            <span class='blue'>vorpal~$ </span> <br>
-            <span class='blue'>vorpal~$ </span> foo
-          </div></div>
+          <img class='terminal center' src='images/terminal.png' alt=''></a>
+          <div class='term-code'><div class='code'>$</div></div>
+          <div class='sample-code'>
+            <pre id='feature-source1' style='display: block'><code class='language-js'>
+const vorpal = require('vorpal')();
+
+vorpal
+  .command('say [words...]')
+  .action(function (args, callback) {
+    this.log(args.words.join(' '));
+    callback();
+  });
+            </code></pre>
+            <pre id='feature-source2' style='display: none'><code class='language-js'>
+const vorpal = require('vorpal')();
+
+vorpal
+  .command('say [words...]')
+  .action(function (args, callback) {
+    this.log(args.words.join(' '));
+    callback();
+  });
+            </code></pre>
+          </div>
         </div>
       </div>
       </div>
@@ -118,19 +164,6 @@
       <a href="https://github.com/dthree/vorpal/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 -->
-
-            <script type="text/javascript">
-            return;
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              return;
-              var pageTracker = _gat._getTracker("UA-73109746-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
 
   </body>
 </html>

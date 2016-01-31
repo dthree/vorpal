@@ -42,11 +42,13 @@ a.no-hover-dec:hover {
   text-align: right;
 }
 
+
 pre, code {
   font-family: "Source Code Pro", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   text-align: left;
 }
 
+/*
 pre code {
   color: #C5F3FC;
   border: none;
@@ -54,10 +56,12 @@ pre code {
   overflow-x: auto;
 }
 
+*/
+
 code {
-  background-color: #EAE5DE;
-  border: none;
-  overflow-x: scroll;
+  padding-left: 12px; 
+  overflow-x: auto;
+  margin-top: -6px; 
 }
 
 .header-link .octicon {
@@ -185,8 +189,12 @@ header a:hover {
 }
 
 .center { text-align: center; margin-left: 0; margin-right: 0;}
-.terminal { width: 800px; text-align: center; margin-top: 64px; }
-.terminal-short { width: 575px; text-align: center; margin-top: 0px; }
+.terminal { max-width: 834px; width: auto; height: auto; text-align: center; margin-top: 0px; }
+.terminal-short { max-width: 575px; width: auto; height: auto; text-align: center; margin-top: 0px; }
+.term-code {
+  position: absolute; left: 0; top: 36px; font-family: Consolas, Courier New; color: white; width: 834px; right: 0; margin-left: auto; margin-right: auto; font-size: .82em;
+}
+.sample-code { position: absolute; left: 413px; border-left: 4px solid #2b2b2b; top: 25px; width: 417px; height: 277px; font-size: .9em; }
 
 .console { width: 160px; text-align: center; margin-top: 64px; }
 .vorpal-front {
@@ -204,9 +212,6 @@ header a:hover {
 .button-front:hover { background: rgba(255, 255, 255, .1); }
 .button-front:active { background: rgba(255, 255, 255, .2); }
 
-.term-code {
-  position: absolute; left: 0; top: 36px; font-family: Consolas, Courier New; color: white; width: 575px; right: 0; margin-left: auto; margin-right: auto;
-}
 .term-code .code {  text-align: left; margin-left: 16px; }
 
 .blue { color: #6699cc; }
@@ -221,9 +226,44 @@ header a:hover {
 
 .vorpal-features {
   min-height: 600px;
+  background: #fff;
+  color: #222;
+}
+
+
+.feature-header { background: #fafafa; border-bottom: 1px solid #eee; height: 128px;  
   background: #fdfdfd;
   color: #222;
 }
+.feature-header .two.columns { width: 16.666666%; margin: 0px; }
+.feature-header .two.columns:first-child { }
+.feature-header .two.columns:last-child { }
+.feature-header .btn { width: 100%; height: 48px; box-sizing: border-box; padding-top: 8px; cursor: pointer; color: #999; }
+.feature-header .btn:hover { color: #222; }
+.feature-header .btn:hover { color: #222; }
+.feature-header p { font-size: .8em; }
+.feature-header .btn.active { background: white; border: 1px solid #eee; border-bottom: none; border-top: 3px solid #6699cc; border-radius: 2px 2px 0px 0px; }
+.feature-header .btn.active p { color: #222; }
+
+
+
+
+/* Hide feature section on mobile */
+@media (max-width: 650px) {
+  .feature-header { display: none; }
+  .vorpal-features { display: none; }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Electron Does */
@@ -241,23 +281,6 @@ header a:hover {
 
 /* Get Started
    ------------------------------------------ */
-
-.electron-vers {
-  display: inline-block;
-  border: 2px solid #448691;
-  margin-bottom: 16px;
-  border-radius: 3px;
-  font-family: 'Source Code Pro', monospace;
-  font-size: 12px;
-  padding: 0 2px;
-}
-
-.electron-vers span {
-  float: left;
-  display: inline-block;
-  line-height: 1;
-  padding: 6px 6px;
-}
 
 .main-ver {
   border-right: 2px solid #448691;
@@ -408,7 +431,6 @@ footer {
   text-transform: uppercase;
   font-style: normal;
   font-family: Source Code Pro;
-  border-radius: 2px;
   color: #fff;
   vertical-align: middle;
 }
