@@ -1,6 +1,6 @@
 'use strict';
 
-var vorpal = require('./../../lib/vorpal')();
+var vorpal = require('./../../')();
 
 vorpal.command('login', 'Login (u: root p: vorpal)')
   .action(function (args, cb) {
