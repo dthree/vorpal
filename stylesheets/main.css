@@ -185,6 +185,8 @@ header a:hover {
 }
 
 .center { text-align: center; margin-left: 0; margin-right: 0;}
+.terminal { width: 800px; text-align: center; margin-top: 64px; }
+.terminal-short { width: 575px; text-align: center; margin-top: 0px; }
 
 .console { width: 160px; text-align: center; margin-top: 64px; }
 .vorpal-front {
@@ -202,6 +204,15 @@ header a:hover {
 .button-front:hover { background: rgba(255, 255, 255, .1); }
 .button-front:active { background: rgba(255, 255, 255, .2); }
 
+.term-code {
+  position: absolute; left: 0; top: 36px; font-family: Consolas, Courier New; color: white; width: 575px; right: 0; margin-left: auto; margin-right: auto;
+}
+.term-code .code {  text-align: left; margin-left: 16px; }
+
+.blue { color: #6699cc; }
+
+.relative { position: relative; }
+
 .vorpal-intro {
   min-height: 400px;
   background: #222;
@@ -210,7 +221,7 @@ header a:hover {
 
 .vorpal-features {
   min-height: 600px;
-  background: #fff;
+  background: #fdfdfd;
   color: #222;
 }
 
