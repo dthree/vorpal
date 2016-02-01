@@ -189,6 +189,53 @@ vorpal
     });
   });
             </code></pre>
+            <pre id='source-feature5' style='display: none'><code class='language-js'>
+const vorpal = require('vorpal')();
+
+const foods = ['burgers', 'chinese', 'pizza', 'sushi'];
+const methods = ['a la carte', 'table d\'hote'];
+const commandHelp = 'Order a type of food';
+const optionHelp = 'How you want your meal served';
+
+vorpal
+  .command('order <food>', commandHelp)
+  .option('--method [method]', optionHelp, methods)
+  .autocomplete(foods)
+  .action(function (args, cb) {
+    const food = args.food;
+    const method = args.options.method;
+    this.log(`You ordered ${food} ${method}.`);
+    cb();
+  });
+            </code></pre>
+            <pre id='source-feature6' style='display: none'><code class='language-js'>
+const Vorpal = require('vorpal');
+const chalk = Vorpal().chalk;
+
+const unicorns = Vorpal()
+    .delimiter(chalk.magenta('unicorn-land~$'))
+    .help(require('./unicorn-help.js'))
+    .use(require('./unicorn-commands'))
+    .history('unicorn-command-history');
+
+const narwhals = Vorpal()
+    .delimiter(chalk.cyan('narwhal-land~$'))
+    .help(require('./narwhal-help.js'))
+    .use(require('./narwhal-commands'))
+    .history('narwhal-command-history');
+
+// One does not exit a magical land!
+unicorns
+  .find('exit')
+  .remove();    
+
+unicorns
+  .show()
+  .parse(process.argv);
+
+
+
+            </code></pre>
           </div>
         </div>
       </div>
