@@ -115,7 +115,7 @@ var scripts = {
     ['sleep', 400],
     ['type', 'who', speed],
     ['sleep', 200],
-    ['send', '<br>Logged into unicorn-land:<br>Sindre Sorhus<br>Addo Osmani'],
+    ['send', '<br>Logged into unicorn-land:<br>Sindre Sorhus<br>Addy Osmani'],
     ['send', '<br><span class=\'magenta\'>unicorn-land~$</span> '],
     ['sleep', 1400],
     ['type', 'help', speed],
