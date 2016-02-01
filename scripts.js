@@ -44,7 +44,7 @@ var scripts = {
     ['sleep', 200],
     ['type', '-', speed],
     ['sleep', 200],
-    ['send', '<br>--backwards  --twice<br>' + delimiter + 'say taco cat --'],
+    ['send', '<br>--backwards&nbsp;&nbsp;--twice<br>' + delimiter + 'say taco cat --'],
     ['sleep', 1000],
     ['type', 'b', speed],
     ['sleep', 400],

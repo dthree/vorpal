@@ -64,12 +64,12 @@
 <section class='vorpal-intro'>
   <div class='container'>
     <div class='twelve columns center'>
-    <div class='row'>
-      <div class='twelve columns'>
-        <img class='console center' src='images/console.png' alt=''></a>
+      <div class='row'>
+        <div class='twelve columns'>
+          <img class='console center' src='images/console.png' alt=''></a>
+        </div>
       </div>
-    </div>
-    <h4><br>The command line is awesome<br><br></h4>
+      <h4><br>The command line is awesome<br><br></h4>
     </div>
     <div class='row'>
       <div class='twelve columns'>
@@ -182,7 +182,7 @@ vorpal
     this.prompt({
       type: 'input',
       name: 'time',
-      message: 'When would you like your pizza delivered?',
+      message: 'When would you like your pizza?',
     }, function (result) {
       self.log(`Okay, ${result.time} it is!`);
       cb();
@@ -239,6 +239,41 @@ unicorns
           </div>
         </div>
       </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class='vorpal-get-started'>
+  <div class='container'>
+    <div class='twelve columns center'>
+      <h4><br>Get Started<br><br></h4>
+    </div>
+    <!--<div class='row'>
+      <div class='twelve columns'>
+      <h5>It's easy to get going with Vorpal. <br><br></h5>
+      </div>
+    </div>-->
+    <div class='row center'>
+      <div class='four columns'>
+        <a href='http://developer.telerik.com/featured/creating-node-js-command-line-utilites-improve-workflow'>
+          <img class='three-icon' src='images/compass.png' alt='vorpal tutorial'>
+        </a>
+        <h5>Read a Tutorial</h5>
+        <p>Read a detailed tutorial that walks you through building a new Vorpal application from scratch.</p>
+      </div>
+      <div class='four columns'>
+        <a href='https://github.com/dthree/vorpal/wiki'>
+        <img class='three-icon' src='images/book.png' alt='vorpal wiki'>
+        </a>
+        <h5>Visit the Wiki</h5>
+        <p>Visit the Vorpal Wiki for API documentation and helpful tips.</p>
+      </div>
+      <div class='four columns'>
+        <a href='https://gitter.im/dthree/vorpal'>
+          <img class='three-icon' src='images/msg.png' alt='vorpal chat'>
+        </a>
+        <h5>Chat with Others</h5>
+        <p>Use Gitter to chat with other people developing applications with Vorpal.</p>
       </div>
     </div>
   </div>

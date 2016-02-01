@@ -215,6 +215,8 @@ header a:hover {
 
 .term-code .code {  text-align: left; margin-left: 16px; }
 
+.three-icon { width: 128px; height: 128px; text-align: center; margin-bottom: 32px; cursor: pointer; }
+
 .blue { color: #6699cc; }
 .yellow { color: #F09D49; }
 .magenta { color: #CC99CD; }
@@ -229,10 +231,17 @@ header a:hover {
 }
 
 .vorpal-features {
-  min-height: 600px;
+  min-height: 400px;
   background: #fff;
   color: #222;
 }
+
+.vorpal-get-started {
+  min-height: 600px;
+  background: #4181a3;
+  color: #fff;
+}
+
 .vorpal-features .container { width: 832px; }
 
 
