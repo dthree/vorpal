@@ -86,7 +86,7 @@
         <p>Vorpal has built-in tabbed autocompletion for your commands and options, persistent command history, piping and automated help pages.</p>
       </div>
       <div class='four columns'>
-        <h6>IMMERSIVE</h6>
+        <h6>IMMERSIVE EXPERIENCE</h6>
         <p>Most command-line applications do something and then exit. Vorpal engages your users in a rich, interactive environment entirely under your control.</p>
       </div>
     </div>
@@ -135,6 +135,7 @@ const vorpal = require('vorpal')();
 vorpal
   .command('say [words...]')
   .option('-b, --backwards')
+  .option('-t, --twice')
   .action(function (args, callback) {
     let str = args.words.join(' ');
     str = (args.options.backwards) ? 
@@ -162,14 +163,31 @@ vorpal
   });
 
 vorpal
-  .command('color [text...]')
+  .command('color [color] [text...]')
   .action(function (args, cb) {
-    this.log(vorpal.chalk(args.stdin));
+    this.log(vorpal.chalk[args.color](args.stdin));
     cb();
   });
 
 
+            </code></pre>
+            <pre id='source-feature4' style='display: none'><code class='language-js'>
+const vorpal = require('vorpal')();
 
+vorpal
+  .command('order pizza')
+  .option('--anchovies')
+  .action(function (args, cb) {
+    const self = this;
+    this.prompt({
+      type: 'input',
+      name: 'time',
+      message: 'When would you like your pizza delivered?',
+    }, function (result) {
+      self.log(`Okay, ${result.time} it is!`);
+      cb();
+    });
+  });
             </code></pre>
           </div>
         </div>

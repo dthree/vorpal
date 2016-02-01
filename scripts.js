@@ -1,6 +1,9 @@
 'use strict';
 
 var speed = 80;
+var delimiter = '<span class=\'blue\'>vorpal~$ </span>';
+var br = '<br>';
+
 var scripts = {
   'feature1': [
     ['send', '$ '],
@@ -15,14 +18,14 @@ var scripts = {
     ['sleep', 800],
     ['type', 'node cli.js', speed],
     ['sleep', 200],
-    ['send', '<br><span class=\'blue\'>vorpal~$ </span>'],
+    ['send', br + delimiter],
     ['sleep', 500],
-    ['send', '<br><span class=\'blue\'>vorpal~$ </span>'],
+    ['send', '<br>' + delimiter],
     ['sleep', 500],
     ['type', 'help', speed],
     ['sleep', 500],
     ['send', '<br><br>&nbsp;&nbsp;Commands:<br><br>&nbsp;&nbsp;&nbsp;&nbsp;help [command]&nbsp;&nbsp;&nbsp;Provides help for a given command.<br>&nbsp;&nbsp;&nbsp;&nbsp;exit [options]&nbsp;&nbsp;&nbsp;Exits instance of Vorpal.<br>'],
-    ['send', '<br><span class=\'blue\'>vorpal~$ </span>'],
+    ['send', '<br>' + delimiter],
     ['sleep', 1200],
     ['type', 'exit', speed],
     ['sleep', 200],
@@ -30,12 +33,48 @@ var scripts = {
     ['sleep', 500],
   ],
   'feature2': [
-    ['send', '<span class=\'blue\'>vorpal~$ </span>'],
+    ['send', delimiter],
     ['sleep', 400],
-    ['type', 'say I just built a cli.', speed],
+    ['type', 'say I just built a CLI.', speed],
     ['sleep', 200],
-    ['send', '<br>I just built a cli.'],
-    ['send', '<br><span class=\'blue\'>vorpal~$ </span>'],
+    ['send', '<br>I just built a CLI.'],
+    ['send', '<br>' + delimiter],
+    ['sleep', 1000],
+    ['type', 'say taco cat -', speed],
+    ['sleep', 200],
+    ['type', '-', speed],
+    ['sleep', 200],
+    ['send', '<br>--backwards  --twice<br>' + delimiter + 'say taco cat --'],
+    ['sleep', 1000],
+    ['type', 'b', speed],
+    ['sleep', 400],
+    ['send', 'ackwards'],
+    ['sleep', 400],
+    ['send', '<br>tac ocat'],
+    ['send', '<br>' + delimiter],
+  ],
+  'feature3': [
+    ['send', delimiter],
+    ['sleep', 400],
+    ['type', 'say taco cat | reverse | color yellow', speed],
+    ['sleep', 200],
+    ['send', '<br><span class=\'yellow\'>tac ocat</span>'],
+    ['send', '<br>' + delimiter],
+    ['sleep', 1000]
+  ],
+  'feature4': [
+    ['send', delimiter],
+    ['sleep', 400],
+    ['type', 'order pizza ', speed],
+    ['sleep', 800],
+    ['type', '--no-anchovies', speed],
+    ['sleep', 200],
+    ['send', '<br><span class=\'blue\'>? </span> When would you like your pizza? '],
+    ['sleep', 1100],
+    ['type', '7:30pm', speed],
+    ['sleep', 200],
+    ['send', '<br>Okay, 7:30pm it is!', speed],
+    ['send', '<br>' + delimiter],
     ['sleep', 1000],
   ],
 }
@@ -76,7 +115,9 @@ function handleScript(script) {
       done();
     });
   } else if (action === 'send') {
-    $('.term-code .code').append(param);
+    $('.term-code .code').html($('.term-code .code').html().replace('█', ''));
+    $('.term-code .code').append(param).append('█');
+    //$('.term-code .code').append(param);
     done();
   } else if (action === 'sleep') {
     config.wait = param;
@@ -99,7 +140,8 @@ function renderType(str, time, cb) {
       if (config.cancel === true) {
         return;
       }
-      $('.term-code .code').append('' + out);
+      $('.term-code .code').html($('.term-code .code').html().replace('█', ''));
+      $('.term-code .code').append('' + out).append('█');
       if (remainder.length < 1) {
         cb();
         return;
