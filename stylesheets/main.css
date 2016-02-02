@@ -272,7 +272,7 @@ header a:hover {
 .feature-header .two.columns { width: 16.666666%; margin: 0px; }
 .feature-header .two.columns:first-child { }
 .feature-header .two.columns:last-child { }
-.feature-header .btn { width: 100%; height: 48px; box-sizing: border-box; padding-top: 12px; cursor: pointer; color: #999; border-top: 3px solid transparent; }
+.feature-header .btn { width: 100%; height: 49px; box-sizing: border-box; padding-top: 12px; cursor: pointer; color: #999; border-top: 3px solid transparent; }
 .feature-header .btn:hover { color: #222; }
 .feature-header .btn:hover { color: #222; }
 .feature-header p { font-size: .8em; }
