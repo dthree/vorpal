@@ -222,6 +222,7 @@ header a:hover {
 .term-code .code {  text-align: left; margin-left: 16px; }
 
 .three-icon { width: 128px; height: 128px; text-align: center; margin-bottom: 32px; cursor: pointer; }
+.social-icon { width: 32px; text-align: center; margin-bottom: 0px; cursor: pointer; }
 
 .blue { color: #6699cc; }
 .yellow { color: #F09D49; }
@@ -256,10 +257,24 @@ header a:hover {
 
 .vorpal-made-by {
   height: 60px;
-  background: #fff;
-  color: #222;
-  padding: 32px 0px 0px 0px;
+  background: #5F6187;
+  color: #fff;
+  padding: 18px 0px 0px 0px;
   font-family: Consolas, Courier New;
+  box-sizing: border-box;
+}
+.vorpal-made-by a { color: #ddd; }
+.vorpal-made-by a:hover { color: #ccc; text-decoration: none; }
+.vorpal-made-by a:active { color: #ccc; text-decoration: none; }
+
+.vorpal-social {
+  height: 60px;
+  background: #fdfdfd;
+  color: #fff;
+  border-top: 1px solid #eee;
+  padding: 14px 0px 0px 0px;
+  font-family: Consolas, Courier New;
+  box-sizing: border-box;
 }
 
 .vorpal-features .container { width: 832px; }
