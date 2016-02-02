@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Vorpal by dthree</title>
+    <title>Vorpal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='stylesheets/normalize.css'>
     <link rel='stylesheet' href='stylesheets/skeleton.css'>
@@ -34,10 +34,10 @@
         <div class='row'>
           <div class='twelve columns text-right'>
             <ul class='navigation inline-list'>
-              <li><a href='#'>INTRODUCTION</a></li>
-              <li><a href='#'>FEATURES</a></li>
-              <li><a href='#'>API</a></li>
-              <li><a href='#'>FAQ</a></li>
+              <li><a href='#introduction' class='override'>INTRODUCTION</a></li>
+              <li><a href='#features' class='override'>FEATURES</a></li>
+              <li><a href='#get-started' class='override'>GET STARTED</a></li>
+              <li><a href='https://github.com/dthree/vorpal/wiki' class='override'>DOCUMENTATION</a></li>
             </ul>
           </div>
         </div>
@@ -55,13 +55,13 @@
     <div class='container'>
       <div class='row'>
         <div class='twelve columns center'>
-          <div class='button-front'>FIND OUT MORE</div>
+          <a class='override' href='#introduction'><div class='button-front'>FIND OUT MORE</div></a>
         </div>
       </div>
     </div>
   </section>
 </section>
-<section class='vorpal-intro'>
+<section class='vorpal-intro' id='introduction'>
   <div class='container'>
     <div class='twelve columns center'>
       <div class='row'>
@@ -78,21 +78,21 @@
     </div>
     <div class='row'>
       <div class='four columns'>
-        <h6>SIMPLE SYNTAX</h6>
+        <h5>Simple Syntax</h5>
         <p>Use familiar Javascript syntax and chained methods to build commands and customize your application.</p>
       </div>
       <div class='four columns'>
-        <h6>POWERFUL DEFAULTS</h6>
+        <h5>Powerful Defaults</h5>
         <p>Vorpal has built-in tabbed autocompletion for your commands and options, persistent command history, piping and automated help pages.</p>
       </div>
       <div class='four columns'>
-        <h6>IMMERSIVE EXPERIENCE</h6>
+        <h5>Immersive Experience</h5>
         <p>Most command-line applications do something and then exit. Vorpal engages your users in a rich, interactive environment entirely under your control.</p>
       </div>
     </div>
   </div>
 </section>
-<section class='feature-header'>
+<section class='feature-header' id='features'>
   <div class='container'>
     <div class='row center'>
     <h4><br>Try it Out<br><br></h4>
@@ -127,8 +127,7 @@
           <img class='terminal center' src='images/terminal.png' alt=''></a>
           <div class='term-code'><div class='code'>$</div></div>
           <div class='sample-code'>
-            <pre id='source-feature1' style='display: block'><code class='language-js'>
-            </code></pre>
+            <pre id='source-feature1' style='display: block'><code class='language-js'></code></pre>
             <pre id='source-feature2' style='display: none'><code class='language-js'>
 const vorpal = require('vorpal')();
 
@@ -239,14 +238,26 @@ unicorns
           </div>
         </div>
       </div>
-      </div>
     </div>
   </div>
+  <div class='container feature-description'>
+    <div class='row center'>
+      <div class='eight columns offset-by-two'>
+        <div id='description-feature1' style='dislpay: none;'><p>Vorpal is built on <a href='https://nodejs.org/en'>Node.js</a> and installed through <a href='https://npmjs.com'>NPM</a>, Node's package manager.</p></div>
+        <div id='description-feature2' style='dislpay: none;'><p>Your app is based on <a href='https://github.com/dthree/vorpal/wiki/API-|-vorpal.command'>commands</a> you build.<br><br>While easy to create, commands can accept optional and required arguments, options, help descriptions and custom tabbed autocompletion among other features, making your app flexible for the perfect customizations.</p></div>
+        <div id='description-feature3' style='dislpay: none;'><p>Vorpal was designed to mirror the Linux shell.<br><br>That means piping, persistent command history and all those little details you love are now first-class citizens in your application.</p></div>
+        <div id='description-feature4' style='dislpay: none;'><p>Prompt your users for information with flexible prompts including checklists, multi-selects, password inputs and confirm dialogs using Node's <a href='https://github.com/sboudrias/Inquirer.js'>most popular prompting library</a>.</p></div>
+        <div id='description-feature5' style='dislpay: none;'><p>Build customizable autocompletion for your commands and their options.</p></div>
+        <div id='description-feature6' style='dislpay: none;'><p>While Vorpal is incredibly simple to get started with, it's packed with a powerful API that can customize any aspect of your application.<br><br>If you can imagine it, you can build it with Vorpal.</p></div>
+      </div>
+    </div>
+    <br><br>
+  </div>
 </section>
-<section class='vorpal-get-started'>
+<section class='vorpal-get-started' id='get-started'>
   <div class='container'>
     <div class='twelve columns center'>
-      <h4><br>Get Started<br><br></h4>
+      <h4><br>Get Started<br><br><br></h4>
     </div>
     <!--<div class='row'>
       <div class='twelve columns'>
@@ -275,6 +286,51 @@ unicorns
         <h5>Chat with Others</h5>
         <p>Use Gitter to chat with other people developing applications with Vorpal.</p>
       </div>
+    </div>
+  </div>
+  <div><br><br></div>
+</section>
+<section class='vorpal-users'>
+  <div class='container'>
+    <div class='twelve columns center'>
+      <h4><br>Who's using Vorpal?<br><br></h4>
+    </div>
+    <div class='row'>
+      <div class='twelve columns'>
+      <h5>While still young, Vorpal is already helping Open Source developers build a brand new breed of immersive command-line applications.<br><br><br></h5>
+      </div>
+    </div>
+    <div class='row center'>
+      <div class='four columns'>
+        <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Automated_testing/Raptor'>
+          <img class='three-icon' src='images/mozilla.png' alt='Mozilla Raptor'>
+        </a>
+        <p>Vorpal helped Mozilla developers in making <a href='https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Automated_testing/Raptor'>Raptor</a>, a performance tester for Firefox.</p>
+      </div>
+      <div class='four columns'>
+        <a href='https://github.com/mischah/itunes-remote'>
+        <img class='three-icon' src='images/itunes.png' alt='iTunes-Remote'>
+        </a>
+        <p>German developer Michael Kühnel used Vorpal in building an app for controlling iTunes playback from your terminal.</p>
+      </div>
+      <div class='four columns'>
+        <a href='https://github.com/websitesfortrello/trelew'>
+          <img class='three-icon' src='images/trello.png' alt='Trelew'>
+        </a>
+        <p>Developer Giovanni Parra used Vorpal to create a command-line app for interacting with Trello.</p>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='twelve columns center'>
+      <h6><br><br><a href='https://www.npmjs.com/browse/depended/vorpal'>View all projects built with Vorpal</a></h6><br><br>
+      </div>
+    </div>
+  </div>
+</section>
+<section class='vorpal-made-by'>
+  <div class='container'>
+    <div class='twelve columns center'>
+      <p>made with <3 by <a href='https://github.com/dthree/vorpal'>dthree</a></p>
     </div>
   </div>
 </section>

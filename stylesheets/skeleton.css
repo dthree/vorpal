@@ -157,11 +157,10 @@ p {
 
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-a {
+a:not([class='override']) {
   color: #1EAEDB; }
-a:hover {
+a:not([class='override']):hover {
   color: #0FA0CE; }
-
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

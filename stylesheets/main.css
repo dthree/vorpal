@@ -203,15 +203,21 @@ header a:hover {
   text-align: center;
 }
 
+.navigation { color: #fff !important; }
+
 .accent { color: #4281a3; }
 
 .front-page { background: linear-gradient(20deg, #337496 0%, #367699 12%, #4281A3 100%) no-repeat; padding: 0px; }
 
 .logo { width: 260px; text-align: center; margin-top: 144px; }
 
-.button-front { width: 160px; border: 2px solid white; text-align: center; font-size: .9em; padding: 12px; box-sizing: border-box; margin-right: auto; margin-left: auto; margin-top: 144px; cursor: pointer; }
-.button-front:hover { background: rgba(255, 255, 255, .1); }
-.button-front:active { background: rgba(255, 255, 255, .2); }
+.override { text-decoration: none !important; }
+.override:hover { text-decoration: none !important; }
+.override:active { text-decoration: none !important; }
+
+.button-front { width: 160px; border: 2px solid white; text-align: center; font-size: .9em; padding: 12px; box-sizing: border-box; margin-right: auto; margin-left: auto; margin-top: 144px; cursor: pointer; color: #fff; text-decoration: none; }
+.button-front:hover { background: rgba(255, 255, 255, .1); color: #fff; text-decoration: none !important; }
+.button-front:active { background: rgba(255, 255, 255, .2); color: #fff; text-decoration: none; }
 
 .term-code .code {  text-align: left; margin-left: 16px; }
 
@@ -237,9 +243,23 @@ header a:hover {
 }
 
 .vorpal-get-started {
-  min-height: 600px;
+  min-height: 400px;
   background: #4181a3;
   color: #fff;
+}
+
+.vorpal-users {
+  min-height: 400px;
+  background: #444;
+  color: #fff;
+}
+
+.vorpal-made-by {
+  height: 60px;
+  background: #fff;
+  color: #222;
+  padding: 32px 0px 0px 0px;
+  font-family: Consolas, Courier New;
 }
 
 .vorpal-features .container { width: 832px; }
@@ -252,7 +272,7 @@ header a:hover {
 .feature-header .two.columns { width: 16.666666%; margin: 0px; }
 .feature-header .two.columns:first-child { }
 .feature-header .two.columns:last-child { }
-.feature-header .btn { width: 100%; height: 48px; box-sizing: border-box; padding-top: 8px; cursor: pointer; color: #999; }
+.feature-header .btn { width: 100%; height: 48px; box-sizing: border-box; padding-top: 12px; cursor: pointer; color: #999; border-top: 3px solid transparent; }
 .feature-header .btn:hover { color: #222; }
 .feature-header .btn:hover { color: #222; }
 .feature-header p { font-size: .8em; }
@@ -260,7 +280,7 @@ header a:hover {
 .feature-header .btn.active p { color: #222; }
 
 
-
+.feature-description { font-size: 1em; margin-top: 42px; }
 
 /* Hide feature section on mobile */
 @media (max-width: 650px) {

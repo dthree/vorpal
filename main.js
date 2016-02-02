@@ -17,7 +17,9 @@ $(document).ready(function() {
   function onFeatureSelect(id) {
     $('.feature-header .btn').removeClass('active');
     $('.sample-code pre').css('display', 'none');
+    $('.feature-description > div > div > div').css('display', 'none');
     $('#source-' + id).css('display', 'block');
+    $('#description-' + id).css('display', 'block');
     $('#' + id).addClass('active');
     execScript(scripts[id] || scripts['feature1']);
   }
@@ -29,4 +31,20 @@ $(document).ready(function() {
 
   onFeatureSelect('feature1');
 
+  $(function() {
+    $('a[href*="#"]:not([href="#"])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          console.log('OK...')
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 1000);
+          return false;
+        }
+      }
+    });
+  });
 });
+
