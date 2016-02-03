@@ -69,17 +69,17 @@
           <img class='console center' src='images/console.png' alt=''></a>
         </div>
       </div>
-      <h4><br>The command line is awesome<br><br></h4>
+      <h4><br>The command-line is awesome<br><br></h4>
     </div>
     <div class='row'>
       <div class='twelve columns'>
-      <h5>But <strong class='accent'>building on it</strong> has been hard for web developers. Vorpal is a framework that makes it easy to build mature, immersive command-line applications in <strong class='accent'>Javascript</strong>.<br><br></h5>
+      <h5>But <strong class='accent'>building on it</strong> has been hard for web developers. Vorpal is a framework that makes it easy to build mature, immersive command-line applications in <strong class='accent'>JavaScript</strong>.<br><br></h5>
       </div>
     </div>
     <div class='row'>
       <div class='four columns'>
         <h5>Simple Syntax</h5>
-        <p>Use familiar Javascript syntax and chained methods to build commands and customize your application.</p>
+        <p>Use familiar JavaScript syntax and chained methods to build commands and customize your application.</p>
       </div>
       <div class='four columns'>
         <h5>Powerful Defaults</h5>
@@ -137,8 +137,8 @@ vorpal
   .option('-t, --twice')
   .action(function (args, callback) {
     let str = args.words.join(' ');
-    str = (args.options.backwards) ? 
-      str.split('').reverse().join('') : 
+    str = (args.options.backwards) ?
+      str.split('').reverse().join('') :
       str;
     this.log(str);
     callback();
@@ -226,7 +226,7 @@ const narwhals = Vorpal()
 // One does not exit a magical land!
 unicorns
   .find('exit')
-  .remove();    
+  .remove();
 
 unicorns
   .show()
