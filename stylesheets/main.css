@@ -243,6 +243,14 @@ header a:hover {
   color: #222;
 }
 
+.hbutton { border: 4px solid #fff; border-radius: 2px; margin-bottom: 0px; }
+
+.vorpal-gh {
+  min-height: 124px;
+  background: #333;
+  color: #222;
+}
+
 .vorpal-get-started {
   min-height: 400px;
   background: #4181a3;
@@ -301,19 +309,14 @@ header a:hover {
 @media (max-width: 650px) {
   .feature-header { display: none; }
   .vorpal-features { display: none; }
+  .github-corner { display: none; }
+  header { padding-bottom: 32px; background: #4489AE; }
 }
 
-
-
-
-
-
-
-
-
-
-
-
+/* Hide Github link on desktop */
+@media (min-width: 650px) {
+  .vorpal-gh { display: none; }
+}
 
 /* Electron Does */
 
