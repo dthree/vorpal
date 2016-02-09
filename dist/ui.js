@@ -616,6 +616,12 @@ var UI = function (_EventEmitter) {
 }(EventEmitter);
 
 /**
+ * Initialize singleton.
+ */
+
+var ui = new UI();
+
+/**
  * Clears logging from `ui.redraw`
  * permanently.
  *
@@ -623,7 +629,7 @@ var UI = function (_EventEmitter) {
  * @api public
  */
 
-UI.prototype.redraw.clear = function () {
+ui.redraw.clear = function () {
   logUpdate.clear();
   return ui;
 };
@@ -636,7 +642,7 @@ UI.prototype.redraw.clear = function () {
  * @api public
  */
 
-UI.prototype.redraw.done = function () {
+ui.redraw.done = function () {
   logUpdate.done();
   ui.refresh();
   return ui;
@@ -668,7 +674,7 @@ global.__vorpal.ui = global.__vorpal.ui || {
 
 if (!global.__vorpal.ui.exists) {
   global.__vorpal.ui.exists = true;
-  global.__vorpal.ui.exports = new UI();
+  global.__vorpal.ui.exports = ui;
   module.exports = exports = global.__vorpal.ui.exports;
 } else {
   module.exports = global.__vorpal.ui.exports;
