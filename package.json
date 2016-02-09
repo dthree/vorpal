@@ -76,6 +76,7 @@
       "global-require": 0,
       "no-negated-condition": 0,
       "no-loop-func": 0,
+      "global-require": 0,
       "no-implicit-coercion": 0,
       "no-use-extend-native/no-use-extend-native": 0,
       "no-undef": 0
