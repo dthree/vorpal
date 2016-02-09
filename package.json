@@ -36,7 +36,6 @@
     "babel": "^6.3.26",
     "babel-core": "^6.4.5",
     "babel-plugin-transform-runtime": "^6.4.3",
-    "babel-polyfill": "^6.3.14",
     "babel-preset-es2015": "^6.3.13",
     "babel-runtime": "^6.3.19",
     "bluebird": "^3.1.1",
@@ -54,6 +53,7 @@
     "xo": "^0.9.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.3.14",
     "chalk": "^1.1.0",
     "inquirer": "0.11.0",
     "lodash": "^4.0.0",
