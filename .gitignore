@@ -30,6 +30,5 @@ node_modules
 test/util/playground.js
 
 .idea/
-dist/
 
 electron*
