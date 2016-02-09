@@ -1,7 +1,5 @@
 const gulp = require('gulp');
-const babel = require('gulp-babel');
-const changed = require('gulp-changed');
-const eslint = require('gulp-eslint');
+const _gulp = require('load-plugins')('gulp-*');
 
 const paths = {};
 paths.src = './lib/**/*.js';
@@ -12,17 +10,14 @@ gulp.task('lint', () => {
     .pipe(_gulp.xo());
 });
 
-gulp.task('babel', function () {
-  const bab = babel({presets: ['es2015']});
-  gulp.src('lib/**/*.js')
-    .pipe(changed('dist'))
-    .pipe(bab)
-    .pipe(gulp.dest('dist'));
-  return;
+gulp.task('build', ['lint'], () => {
+  return gulp.src(paths.src)
+    .pipe(_gulp.babel())
+    .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('watch', ['babel'], () => {
-  gulp.watch(paths.src, ['babel']);
+gulp.task('watch', ['build'], () => {
+  gulp.watch(paths.src, ['build']);
 });
 
-gulp.task('default', ['babel', 'watch']);
+gulp.task('default', ['watch']);
