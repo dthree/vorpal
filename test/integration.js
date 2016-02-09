@@ -25,6 +25,8 @@ var stdout = function () {
   return String(out || '');
 };
 
+console.log('WTF')
+
 describe('integration tests:', function () {
   describe('vorpal', function () {
     it('should overwrite duplicate commands', function (done) {
