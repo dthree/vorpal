@@ -630,5 +630,32 @@ describe('integration tests:', function () {
         vorpal2.exec('help | fail | help');
       });
     });
+
+    describe('local storage', function () {
+      it('should error if not initialized', function () {
+        (function () {
+          vorpal.localStorage.setItem();
+        }).should.throw();
+        (function () {
+          vorpal.localStorage.getItem();
+        }).should.throw();
+        (function () {
+          vorpal.localStorage.removeItem();
+        }).should.throw();
+      });
+
+      it('should error if not passed a unique id', function () {
+        (function () {
+          vorpal.localStorage();
+        }).should.throw();
+      });
+
+      it('should set and get items', function () {
+        var a = new Vorpal();
+        a.localStorage('foo');
+        a.localStorage.setItem('cow', 'lick');
+        a.localStorage.getItem('cow').should.equal('lick');
+      });
+    });
   });
 });
