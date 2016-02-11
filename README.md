@@ -174,7 +174,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 - [`.execSync`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalexecsynccommand-options)
 - [`.log`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpallogstring-strings)
 - [`.history`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalhistoryid)
-- [`.localStorage`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpallocalStorageid)
+- [`.localStorage`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpallocalstorageid)
 - [`.help`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalhelpfunction)
 - [`.pipe`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalpipefunction)
 - [`.use`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpaluseextension)
