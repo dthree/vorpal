@@ -95,21 +95,21 @@ describe('integration tests:', function () {
     it('should validate arguments', function (done) {
       var errorThrown = new Error('Invalid Argument');
       vorpal
-          .command('ValidateMe [myArg]', 'This command only allows argument -CorrectArgument-')
-          .validate(function (args) {
-            this.checkInstance = 'this is the instance';
-            if (!args || args.myArg !== 'CorrectArgument') {
-              throw errorThrown;
-            }
-          })
-          .action(function (args, cb) {
-            this.checkInstance.should.equal('this is the instance');
-            cb(undefined, 'Correct');
-          });
+        .command('validate-me [arg]', 'This command only allows argument "valid"')
+        .validate(function (args) {
+          this.checkInstance = 'this is the instance';
+          if (!args || args.arg !== 'valid') {
+            throw errorThrown;
+          }
+        })
+        .action(function (args, cb) {
+          this.checkInstance.should.equal('this is the instance');
+          cb();
+        });
 
-      vorpal.exec('ValidateMe CorrectArgument', function (err) {
+      vorpal.exec('validate-me valid', function (err) {
         (err === undefined).should.be.true;
-        vorpal.exec('ValidateMe IncurrectArgument', function (err) {
+        vorpal.exec('validate-me invalid', function (err) {
           err.should.equal(errorThrown);
           done();
         });
