@@ -567,9 +567,9 @@ vorpal.prompt = function () {
     };
 
     if (ssn.isLocal()) {
-      ui.setDelimiter(options.message || ssn.delimiter);
+      ui.setDelimiter(options.message || ssn.delimiter());
       prompt = ui.prompt(options, function (result) {
-        ui.setDelimiter(ssn.delimiter);
+        ui.setDelimiter(ssn.delimiter());
         cb(result);
       });
     } else {
