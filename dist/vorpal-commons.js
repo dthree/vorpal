@@ -44,9 +44,13 @@ module.exports = function (vorpal) {
    * Exits Vorpal.
    */
 
-  vorpal.command('exit').alias('quit').option('-f, --force', 'Forces process kill without confirmation.').description('Exits instance of Vorpal.').action(function (args) {
-    args.options = args.options || {};
-    args.options.sessionId = this.session.id;
-    this.parent.exit(args.options);
-  });
-};
+   vorpal
+     .command('exit')
+     .alias('quit')
+     .description('Exits instance of Node.')
+     .action(function (args) {
+       args.options = args.options || {};
+       args.options.sessionId = this.session.id;
+       this.parent.exit(args.options);
+     });
+ };

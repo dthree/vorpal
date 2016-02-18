@@ -1208,31 +1208,16 @@ vorpal.getSessionById = function (id) {
  * @api private
  */
 
-vorpal.exit = function (options) {
-  var self = this;
-  var ssn = this.getSessionById(options.sessionId);
-  if (ssn.isLocal()) {
-    if (options.force) {
-      process.exit(2);
-    } else {
-      this.prompt({
-        type: 'confirm',
-        name: 'continue',
-        default: false,
-        message: 'This will actually kill this node process. Continue?',
-        sessionId: ssn.id
-      }, function (result) {
-        if (result.continue) {
-          process.exit(2);
-        } else {
-          self._prompt({ sessionId: ssn.id });
-        }
-      });
-    }
-  } else {
-    ssn.server.emit('vantage-close-downstream', { sessionId: ssn.id });
-  }
-};
+ vorpal.exit = function (options) {
+   var self = this;
+   var ssn = this.getSessionById(options.sessionId);
+   if (ssn.isLocal()) {
+       process.exit(2);
+   }
+    else {
+     ssn.server.emit('vantage-close-downstream', {sessionId: ssn.id});
+   }
+ };
 
 Object.defineProperty(vorpal, 'activeCommand', {
   get: function get() {
