@@ -151,6 +151,15 @@ module.exports = function (vorpal) {
       cb();
     });
 
+   vorpal
+    .command('hyphenated-option')
+    .description('Negative args.')
+    .option('--dry-run', 'Perform dry run only.')
+    .action(function (args, cb) {
+        this.log(args.options['dry-run']);
+        cb();
+    });
+
   vorpal
     .command('required <arg>')
     .description('Must return an arg.')
