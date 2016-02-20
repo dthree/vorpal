@@ -10,7 +10,7 @@
  * Module dependencies.
  */
 
-var _ = require('lodash');
+var _ = require('mindash');
 
 module.exports = function (vorpal) {
   /**
@@ -44,13 +44,9 @@ module.exports = function (vorpal) {
    * Exits Vorpal.
    */
 
-   vorpal
-     .command('exit')
-     .alias('quit')
-     .description('Exits application.')
-     .action(function (args) {
-       args.options = args.options || {};
-       args.options.sessionId = this.session.id;
-       this.parent.exit(args.options);
-     });
- };
+  vorpal.command('exit').alias('quit').description('Exits application.').action(function (args) {
+    args.options = args.options || {};
+    args.options.sessionId = this.session.id;
+    this.parent.exit(args.options);
+  });
+};

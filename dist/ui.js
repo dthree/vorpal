@@ -30,7 +30,7 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _ = require('lodash');
+var _ = require('mindash');
 var inquirer = require('inquirer');
 var EventEmitter = require('events').EventEmitter;
 var chalk = require('chalk');

@@ -28,7 +28,7 @@ if (!global._babelPolyfill) {
  * Module dependencies.
  */
 
-var _ = require('lodash');
+var _ = require('mindash');
 var EventEmitter = require('events').EventEmitter;
 var Command = require('./command');
 var CommandInstance = require('./command-instance');
@@ -78,8 +78,8 @@ function Vorpal() {
   // Expose chalk as a convenience.
   this.chalk = chalk;
 
-  // Expose lodash as a convenience.
-  this.lodash = _;
+  // Expose mindash as a convenience.
+  this.mindash = _;
 
   // Exposed through vorpal.delimiter(str).
   this._delimiter = 'local@' + String(os.hostname()).split('.')[0] + '~$ ';
@@ -1208,16 +1208,14 @@ vorpal.getSessionById = function (id) {
  * @api private
  */
 
- vorpal.exit = function (options) {
-   var self = this;
-   var ssn = this.getSessionById(options.sessionId);
-   if (ssn.isLocal()) {
-       process.exit(2);
-   }
-    else {
-     ssn.server.emit('vantage-close-downstream', {sessionId: ssn.id});
-   }
- };
+vorpal.exit = function (options) {
+  var ssn = this.getSessionById(options.sessionId);
+  if (ssn.isLocal()) {
+    process.exit(2);
+  } else {
+    ssn.server.emit('vantage-close-downstream', { sessionId: ssn.id });
+  }
+};
 
 Object.defineProperty(vorpal, 'activeCommand', {
   get: function get() {

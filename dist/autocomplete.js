@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+var _ = require('mindash');
 var strip = require('strip-ansi');
 
 var autocomplete = {

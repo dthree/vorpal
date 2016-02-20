@@ -1,5 +1,5 @@
 var Vantage = require('../../');
-var _ = require('lodash');
+var _ = require('mindash');
 var path = require('path');
 
 module.exports = {

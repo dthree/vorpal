@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var EventEmitter = require('events').EventEmitter;
 var os = require('os');
-var _ = require('lodash');
+var _ = require('mindash');
 var util = require('./util');
 var autocomplete = require('./autocomplete');
 var CommandInstance = require('./command-instance');
