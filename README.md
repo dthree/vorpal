@@ -124,6 +124,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 - [Stack Overflow](http://stackoverflow.com/questions/tagged/vorpal.js)
 - [Vorpal extensions](https://github.com/vorpaljs/awesome-vorpaljs#vorpal-extensions)
 - [Projects made with Vorpal](https://github.com/vorpaljs/awesome-vorpaljs)
+- [Follow @vorpaljs](https://twitter.com/vorpaljs)
 
 ## [API](https://github.com/dthree/vorpal/wiki)
 
