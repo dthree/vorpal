@@ -218,6 +218,7 @@ header a:hover {
 .button-front { width: 160px; border: 2px solid white; text-align: center; font-size: .9em; padding: 12px; box-sizing: border-box; margin-right: auto; margin-left: auto; margin-top: 144px; cursor: pointer; color: #fff; text-decoration: none; }
 .button-front:hover { background: rgba(255, 255, 255, .1); color: #fff; text-decoration: none !important; }
 .button-front:active { background: rgba(255, 255, 255, .2); color: #fff; text-decoration: none; }
+.button-front.lower { width: auto; max-width: 210px; margin-top: 64px; margin-bottom: 32px; }
 
 .term-code .code {  text-align: left; margin-left: 16px; }
 
@@ -274,6 +275,17 @@ header a:hover {
 .vorpal-made-by a { color: #ddd; }
 .vorpal-made-by a:hover { color: #ccc; text-decoration: none; }
 .vorpal-made-by a:active { color: #ccc; text-decoration: none; }
+
+.vorpal-follow {
+  height: 120px;
+  background: #464646;
+  color: #eee;
+  padding: 48px 0px 0px 0px;
+  box-sizing: border-box;
+}
+.vorpal-follow a { color: #ddd; }
+.vorpal-follow a:hover { color: #ccc; text-decoration: none; }
+.vorpal-follow a:active { color: #ccc; text-decoration: none; }
 
 .vorpal-social {
   height: 60px;

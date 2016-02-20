@@ -8,11 +8,13 @@ if (String(window.location).indexOf('test') === -1) {
 
   ga('create', 'UA-73109746-1', 'auto');
   ga('send', 'pageview');
+} else {
+  ga = function () {};
 }
 
 $(document).ready(function() {
 
-  function onFeatureSelect(id) {
+  function onFeatureSelect(id, pageLoad) {
     $('.feature-header .btn').removeClass('active');
     $('.sample-code pre').css('display', 'none');
     $('.feature-description > div > div > div').css('display', 'none');
@@ -20,14 +22,27 @@ $(document).ready(function() {
     $('#description-' + id).css('display', 'block');
     $('#' + id).addClass('active');
     execScript(scripts[id] || scripts['feature1']);
+    if (pageLoad === undefined) {
+      ga('send', 'event', 'try-it-out', 'select', 'try-it-out', id);
+    }
   }
+
+  var scrolls = {}
+  $(window).on('scroll', function () {
+    if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+      if (scrolls.bottom === undefined) {
+        scrolls.bottom = true;
+        ga('send', 'event', 'scroll', 'scroll', 'scroll-bottom', 'true');
+      }
+    }
+  });
 
   $('.feature-header .btn').click(function (e) {
     var id = $(e.currentTarget).attr('id');
     onFeatureSelect(id);
   });
 
-  onFeatureSelect('feature1');
+  onFeatureSelect('feature1', true);
 
   $(function() {
     $('a[href*="#"]:not([href="#"])').click(function() {
