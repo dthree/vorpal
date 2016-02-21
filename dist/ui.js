@@ -40,6 +40,7 @@ var logUpdate = require('log-update');
 var UI = function (_EventEmitter) {
   (0, _inherits3.default)(UI, _EventEmitter);
 
+
   /**
    * Sets intial variables and registers
    * listeners. This is called once in a
