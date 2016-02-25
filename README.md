@@ -75,7 +75,7 @@ Create a `.js` file and add the following:
 var vorpal = require('vorpal')();
 
 vorpal
-  .command('foo', 'Outputs "bar"')
+  .command('foo', 'Outputs "bar".')
   .action(function(args, callback) {
     this.log('bar');
     callback();
