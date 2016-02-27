@@ -10,7 +10,7 @@
  * Module dependencies.
  */
 
-var _ = require('mindash');
+var _ = require('lodash');
 
 module.exports = function (vorpal) {
   /**

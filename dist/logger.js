@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var _ = require('mindash');
+var _ = require('lodash');
 var util = require('./util');
 var ut = require('util');
 

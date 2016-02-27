@@ -15,7 +15,7 @@ var _createClass3 = _interopRequireDefault(_createClass2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var util = require('./util');
-var _ = require('mindash');
+var _ = require('lodash');
 
 var CommandInstance = function () {
 

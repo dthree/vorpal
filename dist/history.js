@@ -6,7 +6,7 @@ var _stringify2 = _interopRequireDefault(_stringify);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _ = require('mindash');
+var _ = require('lodash');
 var LocalStorage = require('node-localstorage').LocalStorage;
 var path = require('path');
 

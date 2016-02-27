@@ -14,7 +14,7 @@ var _getIterator3 = _interopRequireDefault(_getIterator2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _ = require('mindash');
+var _ = require('lodash');
 var minimist = require('minimist');
 var strip = require('strip-ansi');
 

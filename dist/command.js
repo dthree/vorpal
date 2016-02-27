@@ -7,7 +7,7 @@
 var EventEmitter = require('events').EventEmitter;
 var Option = require('./option');
 var VorpalUtil = require('./util');
-var _ = require('mindash');
+var _ = require('lodash');
 
 /**
  * Command prototype.

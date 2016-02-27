@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var _ = require('mindash');
+var _ = require('lodash');
 
 /**
  * Intercepts stdout, passes thru callback

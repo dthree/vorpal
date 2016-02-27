@@ -16,7 +16,7 @@
  */
 
 var Vorpal = require('./../../');
-var _ = require('mindash');
+var _ = require('lodash');
 
 /**
  * Variable declarations.
