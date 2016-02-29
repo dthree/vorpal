@@ -516,6 +516,14 @@ describe('integration tests:', function () {
         vorpalHistory2.session.getHistory('down').should.equal('command2');
         vorpalHistory2.session.getHistory('down').should.equal('');
       });
+
+      it('should ignore consecutive duplicates', function () {
+        vorpalHistory.exec('command2');
+        vorpalHistory.session.getHistory('up').should.equal('command2');
+        vorpalHistory.session.getHistory('up').should.equal('command1');
+        vorpalHistory.session.getHistory('down').should.equal('command2');
+        vorpalHistory.session.getHistory('down').should.equal('');
+      });
     });
 
     describe('cancel', function () {
