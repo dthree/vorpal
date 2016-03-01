@@ -349,6 +349,8 @@ command.helpInformation = function () {
 
   var res = usage.concat(cmds).concat(alias).concat(desc).concat(options).join('\n');
 
+  res = res.replace(/\n\n\n/g, '\n\n');
+
   return res;
 };
 
