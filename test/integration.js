@@ -5,6 +5,16 @@ var commands = require('./util/server');
 var BlueBirdPromise = require('bluebird');
 var fs = require('fs');
 
+var intercept = require('../dist/intercept');
+var stdout = '';
+var umute;
+var mute = function () {
+  unmute = intercept(function (str) {
+    stdout += str;
+    return '';
+  });
+}
+
 require('assert');
 require('should');
 
@@ -197,13 +207,6 @@ describe('integration tests:', function () {
         });
       });
 
-      it('should execute a long command with arguments', function (done) {
-        exec('very complicated deep command abc123 -rad --sleep \'well\' -t -i \'j\' ', done, function () {
-          stdout().should.equal('radtjwellabc123');
-          done();
-        });
-      });
-
       // This has ... promise ... problems.
       it.skip('should execute 50 async commands in sync', function (done) {
         this.timeout(4000);
@@ -390,13 +393,6 @@ describe('integration tests:', function () {
       it('should show help when not passed a required variable', function (done) {
         exec('required', done, function () {
           (stdout().indexOf('Missing required argument') > -1).should.equal(true);
-          done();
-        });
-      });
-
-      it('should show help when not passed a required option', function (done) {
-        exec('required-option', done, function () {
-          (stdout().indexOf('Missing required option') > -1).should.equal(true);
           done();
         });
       });

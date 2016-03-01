@@ -209,8 +209,49 @@ var util = {
   buildCommandArgs: function buildCommandArgs(passedArgs, cmd, execCommand) {
     var args = { options: {} };
 
-    // This basically makes the arguments human readable.
-    var parsedArgs = this.parseArgs(passedArgs, cmd._types);
+    // Types are custom arg types passed
+    // into `minimist` as per its docs.
+    var types = cmd._types || {};
+
+    // Make a list of all boolean options
+    // registered for this command. These are
+    // simply commands that don't have required
+    // or optional args.
+    var booleans = [];
+    cmd.options.forEach(function (opt) {
+      if (opt.required === 0 && opt.optional === 0) {
+        if (opt.short) {
+          booleans.push(opt.short);
+        }
+        if (opt.long) {
+          booleans.push(opt.long);
+        }
+      }
+    });
+
+    // Review the args passed into the command,
+    // and filter out the boolean list to only those
+    // options passed in.
+    // This returns a boolean list of all options
+    // passed in by the caller, which don't have
+    // required or optional args.
+    var passedArgParts = passedArgs.split(' ');
+    types.boolean = booleans.map(function (str) {
+      return String(str).replace(/^-*/, '');
+    }).filter(function (str) {
+      var match = false;
+      var strings = ['-' + str, '--' + str, '--no-' + str];
+      for (var i = 0; i < passedArgParts.length; ++i) {
+        if (strings.indexOf(passedArgParts[i]) > -1) {
+          match = true;
+          break;
+        }
+      }
+      return match;
+    });
+
+    // Use minimist to parse the args.
+    var parsedArgs = this.parseArgs(passedArgs, types);
 
     function validateArg(arg, cmdArg) {
       return !(arg === undefined && cmdArg.required === true);
@@ -247,8 +288,9 @@ var util = {
       var long = String(o.long || '').replace(/--no-/g, '').replace(/-/g, '');
       var exist = parsedArgs[short] !== undefined ? parsedArgs[short] : undefined;
       exist = exist === undefined && parsedArgs[long] !== undefined ? parsedArgs[long] : exist;
-      if (!exist && o.required !== 0) {
-        return '\n  Missing required option. Showing Help:';
+      var existsNotSet = exist === true || exist === false;
+      if (existsNotSet && o.required !== 0) {
+        return '\n  Missing required value for option ' + (o.long || o.short) + '. Showing Help:';
       }
       if (exist !== undefined) {
         args.options[long || short] = exist;

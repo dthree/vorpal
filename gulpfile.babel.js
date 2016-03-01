@@ -10,7 +10,7 @@ gulp.task('lint', () => {
     .pipe(_gulp.xo());
 });
 
-gulp.task('build', ['lint'], () => {
+gulp.task('build', () => {
   return gulp.src(paths.src)
     .pipe(_gulp.babel())
     .pipe(gulp.dest(paths.dist));
