@@ -2,7 +2,9 @@
 
 var LocalStorageO = require('node-localstorage').LocalStorage;
 var path = require('path');
-var DEFAULT_STORAGE_PATH = path.join(__dirname, '/.local_storage_');
+var os = require('os');
+var temp = path.normalize(path.join(os.tmpdir(), '/.local_storage_'));
+var DEFAULT_STORAGE_PATH = temp;
 
 var LocalStorage = {
   setId: function setId(id) {

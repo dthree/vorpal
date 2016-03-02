@@ -9,10 +9,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _ = require('lodash');
 var LocalStorage = require('node-localstorage').LocalStorage;
 var path = require('path');
+var os = require('os');
 
 // Number of command histories kept in persistent storage
 var HISTORY_SIZE = 500;
-var DEFAULT_STORAGE_PATH = path.join(__dirname, '/.local_storage');
+
+var temp = path.normalize(path.join(os.tmpdir(), '/.local_storage'));
+var DEFAULT_STORAGE_PATH = temp;
 
 var History = function History() {
   this._storageKey = undefined;
