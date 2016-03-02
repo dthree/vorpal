@@ -290,7 +290,7 @@ var util = {
     for (var m = 0; m < cmd.options.length; ++m) {
       var o = cmd.options[m];
       var short = String(o.short || '').replace(/-/g, '');
-      var long = String(o.long || '').replace(/--no-/g, '').replace(/-/g, '');
+      var long = String(o.long || '').replace(/--no-/g, '').replace(/^-*/g, '');
       var exist = parsedArgs[short] !== undefined ? parsedArgs[short] : undefined;
       exist = exist === undefined && parsedArgs[long] !== undefined ? parsedArgs[long] : exist;
       var existsNotSet = exist === true || exist === false;
