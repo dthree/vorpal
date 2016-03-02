@@ -418,7 +418,7 @@ describe('integration tests:', function () {
         });
       });
 
-      it('should show subcommand help on invalid subcommand', function (done) {
+      it.skip('should show subcommand help on invalid subcommand', function (done) {
         exec('very complicated', done, function () {
           stdout().should.containEql('very complicated deep *');
           done();
