@@ -283,3 +283,27 @@ describe('option parsing', function () {
     });
   });
 });
+
+
+describe('help menu', function () {
+  var longFixture = 'Twas brillig and the slithy toves, did gyre and gimble in the wabe. All mimsy were the borogoves. And the mome wraths outgrabe. Beware the Jabberwock, my son. The claws that bite, the jaws that catch. Beware the jubjub bird and shun, the frumious bandersnatch. Twas brillig and the slithy toves, did gyre and gimble in the wabe. All mimsy were the borogoves. And the mome wraths outgrabe. Beware the Jabberwock, my son. The claws that bite, the jaws that catch. Beware the jubjub bird and shun, the frumious bandersnatch. Twas brillig and the slithy toves, did gyre and gimble in the wabe. All mimsy were the borogoves. And the mome wraths outgrabe. Beware the Jabberwock, my son. The claws that bite, the jaws that catch. Beware the jubjub bird and shun, the frumious bandersnatch.';
+  var shortFixture = 'Twas brillig and the slithy toves.';
+  var help;
+
+  before(function () {
+    help = Vorpal();
+    help.command('foo [args...]')
+      .action(function (args, cb) {
+        return args;
+      });
+  });
+
+  it.skip('show help on an invalid command', function () {
+    stdout = '';
+    mute();
+    var fixture = `\n  Invalid Command. Showing Help:\n\n  Commands:\n\n    help [command...]  Provides help for a given command.\n    exit               Exits application.\n    foo [args...]      \n\n\n`;
+    help.execSync('cows')
+    unmute();
+    stdout.should.equal(fixture);
+  });
+});

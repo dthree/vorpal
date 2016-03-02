@@ -42,6 +42,7 @@ var chalk = require('chalk');
 var os = require('os');
 var History = require('./history');
 var LocalStorage = require('./local-storage');
+var wrap = require('wrap-ansi');
 
 /**
  * Initialize a new `Vorpal` instance.
@@ -1088,7 +1089,7 @@ vorpal._commandHelp = function (command) {
       return VorpalUtil.humanReadableArgName(arg);
     }).join(' ');
 
-    return [cmd._name + (cmd._alias ? '|' + cmd._alias : '') + (cmd.options.length ? ' [options]' : '') + ' ' + args, cmd.description()];
+    return [cmd._name + (cmd._alias ? '|' + cmd._alias : '') + (cmd.options.length ? ' [options]' : '') + ' ' + args, cmd.description() || ''];
   });
 
   var width = commands.reduce(function (max, commandX) {
@@ -1106,12 +1107,23 @@ vorpal._commandHelp = function (command) {
     counts[cmd]++;
     return cmd;
   })).map(function (cmd) {
-    return '    ' + VorpalUtil.pad(cmd + ' *', width) + '  ' + counts[cmd] + ' sub-command' + (counts[cmd] === 1 ? '' : 's') + '.';
+    var prefix = '    ' + VorpalUtil.pad(cmd + ' *', width) + '  ' + counts[cmd] + ' sub-command' + (counts[cmd] === 1 ? '' : 's') + '.';
+    return prefix;
   });
 
-  var commandsString = commands.length < 1 ? '' : '\n  Commands:' + '\n\n' + commands.map(function (cmd) {
-    return VorpalUtil.pad(cmd[0], width) + '  ' + cmd[1];
-  }).join('\n').replace(/^/gm, '    ') + '\n\n';
+  var descriptionWidth = process.stdout.columns - (width + 4);
+
+  var commandsString = commands.length < 1 ? '' : '\n  Commands:\n\n' + commands.map(function (cmd) {
+    var prefix = '    ' + VorpalUtil.pad(cmd[0], width) + '  ';
+    var suffix = wrap(cmd[1], descriptionWidth - 8).split('\n');
+    for (var _i = 0; _i < suffix.length; ++_i) {
+      if (_i !== 0) {
+        suffix[_i] = VorpalUtil.pad('', width + 6) + suffix[_i];
+      }
+    }
+    suffix = suffix.join('\n');
+    return prefix + suffix;
+  }).join('\n') + '\n\n';
 
   var groupsString = groups.length < 1 ? '' : '  Command Groups:\n\n' + groups.join('\n') + '\n';
 
