@@ -1,6 +1,6 @@
 {
   "name": "vorpal",
-  "version": "1.10.2",
+  "version": "1.10.3",
   "description": "Node's first framework for building immersive CLI apps.",
   "main": "./dist/vorpal.js",
   "scripts": {
