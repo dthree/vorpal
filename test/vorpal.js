@@ -94,7 +94,7 @@ describe('argument parsing', function () {
 
   it('should throw help when not passed a required arg', function () {
     mute();
-    var fixture = `\n  Missing required argument. Showing Help:`;
+    var fixture = '\n  Missing required argument. Showing Help:';
     vorpal.execSync('required').should.equal(fixture);    
     unmute();
   });
@@ -301,7 +301,7 @@ describe('help menu', function () {
   it.skip('show help on an invalid command', function () {
     stdout = '';
     mute();
-    var fixture = `\n  Invalid Command. Showing Help:\n\n  Commands:\n\n    help [command...]  Provides help for a given command.\n    exit               Exits application.\n    foo [args...]      \n\n\n`;
+    var fixture = '\n  Invalid Command. Showing Help:\n\n  Commands:\n\n    help [command...]  Provides help for a given command.\n    exit               Exits application.\n    foo [args...]      \n\n\n';
     help.execSync('cows')
     unmute();
     stdout.should.equal(fixture);
