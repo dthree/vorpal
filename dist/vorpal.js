@@ -1076,6 +1076,8 @@ vorpal._commandHelp = function (command) {
   var commandMatchLength = commandMatch ? String(command).trim().split(' ').length + 1 : 1;
   matches = matches.length === 0 ? this.commands : matches;
 
+  var skipGroups = !(matches.length + 6 > process.stdout.rows);
+
   var commands = matches.filter(function (cmd) {
     return !cmd._noHelp;
   }).filter(function (cmd) {
@@ -1083,6 +1085,9 @@ vorpal._commandHelp = function (command) {
   }).filter(function (cmd) {
     return !cmd._hidden;
   }).filter(function (cmd) {
+    if (skipGroups === true) {
+      return true;
+    }
     return String(cmd._name).trim().split(' ').length <= commandMatchLength;
   }).map(function (cmd) {
     var args = cmd._args.map(function (arg) {
@@ -1111,6 +1116,8 @@ vorpal._commandHelp = function (command) {
     return prefix;
   });
 
+  groups = skipGroups ? [] : groups;
+
   var descriptionWidth = process.stdout.columns - (width + 4);
 
   var commandsString = commands.length < 1 ? '' : '\n  Commands:\n\n' + commands.map(function (cmd) {
@@ -1127,7 +1134,7 @@ vorpal._commandHelp = function (command) {
 
   var groupsString = groups.length < 1 ? '' : '  Command Groups:\n\n' + groups.join('\n') + '\n';
 
-  var results = String(invalidString + commandsString + '\n' + groupsString).replace(/\n\n\n/g, '\n\n');
+  var results = String(invalidString + commandsString + '\n' + groupsString).replace(/\n\n\n/g, '\n\n').replace(/\n\n$/, '\n');
 
   return results;
 };
