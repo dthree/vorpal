@@ -164,6 +164,15 @@ Vorpal.prototype.parse = function (argv, options) {
     if (options.use === 'minimist') {
       result = minimist(args);
     } else {
+      // Wrap the spaced args back in quotes.
+      for (var i = 0; i < args.length; ++i) {
+        if (i === 0) {
+          continue;
+        }
+        if (args[i].indexOf(' ') > -1) {
+          args[i] = '"' + args[i] + '"';
+        }
+      }
       this.exec(args.join(' '), function (err) {
         if (err !== undefined) {
           throw new Error(err);

@@ -209,6 +209,11 @@ var util = {
   buildCommandArgs: function buildCommandArgs(passedArgs, cmd, execCommand) {
     var args = { options: {} };
 
+    // Normalize all foo="bar" with "foo='bar'"
+    // This helps implement unix-like key value pairs.
+    var reg = /(['"]?)(\w+)=(?:(['"])((?:(?!\3).)*)\3|(\S+))\1/g;
+    passedArgs = passedArgs.replace(reg, '"$2=\'$4$5\'"');
+
     // Types are custom arg types passed
     // into `minimist` as per its docs.
     var types = cmd._types || {};
