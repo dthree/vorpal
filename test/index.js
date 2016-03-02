@@ -29,22 +29,20 @@ describe('vorpal', function () {
   });
 
   describe('mode context', function () {
-    it('should have the same context in init and action', function (done) {
+    it('parent should have the same context in init and action', function (done) {
       var vorpal = Vorpal();
       var initCtx;
       vorpal
         .mode('ooga')
         .init(function (args, cb) {
-          initCtx = this
+          initCtx = this.parent;
           cb()
         })
         .action(function (args, cb) {
-          this.should.equal(initCtx)
+          this.parent.should.equal(initCtx)
           cb()
           done()
         });
-
-      // enter mode
       vorpal.exec('ooga')
         .then(function () {
           vorpal.exec('booga')
