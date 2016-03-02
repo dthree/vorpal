@@ -84,12 +84,12 @@ var UI = function (_EventEmitter) {
     _this._sigintCount = 0;
     _this._sigint = function () {
       if (_this._sigintCount > 1) {
-        process.exit(2);
+        process.exit(0);
       } else {
         var text = _this.input();
         if (!_this.parent) {
           // If Vorpal isn't shown, just exit.
-          process.exit(2);
+          process.exit(0);
         } else if (_this.parent.session.cancelCommands) {
           // There are commands running if
           // cancelCommands function is available.

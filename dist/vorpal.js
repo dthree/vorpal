@@ -1220,7 +1220,7 @@ vorpal.getSessionById = function (id) {
 vorpal.exit = function (options) {
   var ssn = this.getSessionById(options.sessionId);
   if (ssn.isLocal()) {
-    process.exit(2);
+    process.exit(0);
   } else {
     ssn.server.emit('vantage-close-downstream', { sessionId: ssn.id });
   }
