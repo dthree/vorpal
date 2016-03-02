@@ -175,7 +175,7 @@ Vorpal.prototype.parse = function (argv, options) {
         }
       }
       this.exec(args.join(' '), function (err) {
-        if (err !== undefined) {
+        if (err !== undefined && err !== null) {
           throw new Error(err);
         }
       });
