@@ -328,6 +328,13 @@ describe('integration tests:', function () {
         });
       });
 
+      it('should parse hyphenated options', function (done) {
+        exec('hyphenated-option --dry-run', done, function () {
+          stdout().should.equal('true');
+          done();
+        });
+      });
+
       it('should use minimist\'s parse through the .types() method', function (done) {
         exec('typehappy --numberify 4 -s 5', done, function (err, data) {
           (err === undefined).should.be.true;
