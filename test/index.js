@@ -27,4 +27,28 @@ describe('vorpal', function () {
       result._.length.should.equal(2);
     });
   });
+
+  describe('mode context', function () {
+    it('should have the same context in init and action', function (done) {
+      var vorpal = Vorpal();
+      var initCtx;
+      vorpal
+        .mode('ooga')
+        .init(function (args, cb) {
+          initCtx = this
+          cb()
+        })
+        .action(function (args, cb) {
+          this.should.equal(initCtx)
+          cb()
+          done()
+        });
+
+      // enter mode
+      vorpal.exec('ooga')
+        .then(function () {
+          vorpal.exec('booga')
+        });
+    });
+  });
 });
