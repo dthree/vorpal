@@ -990,6 +990,7 @@ vorpal._exitMode = function (options) {
   ssn._mode = false;
   this.cmdHistory.exitMode();
   ssn.modeDelimiter(false);
+  this.emit('mode_exit', this.cmdHistory.peek());
 };
 
 /**

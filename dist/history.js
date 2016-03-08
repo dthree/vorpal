@@ -112,6 +112,17 @@ History.prototype.getNextHistory = function () {
 };
 
 /**
+ * Peek into history, without changing state
+ *
+ * @return {String}
+ */
+
+History.prototype.peek = function (depth) {
+  depth = depth || 0;
+  return this._hist[this._hist.length - 1 - depth];
+};
+
+/**
  * A new command was submitted. Called when enter is pressed and the prompt is not empty.
  *
  * @param cmd
