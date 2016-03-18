@@ -5,7 +5,7 @@
   "main": "./dist/vorpal.js",
   "scripts": {
     "test": "gulp build; mocha;",
-    "prepublish": "in-publish && gulp build;"
+    "prepublish": "in-publish && gulp build || not-in-publish"
   },
   "repository": {
     "type": "git",
