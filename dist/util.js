@@ -4,15 +4,7 @@
  * Module dependencies.
  */
 
-var _typeof2 = require('babel-runtime/helpers/typeof');
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-var _getIterator2 = require('babel-runtime/core-js/get-iterator');
-
-var _getIterator3 = _interopRequireDefault(_getIterator2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 var _ = require('lodash');
 var minimist = require('minimist');
@@ -32,7 +24,7 @@ var util = {
   parseArgs: function parseArgs(str, opts) {
     var reg = /"(.*?)"|'(.*?)'|`(.*?)`|([^\s"]+)/gi;
     var arr = [];
-    var match = undefined;
+    var match = void 0;
     do {
       match = reg.exec(str);
       if (match !== null) {
@@ -57,9 +49,9 @@ var util = {
   parseCommand: function parseCommand(command, commands) {
     var self = this;
     var pipes = [];
-    var match = undefined;
-    var matchArgs = undefined;
-    var matchParts = undefined;
+    var match = void 0;
+    var matchArgs = void 0;
+    var matchParts = void 0;
 
     function parsePipes() {
       var newPipes = String(command).trim().split('|').map(function (itm) {
@@ -106,8 +98,8 @@ var util = {
 
   matchCommand: function matchCommand(cmd, cmds) {
     var parts = String(cmd).trim().split('|')[0].split(' ');
-    var match = undefined;
-    var matchArgs = undefined;
+    var match = void 0;
+    var matchArgs = void 0;
     for (var i = 0; i < parts.length; ++i) {
       var subcommand = String(parts.slice(0, parts.length - i).join(' ')).trim();
       match = _.find(cmds, { _name: subcommand }) || match;
@@ -117,7 +109,7 @@ var util = {
         var _iteratorError = undefined;
 
         try {
-          for (var _iterator = (0, _getIterator3.default)(cmds), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          for (var _iterator = cmds[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var _cmd = _step.value;
 
             var idx = _cmd._aliases.indexOf(subcommand);
@@ -160,7 +152,7 @@ var util = {
         var _iteratorError2 = undefined;
 
         try {
-          for (var _iterator2 = (0, _getIterator3.default)(allCommands), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          for (var _iterator2 = allCommands[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
             var _cmd2 = _step2.value;
 
             var parts2 = String(_cmd2).split(' ');
@@ -326,10 +318,10 @@ var util = {
         }
       };
 
-      for (var _iterator3 = (0, _getIterator3.default)(passedOpts), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      for (var _iterator3 = passedOpts[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
         var _ret = _loop();
 
-        if ((typeof _ret === 'undefined' ? 'undefined' : (0, _typeof3.default)(_ret)) === "object") return _ret.v;
+        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
       }
 
       // If args were passed into the programmatic
@@ -406,7 +398,7 @@ var util = {
     var _iteratorError4 = undefined;
 
     try {
-      for (var _iterator4 = (0, _getIterator3.default)(arr), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+      for (var _iterator4 = arr[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
         var arrEl = _step4.value;
 
         if (col < cols) {
@@ -474,7 +466,7 @@ var util = {
     var _iteratorError5 = undefined;
 
     try {
-      for (var _iterator5 = (0, _getIterator3.default)(obj), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+      for (var _iterator5 = obj[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
         var aarg = _step5.value;
 
         argArray.push(aarg);

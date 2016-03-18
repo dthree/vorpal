@@ -4,20 +4,6 @@
  * Polyfill for ES6.
  */
 
-var _stringify = require('babel-runtime/core-js/json/stringify');
-
-var _stringify2 = _interopRequireDefault(_stringify);
-
-var _promise = require('babel-runtime/core-js/promise');
-
-var _promise2 = _interopRequireDefault(_promise);
-
-var _create = require('babel-runtime/core-js/object/create');
-
-var _create2 = _interopRequireDefault(_create);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 if (!global._babelPolyfill) {
   // When the runtime transformer properly detects all shimmed methods, use instead.
   // http://www.2ality.com/2015/12/babel6-helpersstandard-library.html#babel-plugin-transform-runtime
@@ -118,7 +104,7 @@ function Vorpal() {
  * Extend Vorpal prototype as an event emitter.
  */
 
-Vorpal.prototype = (0, _create2.default)(EventEmitter.prototype);
+Vorpal.prototype = Object.create(EventEmitter.prototype);
 
 /**
  * Vorpal prototype.
@@ -458,7 +444,7 @@ vorpal.history = function (id) {
  * @api public
  */
 vorpal.localStorage = function (id) {
-  var ls = (0, _create2.default)(LocalStorage);
+  var ls = Object.create(LocalStorage);
   ls.setId(id);
   _.extend(this.localStorage, ls);
   return this;
@@ -553,7 +539,7 @@ vorpal.prompt = function () {
   var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
   var userCallback = arguments[1];
 
-  return new _promise2.default(function (resolve) {
+  return new Promise(function (resolve) {
     // Setup callback to also resolve promise.
     var cb = function cb(response) {
       // Does not currently handle Inquirer validation errors.
@@ -563,7 +549,7 @@ vorpal.prompt = function () {
       }
     };
 
-    var prompt = undefined;
+    var prompt = void 0;
     var ssn = _this.getSessionById(options.sessionId);
 
     if (!ssn) {
@@ -693,7 +679,7 @@ vorpal.exec = function (cmd, args, cb) {
     return self;
   }
 
-  return new _promise2.default(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     command.resolve = resolve;
     command.reject = reject;
     self._queue.push(command);
@@ -1190,7 +1176,7 @@ vorpal._send = function (str, direction, data, options) {
  */
 vorpal._proxy = function (str, direction, data, options) {
   var self = this;
-  return new _promise2.default(function (resolve) {
+  return new Promise(function (resolve) {
     var ssn = self.getSessionById(data.sessionId);
     if (ssn && !ssn.isLocal() && ssn.client) {
       self._send(str, direction, data, options);
@@ -1210,7 +1196,7 @@ vorpal._proxy = function (str, direction, data, options) {
 
 vorpal.getSessionById = function (id) {
   if (_.isObject(id)) {
-    throw new Error('vorpal.getSessionById: id ' + (0, _stringify2.default)(id) + ' should not be an object.');
+    throw new Error('vorpal.getSessionById: id ' + JSON.stringify(id) + ' should not be an object.');
   }
   var ssn = _.find(this.server.sessions, { id: id });
   ssn = this.session.id === id ? this.session : ssn;
@@ -1222,7 +1208,7 @@ vorpal.getSessionById = function (id) {
       local: this.session.id,
       server: _.map(this.server.sessions, 'id')
     };
-    throw new Error('No session found for id ' + id + ' in vorpal.getSessionById. Sessions: ' + (0, _stringify2.default)(sessions));
+    throw new Error('No session found for id ' + id + ' in vorpal.getSessionById. Sessions: ' + JSON.stringify(sessions));
   }
   return ssn;
 };

@@ -54,7 +54,6 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
-    "babel-runtime": "^6.3.19",
     "chalk": "^1.1.0",
     "inquirer": "0.11.0",
     "lodash": "^4.5.1",

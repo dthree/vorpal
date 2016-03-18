@@ -4,12 +4,6 @@
  * Module dependencies.
  */
 
-var _create = require('babel-runtime/core-js/object/create');
-
-var _create2 = _interopRequireDefault(_create);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var EventEmitter = require('events').EventEmitter;
 var os = require('os');
 var _ = require('lodash');
@@ -55,7 +49,7 @@ function Session(options) {
  * Extend Session prototype as an event emitter.
  */
 
-Session.prototype = (0, _create2.default)(EventEmitter.prototype);
+Session.prototype = Object.create(EventEmitter.prototype);
 
 /**
  * Session prototype.
