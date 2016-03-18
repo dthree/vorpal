@@ -5,7 +5,7 @@
   "main": "./dist/vorpal.js",
   "scripts": {
     "test": "gulp build; mocha;",
-    "prepublish": "gulp build;"
+    "prepublish": "in-publish && gulp build;"
   },
   "repository": {
     "type": "git",
@@ -55,6 +55,7 @@
   "dependencies": {
     "babel-polyfill": "^6.3.14",
     "chalk": "^1.1.0",
+    "in-publish": "^2.0.0",
     "inquirer": "0.11.0",
     "lodash": "^4.5.1",
     "log-update": "^1.0.2",
