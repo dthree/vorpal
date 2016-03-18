@@ -112,61 +112,41 @@ var UI = function (_EventEmitter) {
     // as inquirer doesn't expose it and we need it.
     var prompts = ['input', 'checkbox', 'confirm', 'expand', 'list', 'password', 'rawlist'];
 
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
+    var _loop = function _loop(key) {
+      var promptType = prompts[key];
 
-    try {
-      var _loop = function _loop() {
-        var promptType = _step.value;
-
-        // Add method to Inquirer to get type of prompt.
-        inquirer.prompt.prompts[promptType].prototype.getType = function () {
-          return promptType;
-        };
-
-        // Hook in to steal Inquirer's keypress.
-        inquirer.prompt.prompts[promptType].prototype.onKeypress = function (e) {
-          // Inquirer seems to have a bug with release v0.10.1
-          // (not 0.10.0 though) that triggers keypresses for
-          // the previous prompt in addition to the current one.
-          // So if the prompt is answered, shut it up.
-          if (this.status && this.status === 'answered') {
-            return;
-          }
-          self._activePrompt = this;
-          self.parent.emit('client_keypress', e);
-          self._keypressHandler(e, this);
-        };
-
-        // Add hook to render method.
-        var render = inquirer.prompt.prompts[promptType].prototype.render;
-        inquirer.prompt.prompts[promptType].prototype.render = function () {
-          self._activePrompt = this;
-          return render.call(this);
-        };
+      // Add method to Inquirer to get type of prompt.
+      inquirer.prompt.prompts[promptType].prototype.getType = function () {
+        return promptType;
       };
 
-      for (var _iterator = prompts[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        _loop();
-      }
+      // Hook in to steal Inquirer's keypress.
+      inquirer.prompt.prompts[promptType].prototype.onKeypress = function (e) {
+        // Inquirer seems to have a bug with release v0.10.1
+        // (not 0.10.0 though) that triggers keypresses for
+        // the previous prompt in addition to the current one.
+        // So if the prompt is answered, shut it up.
+        if (this.status && this.status === 'answered') {
+          return;
+        }
+        self._activePrompt = this;
+        self.parent.emit('client_keypress', e);
+        self._keypressHandler(e, this);
+      };
 
-      // Sigint handling - make it more graceful.
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator.return) {
-          _iterator.return();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
+      // Add hook to render method.
+      var render = inquirer.prompt.prompts[promptType].prototype.render;
+      inquirer.prompt.prompts[promptType].prototype.render = function () {
+        self._activePrompt = this;
+        return render.call(this);
+      };
+    };
+
+    for (var key in prompts) {
+      _loop(key);
     }
 
+    // Sigint handling - make it more graceful.
     var onSigInt = function onSigInt() {
       if (_.isFunction(_this._sigint) && !_this._sigintCalled) {
         _this._sigintCalled = true;

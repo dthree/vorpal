@@ -104,30 +104,10 @@ var util = {
       var subcommand = String(parts.slice(0, parts.length - i).join(' ')).trim();
       match = _.find(cmds, { _name: subcommand }) || match;
       if (!match) {
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-          for (var _iterator = cmds[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var _cmd = _step.value;
-
-            var idx = _cmd._aliases.indexOf(subcommand);
-            match = idx > -1 ? _cmd : match;
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-              _iterator.return();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
+        for (var key in cmds) {
+          var _cmd = cmds[key];
+          var idx = _cmd._aliases.indexOf(subcommand);
+          match = idx > -1 ? _cmd : match;
         }
       }
       if (match) {
@@ -147,43 +127,22 @@ var util = {
       if (match) {
         var allCommands = _.map(cmds, '_name');
         var wordMatch = false;
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
-
-        try {
-          for (var _iterator2 = allCommands[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var _cmd2 = _step2.value;
-
-            var parts2 = String(_cmd2).split(' ');
-            var cmdParts = String(match.command).split(' ');
-            var matchAll = true;
-            for (var k = 0; k < cmdParts.length; ++k) {
-              if (parts2[k] !== cmdParts[k]) {
-                matchAll = false;
-                break;
-              }
-            }
-            if (matchAll) {
-              wordMatch = true;
+        for (var _key in allCommands) {
+          var _cmd2 = allCommands[_key];
+          var parts2 = String(_cmd2).split(' ');
+          var cmdParts = String(match.command).split(' ');
+          var matchAll = true;
+          for (var k = 0; k < cmdParts.length; ++k) {
+            if (parts2[k] !== cmdParts[k]) {
+              matchAll = false;
               break;
             }
           }
-        } catch (err) {
-          _didIteratorError2 = true;
-          _iteratorError2 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-              _iterator2.return();
-            }
-          } finally {
-            if (_didIteratorError2) {
-              throw _iteratorError2;
-            }
+          if (matchAll) {
+            wordMatch = true;
+            break;
           }
         }
-
         if (wordMatch) {
           match = undefined;
         } else {
@@ -297,51 +256,31 @@ var util = {
     // Looks for supplied options that don't
     // exist in the options list and throws help
     var passedOpts = _.chain(parsedArgs).keys().pull('_').pull('help').value();
-    var _iteratorNormalCompletion3 = true;
-    var _didIteratorError3 = false;
-    var _iteratorError3 = undefined;
 
-    try {
-      var _loop = function _loop() {
-        var opt = _step3.value;
-
-        var optionFound = _.find(cmd.options, function (expected) {
-          if ('--' + opt === expected.long || '--no-' + opt === expected.long || '-' + opt === expected.short) {
-            return true;
-          }
-          return false;
-        });
-        if (optionFound === undefined) {
-          return {
-            v: '\n  Invalid option: \'' + opt + '\'. Showing Help:'
-          };
+    var _loop = function _loop(key) {
+      var opt = passedOpts[key];
+      var optionFound = _.find(cmd.options, function (expected) {
+        if ('--' + opt === expected.long || '--no-' + opt === expected.long || '-' + opt === expected.short) {
+          return true;
         }
-      };
-
-      for (var _iterator3 = passedOpts[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-        var _ret = _loop();
-
-        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+        return false;
+      });
+      if (optionFound === undefined) {
+        return {
+          v: '\n  Invalid option: \'' + opt + '\'. Showing Help:'
+        };
       }
+    };
 
-      // If args were passed into the programmatic
-      // `vorpal.exec(cmd, args, callback)`, merge
-      // them here.
-    } catch (err) {
-      _didIteratorError3 = true;
-      _iteratorError3 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-          _iterator3.return();
-        }
-      } finally {
-        if (_didIteratorError3) {
-          throw _iteratorError3;
-        }
-      }
+    for (var key in passedOpts) {
+      var _ret = _loop(key);
+
+      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
     }
 
+    // If args were passed into the programmatic
+    // `vorpal.exec(cmd, args, callback)`, merge
+    // them here.
     if (execCommand && execCommand.args && _.isObject(execCommand.args)) {
       args = _.extend(args, execCommand.args);
     }
@@ -393,38 +332,17 @@ var util = {
     var col = 0;
     var lines = [];
     var line = '';
-    var _iteratorNormalCompletion4 = true;
-    var _didIteratorError4 = false;
-    var _iteratorError4 = undefined;
-
-    try {
-      for (var _iterator4 = arr[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-        var arrEl = _step4.value;
-
-        if (col < cols) {
-          col++;
-        } else {
-          lines.push(line);
-          line = '';
-          col = 1;
-        }
-        line += this.pad(arrEl, longest, ' ');
+    for (var key in arr) {
+      var arrEl = arr[key];
+      if (col < cols) {
+        col++;
+      } else {
+        lines.push(line);
+        line = '';
+        col = 1;
       }
-    } catch (err) {
-      _didIteratorError4 = true;
-      _iteratorError4 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion4 && _iterator4.return) {
-          _iterator4.return();
-        }
-      } finally {
-        if (_didIteratorError4) {
-          throw _iteratorError4;
-        }
-      }
+      line += this.pad(arrEl, longest, ' ');
     }
-
     if (line !== '') {
       lines.push(line);
     }
@@ -461,31 +379,10 @@ var util = {
       return obj;
     }
     var argArray = [];
-    var _iteratorNormalCompletion5 = true;
-    var _didIteratorError5 = false;
-    var _iteratorError5 = undefined;
-
-    try {
-      for (var _iterator5 = obj[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-        var aarg = _step5.value;
-
-        argArray.push(aarg);
-      }
-    } catch (err) {
-      _didIteratorError5 = true;
-      _iteratorError5 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion5 && _iterator5.return) {
-          _iterator5.return();
-        }
-      } finally {
-        if (_didIteratorError5) {
-          throw _iteratorError5;
-        }
-      }
+    for (var key in obj) {
+      var aarg = obj[key];
+      argArray.push(aarg);
     }
-
     return argArray;
   }
 };
