@@ -527,6 +527,15 @@ describe('integration tests:', function () {
         vorpalHistory.session.getHistory('down').should.equal('command2');
         vorpalHistory.session.getHistory('down').should.equal('');
       });
+
+      it('should always return last executed command immediately after', function () {
+        vorpalHistory.exec('command1');
+        vorpalHistory.exec('command2');
+        vorpalHistory.session.getHistory('up').should.equal('command2');
+        vorpalHistory.exec('command2');
+        vorpalHistory.session.getHistory('up').should.equal('command2');
+        vorpalHistory.session.getHistory('up').should.equal('command1');
+      });
     });
 
     describe('cancel', function () {
