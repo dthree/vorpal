@@ -54,9 +54,56 @@ var util = {
     var matchParts = void 0;
 
     function parsePipes() {
-      var newPipes = String(command).trim().split('|').map(function (itm) {
-        return String(itm).trim();
-      });
+      // First, split the command by pipes naively.
+      // This will split command arguments in half when the argument contains a pipe character.
+      // For example, say "(Vorpal|vorpal)" will be split into ['say "(Vorpal', 'vorpal)'] which isn't good.
+      var naivePipes = String(command).trim().split('|');
+
+      // Contruct empty array to place correctly split commands into.
+      var newPipes = [];
+
+      // We will look for pipe characters within these quotes to rejoin together.
+      var quoteChars = ['"', '\'', '`'];
+
+      // This will expand to contain one boolean key for each type of quote.
+      // The value keyed by the quote is toggled off and on as quote type is opened and closed.
+      // Example { "`": true, "'": false } would mean that there is an open angle quote.
+      var quoteTracker = {};
+
+      // The current command piece before being rejoined with it's over half.
+      // Since it's not common for pipes to occur in commands, this is usually the entire command pipe.
+      var commandPart = '';
+
+      // Loop through each naive pipe.
+      for (var key in naivePipes) {
+        // It's possible/likely that this naive pipe is the whole pipe if it doesn't contain an unfinished quote.
+        var possiblePipe = naivePipes[key];
+        commandPart += possiblePipe;
+
+        // Loop through each individual character in the possible pipe tracking the opening and closing of quotes.
+        for (var i = 0; i < possiblePipe.length; i++) {
+          var char = possiblePipe[i];
+          if (quoteChars.indexOf(char) !== -1) {
+            quoteTracker[char] = !quoteTracker[char];
+          }
+        }
+
+        // Does the pipe end on an unfinished quote?
+        var inQuote = _.some(quoteChars, function (quoteChar) {
+          return quoteTracker[quoteChar];
+        });
+
+        // If the quotes have all been closed or this is the last possible pipe in the array, add as pipe.
+        if (!inQuote || key * 1 === naivePipes.length - 1) {
+          newPipes.push(commandPart.trim());
+          commandPart = '';
+        } else {
+          // Quote was left open. The pipe character was previously removed when the array was split.
+          commandPart += '|';
+        }
+      }
+
+      // Set the first pipe to command and the rest to pipes.
       command = newPipes.shift();
       pipes = pipes.concat(newPipes);
     }
@@ -97,7 +144,8 @@ var util = {
    */
 
   matchCommand: function matchCommand(cmd, cmds) {
-    var parts = String(cmd).trim().split('|')[0].split(' ');
+    var parts = String(cmd).trim().split(' ');
+
     var match = void 0;
     var matchArgs = void 0;
     for (var i = 0; i < parts.length; ++i) {

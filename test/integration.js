@@ -284,6 +284,27 @@ describe('integration tests:', function () {
         });
       });
 
+      it('should execute a piped command with double quoted pipe character', function (done) {
+        exec('say "cheese|meat" | reverse', done, function () {
+          stdout().should.equal('taem|eseehc');
+          done();
+        });
+      });
+
+      it('should execute a piped command with single quoted pipe character', function (done) {
+        exec('say \'cheese|meat\' | reverse', done, function () {
+          stdout().should.equal('taem|eseehc');
+          done();
+        });
+      });
+
+      it('should execute a piped command with angle quoted pipe character', function (done) {
+        exec('say `cheese|meat` | reverse', done, function () {
+          stdout().should.equal('taem|eseehc');
+          done();
+        });
+      });
+
       it('should execute multiple piped commands', function (done) {
         exec('say donut | reverse | reverse | array', done, function () {
           stdout().should.equal('d,o,n,u,t');
@@ -310,6 +331,27 @@ describe('integration tests:', function () {
       it('should parse angle quoted command option', function (done) {
         exec('say `He\'s "Vorpal"`, done', done, function () {
           stdout().should.equal('He\'s "Vorpal"');
+          done();
+        });
+      });
+
+      it('should parse double quotes pipe character in command argument', function (done) {
+        exec('say "(vorpal|Vorpal)", done', done, function () {
+          stdout().should.equal('(vorpal|Vorpal)');
+          done();
+        });
+      });
+
+      it('should parse single quoted pipe character in command argument', function (done) {
+        exec('say \'(vorpal|Vorpal)\', done', done, function () {
+          stdout().should.equal('(vorpal|Vorpal)');
+          done();
+        });
+      });
+
+      it('should parse angle quoted pipe character in command argument', function (done) {
+        exec('say `(vorpal|Vorpal)`, done', done, function () {
+          stdout().should.equal('(vorpal|Vorpal)');
           done();
         });
       });
