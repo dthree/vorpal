@@ -40,6 +40,21 @@ vorpal
   });
 
 vorpal
+  .command('bar')
+  .allowUnknownOptions(true)
+  .action(function (args, cb) {
+    return args;
+  });
+
+vorpal
+  .command('baz')
+  .allowUnknownOptions(true)
+  .allowUnknownOptions(false)
+  .action(function (args, cb) {
+      return args;
+  });
+
+vorpal
   .command('optional [str]')
   .action(function (args, cb) {
     return args;
@@ -291,6 +306,21 @@ describe('option parsing', function () {
       mute();
       vorpal.execSync('foo --no-required cows').should.equal(fixture);
       unmute();
+    });
+
+    it('should throw help on an unknown option', function() {
+      var fixture = "\n  Invalid option: 'unknown'. Showing Help:";
+      vorpal.execSync('foo --unknown').should.equal(fixture);
+    });
+
+    it('should allow unknown options when allowUnknownOptions is set to true', function() {
+      var fixture = obj({ options: { unknown: true }});
+      obj(vorpal.execSync('bar --unknown')).should.equal(fixture);
+    });
+
+    it('should allow the allowUnknownOptions state to be set with a boolean', function() {
+        var fixture = "\n  Invalid option: 'unknown'. Showing Help:";
+        vorpal.execSync('baz --unknown').should.equal(fixture);
     });
   });
 });
