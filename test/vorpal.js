@@ -99,41 +99,41 @@ describe('argument parsing', function () {
 
   it('should execute a command with an optional arg', function () {
     var fixture = obj({ options: {}, str: 'bar' });
-    obj(vorpal.execSync('optional bar')).should.equal(fixture);    
+    obj(vorpal.execSync('optional bar')).should.equal(fixture);
   });
 
   it('should execute a command with a required arg', function () {
     var fixture = obj({ options: {}, str: 'bar' });
-    obj(vorpal.execSync('required bar')).should.equal(fixture);    
+    obj(vorpal.execSync('required bar')).should.equal(fixture);
   });
 
   it('should throw help when not passed a required arg', function () {
     mute();
     var fixture = '\n  Missing required argument. Showing Help:';
-    vorpal.execSync('required').should.equal(fixture);    
+    vorpal.execSync('required').should.equal(fixture);
     unmute();
   });
 
   it('should execute a command with multiple arg types', function () {
     var fixture = obj({ options: {}, req: 'foo', opt: 'bar', variadic:  ['joe', 'smith'] });
-    obj(vorpal.execSync('multiple foo bar joe smith')).should.equal(fixture);    
+    obj(vorpal.execSync('multiple foo bar joe smith')).should.equal(fixture);
   });
 
   it('should correct a command with wrong arg sequences declared', function () {
     var fixture = obj({ options: {}, req: 'foo', opt: 'bar', variadic:  ['joe', 'smith'] });
-    obj(vorpal.execSync('multiple foo bar joe smith')).should.equal(fixture);    
+    obj(vorpal.execSync('multiple foo bar joe smith')).should.equal(fixture);
   });
 
   it('should normalize key=value pairs', function () {
-    var fixture = obj({ options: {}, 
-      req: "a='b'", 
-      opt: "c='d and e'", 
+    var fixture = obj({ options: {},
+      req: "a='b'",
+      opt: "c='d and e'",
       variadic:  ["wombat='true'","a","fizz='buzz'","hello='goodbye'"] });
-    obj(vorpal.execSync('multiple a=\'b\' c="d and e" wombat=true a fizz=\'buzz\' "hello=\'goodbye\'"')).should.equal(fixture);    
+    obj(vorpal.execSync('multiple a=\'b\' c="d and e" wombat=true a fizz=\'buzz\' "hello=\'goodbye\'"')).should.equal(fixture);
   });
 
   it('should NOT normalize key=value pairs when isCommandArgKeyPairNormalized is false', function () {
-    var fixture = obj({ options: {}, 
+    var fixture = obj({ options: {},
       req: "hello=world",
       opt: 'hello="world"',
       variadic: ['hello=`world`']
@@ -145,7 +145,7 @@ describe('argument parsing', function () {
 
   it('should execute multi-word command with arguments', function () {
     var fixture = obj({ options: {}, variadic:  ['and', 'so', 'on'] });
-    obj(vorpal.execSync('multi word command and so on')).should.equal(fixture);    
+    obj(vorpal.execSync('multi word command and so on')).should.equal(fixture);
   });
 });
 
