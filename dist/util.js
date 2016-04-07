@@ -304,7 +304,9 @@ var util = {
     }
 
     // Looks for supplied options that don't
-    // exist in the options list and throws help
+    // exist in the options list.
+    // If the command allows unknown options,
+    // adds it, otherwise throws help.
     var passedOpts = _.chain(parsedArgs).keys().pull('_').pull('help').value();
 
     var _loop = function _loop(key) {
@@ -316,9 +318,13 @@ var util = {
         return false;
       });
       if (optionFound === undefined) {
-        return {
-          v: '\n  Invalid option: \'' + opt + '\'. Showing Help:'
-        };
+        if (cmd._allowUnknownOptions) {
+          args.options[opt] = parsedArgs[opt];
+        } else {
+          return {
+            v: '\n  Invalid option: \'' + opt + '\'. Showing Help:'
+          };
+        }
       }
     };
 
