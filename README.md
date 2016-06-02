@@ -117,15 +117,13 @@ There's the basics. Once you get the hang of it, [follow this tutorial](http://d
 
 ##### Community
 
-Questions? Use the `vorpal.js` StackOverflow tag for fast answers that help others, or jump into chat on Gitter:
+Questions? Use the `vorpal.js` StackOverflow tag for fast answers that help others, or jump into chat on Gitter.
 
-- [Stack Overflow](http://stackoverflow.com/questions/tagged/vorpal.js)
-- [Gitter Chat](https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-
-- [Vorpal extensions](https://github.com/vorpaljs/awesome-vorpaljs#vorpal-extensions)
-- [Projects made with Vorpal](https://github.com/vorpaljs/awesome-vorpaljs)
-- [Follow @vorpaljs](https://twitter.com/vorpaljs)
+- [Stack Overflow](http://stackoverflow.com/questions/tagged/vorpal.js) 
+- [Gitter Chat](https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) 
+- [Vorpal extensions](https://github.com/vorpaljs/awesome-vorpaljs#vorpal-extensions) 
+- [Projects made with Vorpal](https://github.com/vorpaljs/awesome-vorpaljs) 
+- [Follow @vorpaljs](https://twitter.com/vorpaljs) 
 
 ## [API](https://github.com/dthree/vorpal/wiki)
 
