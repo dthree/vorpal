@@ -190,7 +190,7 @@ var UI = function (_EventEmitter) {
     value: function prompt(options, cb) {
       var _this2 = this;
 
-      var prompt = void 0;
+      var prompt = undefined;
       options = options || {};
       if (!this.parent) {
         return prompt;
