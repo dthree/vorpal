@@ -16,16 +16,16 @@
 ```text
               (O)
               <M
-   o          <M  
+   o          <M
   /| ......  /:M\------------------------------------------------,,,,,,
 (O)[ vorpal ]::@+}==========================================------------>
   \| ^^^^^^  \:W/------------------------------------------------''''''
-   o          <W  
+   o          <W
               <W
               (O)
 ```
 
-Vorpal is Node's first framework for building interactive CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, immersive CLI environments like [wat](https://github.com/dthree/wat) and [vantage](https://github.com/dthree/vantage).
+Vorpal is Node's first framework for building interactive CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, immersive CLI environments like [cash](https://github.com/dthree/cash) and [wat](https://github.com/dthree/wat).
 
 ## Contents
 
@@ -52,7 +52,7 @@ Inspired by and based on [commander.js](https://www.npmjs.com/package/commander)
 * [x] Custom event listeners
 * [x] And more
 
-Vorpal supports [community extensions](https://github.com/vorpaljs/awesome-vorpaljs), which empower it to do awesome things such as [piping commands to less](https://github.com/vorpaljs/vorpal-less), [importing commands live](https://github.com/vorpaljs/vorpal-use) or even supporting a [built-in REPL](https://github.com/vorpaljs/vorpal-repl).
+Vorpal supports [community extensions](https://github.com/vorpaljs/awesome-vorpaljs), which empower it to do awesome things such as [piping commands to less](https://github.com/vorpaljs/vorpal-less), [importing commands live](https://github.com/vorpaljs/vorpal-use) or supporting a [built-in REPL](https://github.com/vorpaljs/vorpal-repl).
 
 Made with :heart: by [dthree](https://github.com/dthree).
 
@@ -69,7 +69,7 @@ $ npm install vorpal --save
 Create a `.js` file and add the following:
 
 ```js
-var vorpal = require('vorpal')();
+const vorpal = require('vorpal')();
 
 vorpal
   .command('foo', 'Outputs "bar".')
@@ -113,12 +113,16 @@ myapp~$ help
 myapp~$
 ```
 
-That's the basic idea. Once you get the hang of it, read on to learn some of the fancier things Vorpal can do.
+There's the basics. Once you get the hang of it, [follow this tutorial](http://developer.telerik.com/featured/creating-node-js-command-line-utilities-improve-workflow/) or read on to learn what else Vorpal can do.
 
 ##### Community
 
-- [Q&A? Chat](https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Questions? Use the `vorpal.js` StackOverflow tag for fast answers that help others, or jump into chat on Gitter:
+
 - [Stack Overflow](http://stackoverflow.com/questions/tagged/vorpal.js)
+- [Gitter Chat](https://gitter.im/dthree/vorpal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+
 - [Vorpal extensions](https://github.com/vorpaljs/awesome-vorpaljs#vorpal-extensions)
 - [Projects made with Vorpal](https://github.com/vorpaljs/awesome-vorpaljs)
 - [Follow @vorpaljs](https://twitter.com/vorpaljs)
@@ -182,7 +186,7 @@ That's the basic idea. Once you get the hang of it, read on to learn some of the
 
 ## Extensions
 
-You can build your own Vorpal commands and extensions!
+You can build your own Vorpal commands and extensions.
 
 - [List of awesome extensions](https://github.com/vorpaljs/awesome-vorpaljs#vorpal-extensions)
 - [Building your own extension](https://github.com/dthree/vorpal/wiki/Creating-Extensions)
@@ -213,4 +217,4 @@ Lewis Carroll, Jabberwocky
 
 ## License
 
-MIT
+MIT © [David Caccavella](https://github.com/dthree)
