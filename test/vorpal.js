@@ -117,6 +117,17 @@ describe('argument parsing', function () {
     obj(vorpal.execSync('multiple a=\'b\' c="d and e" wombat=true a fizz=\'buzz\' "hello=\'goodbye\'"')).should.equal(fixture);    
   });
 
+  it('should NOT normalize key=value pairs when isCommandArgKeyPairNormalized is false', function () {
+    var fixture = obj({ options: {}, 
+      req: "hello=world",
+      opt: 'hello="world"',
+      variadic: ['hello=`world`']
+    });
+    vorpal.isCommandArgKeyPairNormalized = false;
+    obj(vorpal.execSync('multiple "hello=world" \'hello="world"\' "hello=`world`"')).should.equal(fixture);
+    vorpal.isCommandArgKeyPairNormalized = true;
+  });
+
   it('should execute multi-word command with arguments', function () {
     var fixture = obj({ options: {}, variadic:  ['and', 'so', 'on'] });
     obj(vorpal.execSync('multi word command and so on')).should.equal(fixture);    

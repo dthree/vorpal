@@ -96,6 +96,9 @@ function Vorpal() {
     delimiter: this._delimiter
   });
 
+  // Allow unix-like key value pair normalization to be turned off by toggling this switch on.
+  this.isCommandArgKeyPairNormalized = true;
+
   this._init();
   return this;
 }
@@ -549,7 +552,7 @@ vorpal.prompt = function () {
       }
     };
 
-    var prompt = undefined;
+    var prompt = void 0;
     var ssn = _this.getSessionById(options.sessionId);
 
     if (!ssn) {
@@ -844,7 +847,7 @@ vorpal._exec = function (item) {
     };
     var delimiter = match._delimiter || String(item.command).toLowerCase() + ':';
 
-    item.args = self.util.buildCommandArgs(matchArgs, match, item);
+    item.args = self.util.buildCommandArgs(matchArgs, match, item, self.isCommandArgKeyPairNormalized);
 
     // If we get a string back, it's a validation error.
     // Show help and return.

@@ -24,7 +24,7 @@ var util = {
   parseArgs: function parseArgs(str, opts) {
     var reg = /"(.*?)"|'(.*?)'|`(.*?)`|([^\s"]+)/gi;
     var arr = [];
-    var match = undefined;
+    var match = void 0;
     do {
       match = reg.exec(str);
       if (match !== null) {
@@ -49,9 +49,9 @@ var util = {
   parseCommand: function parseCommand(command, commands) {
     var self = this;
     var pipes = [];
-    var match = undefined;
-    var matchArgs = undefined;
-    var matchParts = undefined;
+    var match = void 0;
+    var matchArgs = void 0;
+    var matchParts = void 0;
 
     function parsePipes() {
       // First, split the command by pipes naively.
@@ -146,8 +146,8 @@ var util = {
   matchCommand: function matchCommand(cmd, cmds) {
     var parts = String(cmd).trim().split(' ');
 
-    var match = undefined;
-    var matchArgs = undefined;
+    var match = void 0;
+    var matchArgs = void 0;
     for (var i = 0; i < parts.length; ++i) {
       var subcommand = String(parts.slice(0, parts.length - i).join(' ')).trim();
       match = _.find(cmds, { _name: subcommand }) || match;
@@ -175,8 +175,8 @@ var util = {
       if (match) {
         var allCommands = _.map(cmds, '_name');
         var wordMatch = false;
-        for (var key in allCommands) {
-          var _cmd2 = allCommands[key];
+        for (var _key in allCommands) {
+          var _cmd2 = allCommands[_key];
           var parts2 = String(_cmd2).split(' ');
           var cmdParts = String(match.command).split(' ');
           var matchAll = true;
@@ -205,13 +205,15 @@ var util = {
     };
   },
 
-  buildCommandArgs: function buildCommandArgs(passedArgs, cmd, execCommand) {
+  buildCommandArgs: function buildCommandArgs(passedArgs, cmd, execCommand, isCommandArgKeyPairNormalized) {
     var args = { options: {} };
 
-    // Normalize all foo="bar" with "foo='bar'"
-    // This helps implement unix-like key value pairs.
-    var reg = /(['"]?)(\w+)=(?:(['"])((?:(?!\3).)*)\3|(\S+))\1/g;
-    passedArgs = passedArgs.replace(reg, '"$2=\'$4$5\'"');
+    if (isCommandArgKeyPairNormalized) {
+      // Normalize all foo="bar" with "foo='bar'"
+      // This helps implement unix-like key value pairs.
+      var reg = /(['"]?)(\w+)=(?:(['"])((?:(?!\3).)*)\3|(\S+))\1/g;
+      passedArgs = passedArgs.replace(reg, '"$2=\'$4$5\'"');
+    }
 
     // Types are custom arg types passed
     // into `minimist` as per its docs.
