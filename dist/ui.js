@@ -54,6 +54,9 @@ var UI = function (_EventEmitter) {
     // Handle for inquirer's prompt.
     _this.inquirer = inquirer;
 
+    // prompt history from inquirer
+    _this.inquirerStdout = [];
+
     // Whether a prompt is currently in cancel mode.
     _this._cancelled = false;
 
@@ -208,6 +211,7 @@ var UI = function (_EventEmitter) {
       this._midPrompt = true;
       try {
         prompt = inquirer.prompt(options, function (result) {
+          _this2.inquirerStdout = [];
           _this2._midPrompt = false;
           if (_this2._cancel === true) {
             _this2._cancel = false;
@@ -260,7 +264,12 @@ var UI = function (_EventEmitter) {
       };
       inquirer.prompt.prompts.input.prototype.getQuestion = function () {
         self._activePrompt = this;
-        return this.opt.message;
+        var message = this.opt.message;
+        if (this.opt.default !== null && this.status !== 'answered') {
+          message += chalk.dim('(' + this.opt.default + ') ');
+        }
+        self.inquirerStdout.push(message);
+        return message;
       };
     }
 

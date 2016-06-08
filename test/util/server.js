@@ -31,6 +31,20 @@ module.exports = function (vorpal) {
       cb();
     });
 
+  vorpal.command('prompt default <defaultValue>', 'action prompt')
+    .action(function(args, cb) {
+
+      return this.prompt([
+        {
+          type: 'input',
+          name: 'project',
+          message: 'Project: ',
+          default: args.defaultValue
+        }
+      ]);
+
+    });
+
   vorpal.command('parse me <words>', 'Takes input and adds a reverse pipe to it.')
     .parse(function (str) {
       return str + ' | reverse';
