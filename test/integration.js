@@ -235,6 +235,42 @@ describe('integration tests:', function () {
       });
     });
 
+    describe('inquirer prompt', function(){
+      var parent = Vorpal();
+
+      beforeEach(function(){
+        // attach a parent so the prompt will run
+         vorpal.ui.attach(parent);
+      });
+
+      afterEach(function(){
+        vorpal.ui.detach(parent);
+      });
+
+      it('should show the default value', function(done){
+        var execPromise = vorpal.exec('prompt default myawesomeproject');
+
+        vorpal.ui.inquirerStdout.join('\n').should.containEql('(myawesomeproject)');
+
+        execPromise
+          .then(function (s) {
+            s.project.should.equal('myawesomeproject');
+            // stdout should have cleared once the prompt is finished
+            vorpal.ui.inquirerStdout.join('\n').should.not.containEql('(myawesomeproject)');
+            done();
+          })
+          .catch(function (err) {
+            console.log(stdout());
+            console.log('b', err.stack);
+            true.should.not.be.true;
+            done(err);
+          });
+
+        // submit the default
+        vorpal.ui.submit();
+      });
+    });
+
     describe('synchronous execution', function () {
       it('should execute a sync command', function () {
         var result = vorpal.execSync('sync');
