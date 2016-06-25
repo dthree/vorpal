@@ -47,6 +47,7 @@ function Command(name, parent) {
   this._help = undefined;
   this._init = undefined;
   this._after = undefined;
+  this._allowUnknownOptions = false;
 }
 
 /**
@@ -363,6 +364,23 @@ command.helpInformation = function () {
 
 command.hidden = function () {
   this._hidden = true;
+  return this;
+};
+
+/**
+ * Allows undeclared options to be passed in with the command.
+ *
+ * @param {Boolean} [allowUnknownOptions=true]
+ * @return {Command}
+ * @api public
+ */
+
+command.allowUnknownOptions = function () {
+  var allowUnknownOptions = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+
+  allowUnknownOptions = allowUnknownOptions === "false" ? false : allowUnknownOptions;
+
+  this._allowUnknownOptions = !!allowUnknownOptions;
   return this;
 };
 
