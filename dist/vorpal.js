@@ -553,7 +553,7 @@ vorpal.prompt = function () {
       }
     };
 
-    var prompt = void 0;
+    var prompt = undefined;
     var ssn = _this.getSessionById(options.sessionId);
 
     if (!ssn) {
