@@ -167,8 +167,10 @@ Vorpal.prototype.parse = function (argv, options) {
       this.exec(args.join(' '), function (err) {
         if (err !== undefined && err !== null) {
           throw new Error(err);
-          // Exits the CLI context as the UI is still attached 
-          this.exec('exit');
+          if (!options.keepAlive) {
+            // Exits the CLI context as the UI is still attached
+            this.exec('exit');
+          }
         }
       });
     }
