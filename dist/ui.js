@@ -265,7 +265,7 @@ var UI = function (_EventEmitter) {
       inquirer.prompt.prompts.input.prototype.getQuestion = function () {
         self._activePrompt = this;
         var message = this.opt.message;
-        if (this.opt.default !== null && this.status !== 'answered') {
+        if ((this.opt.default || this.opt.default === false) && this.status !== 'answered') {
           message += chalk.dim('(' + this.opt.default + ') ');
         }
         self.inquirerStdout.push(message);
