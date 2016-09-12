@@ -49,7 +49,7 @@ var autocomplete = {
     if (input.match) {
       input = parseMatchSection.call(this, input);
       getMatchData.call(self, input, function (data) {
-        var dataMatch = getMatch(input.context, data);
+        var dataMatch = getMatch(input.context, data, { ignoreSlashes: true });
         if (dataMatch) {
           input.context = dataMatch;
           evaluateTabs(input);
