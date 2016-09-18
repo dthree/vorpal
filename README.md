@@ -27,6 +27,10 @@
 
 Vorpal is Node's first framework for building interactive CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, immersive CLI environments like [cash](https://github.com/dthree/cash) and [wat](https://github.com/dthree/wat).
 
+## Notice
+
+This is now an [OPEN Open Source](http://openopensource.org/) project. I am not able to invest a significant amount of time into maintaining Vorpal and so am looking for volunteers who would like to be active maintainers of the project. If you are interested, shoot me a note.
+
 ## Contents
 
 * [Introduction](#introduction)
