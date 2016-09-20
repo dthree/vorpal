@@ -136,12 +136,15 @@ session.prompt = function (options, cb) {
  * Gets the full (normal + mode) delimiter
  * for this session.
  *
- * @return {String}
+ * @return {String} or undefined if there is no delimiter
  * @api public
  */
 
 session.fullDelimiter = function () {
-  var result = this._delimiter + (this._modeDelimiter !== undefined ? this._modeDelimiter : '');
+  var result;
+  if (this._delimiter && this._delimiter !== '') {
+    result = this._delimiter + (this._modeDelimiter !== undefined ? this._modeDelimiter : '');
+  }
   return result;
 };
 
@@ -157,7 +160,7 @@ session.delimiter = function (str) {
   if (str === undefined) {
     return this._delimiter;
   }
-  this._delimiter = String(str).trim() + ' ';
+  this._delimiter = String(str).trim();
   if (this.isLocal()) {
     this.parent.ui.refresh();
   } else {
