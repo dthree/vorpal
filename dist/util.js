@@ -297,11 +297,15 @@ var util = {
       var exist = parsedArgs[short] !== undefined ? parsedArgs[short] : undefined;
       exist = exist === undefined && parsedArgs[long] !== undefined ? parsedArgs[long] : exist;
       var existsNotSet = exist === true || exist === false;
-      if (existsNotSet && o.required !== 0) {
+      var defaultValue = o.default();
+
+      if (existsNotSet && o.required !== 0 && !defaultValue) {
         return '\n  Missing required value for option ' + (o.long || o.short) + '. Showing Help:';
       }
       if (exist !== undefined) {
         args.options[long || short] = exist;
+      } else if (defaultValue) {
+        args.options[long || short] = defaultValue;
       }
     }
 
