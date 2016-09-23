@@ -84,6 +84,15 @@ vorpal
     return args;
   });
 
+vorpal
+  .command('defaultValues <animal>')
+  .option('-s, --sound [sound]', 'Animal Sound', {
+    default : 'moo',
+  })
+  .action(function (args, cb) {
+    return args;
+  });
+
 require('assert');
 
 describe('argument parsing', function () {
@@ -282,6 +291,20 @@ describe('option parsing', function () {
       mute();
       vorpal.execSync('foo -r').should.equal(fixture);
       unmute();
+    });
+  });
+
+  describe('options with default values', function () {
+    it('should allow for default values', function () {
+      var fixture = obj({ options: { sound: 'moo' }, animal: 'cow' });
+
+      obj(vorpal.execSync('defaultValues cow')).should.equal(fixture);
+    });
+
+    it('should allow for overwriting the default values', function () {
+      var fixture = obj({ options: { sound: 'bark' }, animal: 'dog' });
+
+      obj(vorpal.execSync('defaultValues --sound bark dog')).should.equal(fixture);
     });
   });
 
