@@ -27,6 +27,9 @@
     "inquirer"
   ],
   "author": "dthree",
+  "contributors":[
+	"LongLiveCHIEF <chief@hackerhappyhour.com> (https://github.com/LongLiveCHIEF)" 
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dthree/vorpal/issues"
