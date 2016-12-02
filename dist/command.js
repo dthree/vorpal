@@ -376,7 +376,7 @@ command.hidden = function () {
  */
 
 command.allowUnknownOptions = function () {
-  var allowUnknownOptions = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+  var allowUnknownOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
   allowUnknownOptions = allowUnknownOptions === "false" ? false : allowUnknownOptions;
 

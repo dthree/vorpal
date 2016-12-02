@@ -100,7 +100,7 @@ function Logger(cons) {
           // Ugh. We're chopping a line, so we have to look for unfinished
           // color assignments and throw them on the next line.
           if (matches && matches[matches.length - 1] !== '\\u001b[39m') {
-            trimmed += '\u001b[39m';
+            trimmed += '\x1B[39m';
             var number = String(matches[matches.length - 1]).slice(7, 9);
             color = '\x1B[' + number + 'm';
           }
