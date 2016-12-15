@@ -118,6 +118,18 @@ command.action = function (fn) {
 };
 
 /**
+ * Let's you compose other funtions to extend the command.
+ *
+ * @param {Function} fn
+ * @return {Command}
+ * @api public
+ */
+
+command.use = function (fn) {
+  return fn(this);
+};
+
+/**
  * Defines a function to validate arguments
  * before action is performed. Arguments
  * are valid if no errors are thrown from
@@ -376,7 +388,7 @@ command.hidden = function () {
  */
 
 command.allowUnknownOptions = function () {
-  var allowUnknownOptions = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+  var allowUnknownOptions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
   allowUnknownOptions = allowUnknownOptions === "false" ? false : allowUnknownOptions;
 
