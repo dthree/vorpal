@@ -77,13 +77,11 @@ var UI = function (_EventEmitter) {
         } else if (_this.parent.session.cancelCommands) {
           // There are commands running if
           // cancelCommands function is available.
-          _this.imprint();
           _this.submit('');
           _this._sigintCalled = false;
           _this._sigintCount = 0;
           _this.parent.session.emit('vorpal_command_cancel');
         } else if (String(text).trim() !== '') {
-          _this.imprint();
           _this.submit('');
           _this._sigintCalled = false;
           _this._sigintCount = 0;
@@ -534,26 +532,6 @@ var UI = function (_EventEmitter) {
      *
      * @return {UI}
      * @api public
-     */
-
-  }, {
-    key: 'imprint',
-    value: function imprint() {
-      if (!this.parent) {
-        return this;
-      }
-      var val = this._activePrompt.rl.line;
-      var delimiter = this._lastDelimiter || this.delimiter() || '';
-      this.log(delimiter + val);
-      return this;
-    }
-
-    /**
-     * Redraws the inquirer prompt with a new string.
-     *
-     * @param {String} str
-     * @return {UI}
-     * @api private
      */
 
   }, {
