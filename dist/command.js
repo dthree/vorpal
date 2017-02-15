@@ -8,6 +8,7 @@ var EventEmitter = require('events').EventEmitter;
 var Option = require('./option');
 var VorpalUtil = require('./util');
 var _ = require('lodash');
+var minimist = require('minimist');
 
 /**
  * Command prototype.
@@ -247,6 +248,7 @@ command.delimiter = function (delimiter) {
  */
 
 command.types = function (types) {
+  var self = this;
   var supported = ['string', 'boolean'];
   for (var item in types) {
     if (supported.indexOf(item) === -1) {
@@ -254,9 +256,32 @@ command.types = function (types) {
     }
     types[item] = !_.isArray(types[item]) ? [types[item]] : types[item];
   }
-  this._types = types;
-  return this;
+  self._types = types;
+
+  var argsIdx = getArgsIndexes(self);
+  _.each(supported, function (name) {
+    if (self._types[name]) {
+      self._types[name] = addArgsIndexes(self._types[name], argsIdx);
+    }
+  });
+  return self;
 };
+
+function getArgsIndexes(cmd) {
+  var names = _.map(cmd._args, 'name');
+  var indexes = _.range(cmd._args.length);
+  return _.zipObject(names, indexes);
+}
+
+function addArgsIndexes(names, argsIdx) {
+  var indexes = [];
+  _.each(names, function (name) {
+    if (argsIdx.hasOwnProperty(name)) {
+      indexes.push(argsIdx[name]);
+    }
+  });
+  return _.flatten([names, indexes]);
+}
 
 /**
  * Defines an alias for a given command.
