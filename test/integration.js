@@ -414,8 +414,11 @@ describe('integration tests:', function () {
       });
 
       it('should use minimist\'s parse through the .types() method', function (done) {
-        exec('typehappy --numberify 4 -s 5', done, function (err, data) {
+        exec('typehappy 12 34 56 --numberify 4 -s 5', done, function (err, data) {
           (err === undefined).should.be.true;
+          data.zip.should.equal('12');
+          data.age.should.equal(34);
+          data.code.should.equal('56');
           data.options.numberify.should.equal(4);
           data.options.stringify.should.equal('5');
           done();
