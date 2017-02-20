@@ -126,7 +126,7 @@ module.exports = function (vorpal) {
     .option('-n, --numberify <that>', 'Should be a number')
     .option('-s, --stringify <me>', 'Should be a string')
     .types({
-      string: ['s', 'stringify', 'zip', 2]
+      string: ['s', 'stringify', 'zip', 'codes']
     })
     .action(function (args, cb) {
       cb(undefined, args);
