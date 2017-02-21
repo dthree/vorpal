@@ -11,6 +11,9 @@ var minimist = require('minimist');
 var strip = require('strip-ansi');
 
 var util = {
+  // Minimist types supported by vorpal
+  supportedTypes: ['string', 'boolean'],
+
   /**
    * Parses command arguments from multiple
    * sources.
@@ -54,9 +57,8 @@ var util = {
 
   addArgsIndexes: function addArgsIndexes(cmd, opts) {
     var self = this;
-    var types = ['string', 'boolean'];
     var argsIdx = self.getCmdArgsIndexes(cmd);
-    _.each(types, function (type) {
+    _.each(self.supportedTypes, function (type) {
       var names = opts[type];
       if (names && names.length) {
         opts[type] = self.addTypeArgsIndexes(names, argsIdx);
@@ -112,13 +114,13 @@ var util = {
    */
 
   addVariadicIndexes: function addVariadicIndexes(cmd, opts, parts) {
-    var types = ['string', 'boolean'];
+    var self = this;
     var nonOpts = _.takeWhile(parts, function (p) {
       return !p.startsWith('-');
     });
     var lastArg = cmd._args[cmd._args.length - 1] || {};
     if (lastArg.variadic && nonOpts.length > cmd._args.length) {
-      _.each(types, function (type) {
+      _.each(self.supportedTypes, function (type) {
         var names = opts[type];
         if (names && names.length && names.indexOf(lastArg.name) !== -1) {
           var extraIndexes = _.range(cmd._args.length, nonOpts.length);
