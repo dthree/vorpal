@@ -271,12 +271,12 @@ var util = {
       var passedArg = parsedArgs._[l];
       if (matchArg !== undefined) {
         valid = !valid ? false : validateArg(parsedArgs._[l], matchArg);
-        if (!valid) {
+        if (!valid || passedArg === undefined) {
           break;
         }
-        if (passedArg && matchArg.variadic === true) {
+        if (matchArg.variadic === true) {
           args[matchArg.name] = remainingArgs;
-        } else if (passedArg !== undefined) {
+        } else {
           args[matchArg.name] = passedArg;
           remainingArgs.shift();
         }
