@@ -183,7 +183,7 @@ Questions? Use the `vorpal.js` StackOverflow tag for fast answers that help othe
 - [`.pipe`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpalpipefunction)
 - [`.use`](https://github.com/dthree/vorpal/wiki/API-%7C-vorpal#vorpaluseextension)
 
-##### [Events](https://github.com/dthree/vorpal/wiki/Events)
+##### [Events](https://github.com/dthree/vorpal/wiki/Docs-%7C-Events)
 
 
 ## Extensions
@@ -191,7 +191,7 @@ Questions? Use the `vorpal.js` StackOverflow tag for fast answers that help othe
 You can build your own Vorpal commands and extensions.
 
 - [List of awesome extensions](https://github.com/vorpaljs/awesome-vorpaljs#vorpal-extensions)
-- [Building your own extension](https://github.com/dthree/vorpal/wiki/Creating-Extensions)
+- [Building your own extension](https://github.com/dthree/vorpal/wiki/Docs-%7C-Creating-Extensions)
 
 
 ## [FAQ](https://github.com/dthree/vorpal/wiki/FAQ)
