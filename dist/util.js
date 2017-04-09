@@ -274,11 +274,13 @@ var util = {
         if (!valid) {
           break;
         }
-        if (passedArg && matchArg.variadic === true) {
-          args[matchArg.name] = remainingArgs;
-        } else if (passedArg !== undefined) {
-          args[matchArg.name] = passedArg;
-          remainingArgs.shift();
+        if (passedArg !== undefined) {
+          if (matchArg.variadic === true) {
+            args[matchArg.name] = remainingArgs;
+          } else {
+            args[matchArg.name] = passedArg;
+            remainingArgs.shift();
+          }
         }
       }
     }
