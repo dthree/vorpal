@@ -32,4 +32,19 @@ describe('session._autocomplete', function () {
     var result = vorpal.session._autocomplete('d', ['def', 'xyz']);
     assert.equal(result, 'def ');
   });
+
+  
+  it('should return the prefix along with the partial match when supplied with a prefix input', function() {
+    var result = vorpal.session._autocomplete('foo/de', ['dally','definitive', 'definitop', 'bob']);
+    assert.equal(result, "foo/definit");
+  });
+
+  it("should return a list of matches when supplied with a prefix but no value post prefix", function() {
+    var result = vorpal.session._autocomplete('foo/', ['dally','definitive', 'definitop', 'bob']);
+    assert.equal(result.length, 4);
+    assert.equal(result[0], "bob");
+    assert.equal(result[1], "dally");
+    assert.equal(result[2], "definitive");
+    assert.equal(result[3], "definitop");
+  });
 });
