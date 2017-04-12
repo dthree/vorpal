@@ -163,11 +163,11 @@ Vorpal.prototype.parse = function (argv, options) {
           args[i] = '"' + args[i] + '"';
         }
       }
-      ui.attach(result);
       this.exec(args.join(' '), function (err) {
         if (err !== undefined && err !== null) {
           throw new Error(err);
         }
+        process.exit(0);
       });
     }
   }
@@ -1229,6 +1229,7 @@ vorpal.getSessionById = function (id) {
 
 vorpal.exit = function (options) {
   var ssn = this.getSessionById(options.sessionId);
+  this.emit('vorpal_exit');
   if (ssn.isLocal()) {
     process.exit(0);
   } else {

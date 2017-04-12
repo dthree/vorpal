@@ -134,6 +134,20 @@ module.exports = function (_EventEmitter) {
     }
 
     /**
+     * Let's you compose other funtions to extend the command.
+     *
+     * @param {Function} fn
+     * @return {Command}
+     * @api public
+     */
+
+  }, {
+    key: 'use',
+    value: function use(fn) {
+      return fn(this);
+    }
+
+    /**
      * Defines an action for a given command.
      *
      * @param {Function} fn
