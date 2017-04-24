@@ -1173,9 +1173,42 @@ vorpal._commandHelp = function (command) {
 
   var groupsString = groups.length < 1 ? '' : '  Command Groups:\n\n' + groups.join('\n') + '\n';
 
-  var results = String(invalidString + commandsString + '\n' + groupsString).replace(/\n\n\n/g, '\n\n').replace(/\n\n$/, '\n');
+  var results = String(this._helpHeader(!!invalidString) + invalidString + commandsString + '\n' + groupsString).replace(/\n\n\n/g, '\n\n').replace(/\n\n$/, '\n');
 
   return results;
+};
+
+vorpal._helpHeader = function (hideTitle) {
+  var header = [];
+
+  if (this._banner) {
+    header.push(VorpalUtil.padRow(this._banner), '');
+  }
+
+  // Only show under specific conditions
+  if (this._name && !hideTitle) {
+    var name = this._name;
+
+    if (this._version) {
+      name += ' v' + this._version;
+    }
+
+    header.push(VorpalUtil.padRow(name));
+
+    if (this._description) {
+      var descWidth = process.stdout.columns * 0.75; // Only 75% of the screen
+
+      header.push(VorpalUtil.padRow(wrap(this._description, descWidth)));
+    }
+  }
+
+  // Pad the top and bottom
+  if (header.length) {
+    header.unshift('');
+    header.push('');
+  }
+
+  return header.join('\n');
 };
 
 /**
