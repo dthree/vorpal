@@ -46,6 +46,15 @@ function Vorpal() {
   // Exposed through vorpal.version(str);
   this._version = '';
 
+  // Program name
+  this._name = '';
+
+  // Program description
+  this._description = '';
+
+  // Program baner
+  this._banner = '';
+
   // Command line history instance
   this.cmdHistory = new this.CmdHistoryExtension();
 
@@ -184,6 +193,45 @@ Vorpal.prototype.parse = function (argv, options) {
 
 vorpal.version = function (version) {
   this._version = version;
+  return this;
+};
+
+/**
+ * Sets the name of your application.
+ *
+ * @param {String} name
+ * @return {Vorpal}
+ * @api public
+ */
+
+vorpal.name = function (name) {
+  this._name = name;
+  return this;
+};
+
+/**
+ * Sets the description of your application.
+ *
+ * @param {String} description
+ * @return {Vorpal}
+ * @api public
+ */
+
+vorpal.description = function (description) {
+  this._description = description;
+  return this;
+};
+
+/**
+ * Sets the banner of your application.
+ *
+ * @param {String} banner
+ * @return {Vorpal}
+ * @api public
+ */
+
+vorpal.banner = function (banner) {
+  this._banner = banner;
   return this;
 };
 
@@ -1229,6 +1277,7 @@ vorpal.getSessionById = function (id) {
 
 vorpal.exit = function (options) {
   var ssn = this.getSessionById(options.sessionId);
+  this.emit('vorpal_exit');
   if (ssn.isLocal()) {
     process.exit(0);
   } else {

@@ -68,6 +68,7 @@ var UI = function (_EventEmitter) {
     _this._sigintCount = 0;
     _this._sigint = function () {
       if (_this._sigintCount > 1) {
+        _this.parent.emit('vorpal_exit');
         process.exit(0);
       } else {
         var text = _this.input();
@@ -141,7 +142,7 @@ var UI = function (_EventEmitter) {
       var render = inquirer.prompt.prompts[promptType].prototype.render;
       inquirer.prompt.prompts[promptType].prototype.render = function () {
         self._activePrompt = this;
-        return render.call(this);
+        return render.apply(this, arguments);
       };
     };
 
