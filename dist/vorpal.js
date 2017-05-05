@@ -1229,6 +1229,7 @@ vorpal.getSessionById = function (id) {
 
 vorpal.exit = function (options) {
   var ssn = this.getSessionById(options.sessionId);
+  this.emit('vorpal_exit');
   if (ssn.isLocal()) {
     process.exit(0);
   } else {
