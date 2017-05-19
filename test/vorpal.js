@@ -7,6 +7,7 @@
 
 var Vorpal = require('../');
 var should = require('should');
+var assert = require('assert');
 var intercept = require('../dist/intercept');
 
 var vorpal;
@@ -346,5 +347,33 @@ describe('help menu', function () {
     help.execSync('cows')
     unmute();
     stdout.should.equal(fixture);
+  });
+});
+
+describe('descriptors', function () {
+  var instance;
+
+  beforeEach(function () {
+    instance = Vorpal();
+  });
+
+  it('sets the version', function () {
+    instance.version('1.2.3');
+    assert.equal(instance._version, '1.2.3');
+  });
+
+  it('sets the title', function () {
+    instance.title('Vorpal');
+    assert.equal(instance._title, 'Vorpal');
+  });
+
+  it('sets the description', function () {
+    instance.description('A CLI tool.');
+    assert.equal(instance._description, 'A CLI tool.');
+  });
+
+  it('sets the banner', function () {
+    instance.banner('VORPAL');
+    assert.equal(instance._banner, 'VORPAL');
   });
 });
