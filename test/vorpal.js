@@ -350,7 +350,7 @@ describe('help menu', function () {
   });
 });
 
-describe('metadata', function () {
+describe('descriptors', function () {
   var instance;
 
   beforeEach(function () {
@@ -362,9 +362,9 @@ describe('metadata', function () {
     assert.equal(instance._version, '1.2.3');
   });
 
-  it('sets the name', function () {
-    instance.name('Vorpal');
-    assert.equal(instance._name, 'Vorpal');
+  it('sets the title', function () {
+    instance.title('Vorpal');
+    assert.equal(instance._title, 'Vorpal');
   });
 
   it('sets the description', function () {

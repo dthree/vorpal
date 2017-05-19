@@ -4,7 +4,7 @@ var vorpal = require('./../../')();
 var chalk = vorpal.chalk;
 
 vorpal
-  .name(chalk.magenta('Vorpal'))
+  .title(chalk.magenta('Vorpal'))
   .version('1.4.0')
   .description(chalk.cyan('Conquer the command-line.'))
   .banner(chalk.gray(`              (O)
