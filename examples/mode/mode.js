@@ -30,7 +30,7 @@ var server;
 server = new Vorpal()
   .banner(banner)
   .delimiter(delimiter)
-  .listen(port)
+  // .listen(port)
   .show();
 
 /**
@@ -68,7 +68,7 @@ server
     try {
       var res = eval(command);
       var log = (_.isString(res)) ? String(res).white : res;
-      console.log(log);
+      // console.log(log);
       cb(res);
     } catch (e) {
       console.log(e);
