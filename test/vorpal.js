@@ -5,7 +5,7 @@
   * this one.
   */
 
-var Vorpal = require('../');
+var Vorpal = require('../dist/vorpal');
 var should = require('should');
 var assert = require('assert');
 var intercept = require('../dist/intercept');

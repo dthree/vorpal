@@ -1,4 +1,4 @@
-var Vorpal = require('../../');
+var Vorpal = require('../../dist/vorpal');
 var _ = require('lodash');
 var path = require('path');
 

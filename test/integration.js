@@ -1,6 +1,6 @@
 'use strict';
 
-var Vorpal = require('../');
+var Vorpal = require('../dist/vorpal');
 var commands = require('./util/server');
 var BlueBirdPromise = require('bluebird');
 var fs = require('fs');

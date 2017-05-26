@@ -1,4 +1,4 @@
-var Vorpal = require('../');
+var Vorpal = require('../dist/vorpal');
 var should = require('should');
 
 var vorpal = new Vorpal();
