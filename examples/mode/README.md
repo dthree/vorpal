@@ -1,7 +1,7 @@
 # Vantage Server with a `mode` command.
 
 This is an example of setting up a `mode` command to establish a basic REPL client.
- 
+
 ### Running the file
 
 ```bash
@@ -10,4 +10,3 @@ $ cd ./vantage
 $ npm install
 $ node ./examples/mode/mode.js
 ```
-
