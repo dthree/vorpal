@@ -4,9 +4,14 @@
   "description": "Node's first framework for building immersive CLI apps.",
   "main": "./dist/vorpal.js",
   "scripts": {
-    "test": "gulp build; mocha;",
-    "prepublish": "in-publish && gulp build || not-in-publish"
+    "build": "build-lib ./lib -d ./dist",
+    "lint": "run-linter ./lib",
+    "test": "npm run build; mocha",
+    "prepublish": "in-publish && npm run build || not-in-publish"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dthree/vorpal.git"
@@ -33,21 +38,12 @@
   },
   "homepage": "https://github.com/dthree/vorpal#readme",
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-core": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
+    "@milesj/build-tool-config": "^0.7.1",
     "bluebird": "^3.5.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-changed": "^3.1.0",
-    "gulp-eslint": "^3.0.1",
-    "gulp-xo": "^0.15.0",
-    "load-plugins": "^2.1.2",
     "mocha": "^3.4.2",
     "should": "^11.2.1",
     "vorpal-less": "^0.0.13",
-    "vorpal-repl": "^1.1.8",
-    "xo": "^0.18.2"
+    "vorpal-repl": "^1.1.8"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
@@ -62,26 +58,13 @@
     "wrap-ansi": "^2.1.0"
   },
   "engines": {
-    "node": ">= 0.10.0",
-    "iojs": ">= 1.0.0"
+    "node": ">=6.5.0",
+    "npm": ">=3.0.0"
   },
-  "xo": {
-    "space": true,
-    "rules": {
-      "no-eval": 0,
-      "no-unused-expressions": 0,
-      "max-nested-callbacks": 0,
-      "no-proto": 0,
-      "wrap-iife": 0,
-      "global-require": 0,
-      "no-negated-condition": 0,
-      "no-loop-func": 0,
-      "no-implicit-coercion": 0,
-      "no-use-extend-native/no-use-extend-native": 0,
-      "no-undef": 0
-    }
+  "babel": {
+    "extends": "./node_modules/@milesj/build-tool-config/babel.node.json5"
   },
-  "files": [
-    "dist"
-  ]
+  "eslintConfig": {
+    "extends": "./node_modules/@milesj/build-tool-config/eslint.node.json5"
+  }
 }
