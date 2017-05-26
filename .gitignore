@@ -6,7 +6,7 @@ pids
 lib-cov
 coverage
 .grunt
-dist/.local_storage*
+dist/
 build/Release
 node_modules
 test/util/playground.js
