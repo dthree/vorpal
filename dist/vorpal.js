@@ -588,7 +588,7 @@ vorpal._onKeypress = function (key, value) {
 vorpal.prompt = function () {
   var _this = this;
 
-  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
   var userCallback = arguments[1];
 
   return new Promise(function (resolve) {

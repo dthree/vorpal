@@ -1,5 +1,7 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16,14 +18,21 @@ var Option = function () {
    * @api public
    */
 
-  function Option(flags, description, autocomplete) {
+  function Option(flags, description) {
+    var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+
     _classCallCheck(this, Option);
 
+    options = (typeof options === 'undefined' ? 'undefined' : _typeof(options)) === 'object' ? options : {
+      autocomplete: options
+    };
+
+    this.autocomplete = options.autocomplete;
+    this._default = options.default ? options.default : null;
     this.flags = flags;
     this.required = ~flags.indexOf('<');
     this.optional = ~flags.indexOf('[');
     this.bool = !~flags.indexOf('-no-');
-    this.autocomplete = autocomplete;
     flags = flags.split(/[ ,|]+/);
     if (flags.length > 1 && !/^[[<]/.test(flags[1])) {
       this.assignFlag(flags.shift());
@@ -77,6 +86,11 @@ var Option = function () {
       } else {
         this.short = flag;
       }
+    }
+  }, {
+    key: 'default',
+    value: function _default() {
+      return this._default;
     }
   }]);
 

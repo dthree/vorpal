@@ -22,13 +22,14 @@ var CommandInstance = function () {
    */
 
   function CommandInstance() {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        command = _ref.command,
-        commandObject = _ref.commandObject,
-        args = _ref.args,
-        commandWrapper = _ref.commandWrapper,
-        callback = _ref.callback,
-        downstream = _ref.downstream;
+    var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+    var command = _ref.command;
+    var commandObject = _ref.commandObject;
+    var args = _ref.args;
+    var commandWrapper = _ref.commandWrapper;
+    var callback = _ref.callback;
+    var downstream = _ref.downstream;
 
     _classCallCheck(this, CommandInstance);
 
