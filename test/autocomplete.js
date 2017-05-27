@@ -1,4 +1,4 @@
-var Vorpal = require('../dist/vorpal');
+var Vorpal = require('../lib/vorpal');
 var assert = require('assert');
 var _ = require('lodash');
 var vorpal = new Vorpal();
