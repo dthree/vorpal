@@ -1,6 +1,6 @@
 # 2.0.0 [IN PROGRESS]
 #### 💥 Breaking
-* Updated minimum Node.js requirement to v6.5.
+* Updated minimum Node.js requirement to v6.10 (oldest LTS).
 * Updated Inquirer.js to v3 from v0.11.
 
 #### 🚀 New
@@ -20,5 +20,6 @@
 * Migrated to 100% ES2015 syntax.
 * Migrated to Yarn from NPM.
 * Migrated to Yarn scripts from Gulp.
-* Updated to the latest Babel and ESLint (based off Airbnb config).
+* Updated to no longer require or build with Babel.
+* Updated to the latest ESLint (based off Airbnb config).
 * Removed the `dist` folder from the repository.

@@ -2,16 +2,11 @@
   "name": "vorpal",
   "version": "1.11.4",
   "description": "Node's first framework for building immersive CLI apps.",
-  "main": "./dist/vorpal.js",
+  "main": "./lib/vorpal.js",
   "scripts": {
-    "build": "build-lib ./lib -d ./dist",
     "lint": "run-linter ./lib",
-    "test": "npm run build; mocha",
-    "prepublish": "in-publish && npm run build || not-in-publish"
+    "test": "mocha"
   },
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dthree/vorpal.git"
@@ -46,9 +41,7 @@
     "vorpal-repl": "^1.1.8"
   },
   "dependencies": {
-    "babel-polyfill": "^6.23.0",
     "chalk": "^1.1.0",
-    "in-publish": "^2.0.0",
     "inquirer": "^3.0.6",
     "lodash": "^4.17.0",
     "log-update": "^2.0.0",
@@ -58,11 +51,8 @@
     "wrap-ansi": "^2.1.0"
   },
   "engines": {
-    "node": ">=6.5.0",
-    "npm": ">=3.0.0"
-  },
-  "babel": {
-    "extends": "./node_modules/@milesj/build-tool-config/babel.node.json5"
+    "node": ">=6.10.0",
+    "npm": ">=3.10.0"
   },
   "eslintConfig": {
     "extends": "./node_modules/@milesj/build-tool-config/eslint.node.json5"
