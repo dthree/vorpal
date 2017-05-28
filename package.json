@@ -58,7 +58,14 @@
   "eslintConfig": {
     "extends": "./node_modules/@milesj/build-tool-config/eslint.node.json5",
     "rules": {
-      "no-underscore-dangle": 0
+      "comma-dangle": ["error", {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }],
+      "no-underscore-dangle": "off"
     }
   }
 }
