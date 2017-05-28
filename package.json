@@ -5,6 +5,7 @@
   "main": "./lib/vorpal.js",
   "scripts": {
     "lint": "run-linter ./lib",
+    "lint:only": "run-linter",
     "test": "mocha"
   },
   "repository": {
@@ -55,6 +56,9 @@
     "npm": ">=3.10.0"
   },
   "eslintConfig": {
-    "extends": "./node_modules/@milesj/build-tool-config/eslint.node.json5"
+    "extends": "./node_modules/@milesj/build-tool-config/eslint.node.json5",
+    "rules": {
+      "no-underscore-dangle": 0
+    }
   }
 }
