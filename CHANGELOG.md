@@ -2,6 +2,7 @@
 #### 💥 Breaking
 * Updated minimum Node.js requirement to v6.10 (oldest LTS).
 * Updated Inquirer.js to v3 from v0.11.
+* Removed `Command#autocompletion` method.
 
 #### 🚀 New
 * Added `Vorpal#title`, `Vorpal#version`, `Vorpal#description`, and `Vorpal#banner` descriptor methods.
