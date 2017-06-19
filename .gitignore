@@ -12,3 +12,6 @@ node_modules
 test/util/playground.js
 .idea/
 electron*
+
+package-lock.json
+
