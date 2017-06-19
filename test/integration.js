@@ -37,7 +37,7 @@ var stdout = function () {
 
 describe('integration tests:', function () {
   describe('vorpal', function () {
-    it('should overwrite duplicate commands', function (done) {
+    it.only('should overwrite duplicate commands', function (done) {
       var arr = ['a', 'b', 'c'];
       arr.forEach(function (item) {
         vorpal
@@ -46,7 +46,7 @@ describe('integration tests:', function () {
             cb(undefined, item);
           });
         vorpal
-          .command('overwrite me')
+          .command('overwrite_me')
           .action(function (args, cb) {
             cb(undefined, item);
           });
@@ -55,7 +55,7 @@ describe('integration tests:', function () {
       vorpal.exec('overwritten', function (err, data) {
         (err === undefined).should.be.true;
         data.should.equal('c');
-        vorpal.exec('overwrite me', function (err, data) {
+        vorpal.exec('overwrite_me', function (err, data) {
           (err === undefined).should.be.true;
           data.should.equal('c');
           done();
