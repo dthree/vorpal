@@ -42,6 +42,7 @@
     "vorpal-repl": "^1.1.8"
   },
   "dependencies": {
+    "bash-parser": "^0.4.0",
     "chalk": "^1.1.0",
     "inquirer": "^3.0.6",
     "lodash": "^4.17.0",
