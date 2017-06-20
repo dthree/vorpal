@@ -30,7 +30,7 @@ describe('vorpal', function () {
 
   describe('mode context', function () {
     it('parent should have the same context in init and action', function (done) {
-      var vorpal = Vorpal();
+      var vorpal = new Vorpal();
       var initCtx;
       vorpal
         .mode('ooga')
