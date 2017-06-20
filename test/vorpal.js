@@ -12,6 +12,13 @@ var intercept = require('../lib/intercept');
 
 var vorpal;
 
+process.on('unhandledRejection', (err, p) => {
+  console.log('An unhandledRejection occurred');
+  console.log(`Rejected Promise: ${p}`);
+  console.log(`Rejection: ${err}`);
+  console.log(err.stack);
+});
+
 // Normalize inputs to objects.
 function obj(inp) {
   if (typeof inp === 'String') {
