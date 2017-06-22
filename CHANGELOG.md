@@ -1,7 +1,7 @@
 # 2.0.0 [IN PROGRESS]
 #### 💥 Breaking
 * Updated minimum Node.js requirement to v6.10 (oldest LTS).
-* Updated Inquirer.js to v3 from v0.11.
+* Updated Inquirer.js to v3.1 from v0.11.
 * Removed `Command#autocompletion` method.
 
 #### 🚀 New
