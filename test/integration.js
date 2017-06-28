@@ -1,11 +1,11 @@
 'use strict';
 
-var Vorpal = require('../lib/vorpal');
+var Vorpal = require('../dist/vorpal');
 var commands = require('./util/server');
 var BlueBirdPromise = require('bluebird');
 var fs = require('fs');
 
-var intercept = require('../lib/intercept');
+var intercept = require('../dist/intercept');
 var stdout = '';
 var umute;
 var mute = function () {
@@ -657,7 +657,7 @@ describe('integration tests:', function () {
               }
             }, 1000);
             var p = new BlueBirdPromise(function () {});
-            p.cancellable();
+            p.cancel();
             return p;
           });
       });

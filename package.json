@@ -8,7 +8,7 @@
     "flow": "type-check",
     "lint": "run-linter ./lib",
     "lint:only": "run-linter",
-    "test": "mocha"
+    "test": "yarn run build && mocha"
   },
   "repository": {
     "type": "git",
