@@ -4,6 +4,8 @@
   "description": "Node's first framework for building immersive CLI apps.",
   "main": "./lib/vorpal.js",
   "scripts": {
+    "build": "build-lib ./lib -d ./dist",
+    "flow": "type-check",
     "lint": "run-linter ./lib",
     "lint:only": "run-linter",
     "test": "mocha"
@@ -34,7 +36,7 @@
   },
   "homepage": "https://github.com/dthree/vorpal#readme",
   "devDependencies": {
-    "@milesj/build-tool-config": "^0.9.0",
+    "@milesj/build-tool-config": "^0.11.2",
     "bluebird": "^3.5.0",
     "mocha": "^3.4.2",
     "should": "^11.2.1",
@@ -54,6 +56,9 @@
   "engines": {
     "node": ">=6.10.0",
     "npm": ">=3.10.0"
+  },
+  "babel": {
+    "extends": "./node_modules/@milesj/build-tool-config/babel.node.json5"
   },
   "eslintConfig": {
     "extends": "./node_modules/@milesj/build-tool-config/eslint.node.json5",
