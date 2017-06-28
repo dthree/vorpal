@@ -5,10 +5,10 @@
   * this one.
   */
 
-var Vorpal = require('../lib/vorpal');
+var Vorpal = require('../dist/vorpal');
 var should = require('should');
 var assert = require('assert');
-var intercept = require('../lib/intercept');
+var intercept = require('../dist/intercept');
 
 var vorpal;
 
