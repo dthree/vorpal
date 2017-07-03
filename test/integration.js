@@ -1,11 +1,11 @@
 'use strict';
 
-var Vorpal = require('../');
+var Vorpal = require('../lib/vorpal');
 var commands = require('./util/server');
 var BlueBirdPromise = require('bluebird');
 var fs = require('fs');
 
-var intercept = require('../dist/intercept');
+var intercept = require('../lib/intercept');
 var stdout = '';
 var umute;
 var mute = function () {
@@ -461,6 +461,32 @@ describe('integration tests:', function () {
           done();
         });
       });
+
+      context('when first variadic argument has falsy value', function () {
+        context('when variadic argument comes last', function () {
+          it('should parse variadic arguments properly', function (done) {
+            exec('variadic pepperoni 0 1 olives ', done, function (err, data) {
+              (err === undefined).should.be.true;
+              data.pizza.should.equal('pepperoni');
+              data.ingredients[0].should.equal(0);
+              data.ingredients[1].should.equal(1);
+              data.ingredients[2].should.equal('olives');
+              done();
+            });
+          });
+        })
+        context('when one and only argument is variadic', function () {
+          it('should parse variadic arguments properly', function (done) {
+            exec('variadic-pizza 0 1 olives ', done, function (err, data) {
+              (err === undefined).should.be.true;
+              data.ingredients[0].should.equal(0);
+              data.ingredients[1].should.equal(1);
+              data.ingredients[2].should.equal('olives');
+              done();
+            });
+          });
+        })
+      })
 
       it('should accept a lot of arguments', function (done) {
         exec('cmd that has a ton of arguments', done, function (err, data) {

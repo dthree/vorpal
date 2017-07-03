@@ -5,9 +5,10 @@
   * this one.
   */
 
-var Vorpal = require('../');
+var Vorpal = require('../lib/vorpal');
 var should = require('should');
-var intercept = require('../dist/intercept');
+var assert = require('assert');
+var intercept = require('../lib/intercept');
 
 var vorpal;
 
@@ -80,6 +81,15 @@ vorpal
 
 vorpal
   .command('multi word command [variadic...]')
+  .action(function (args, cb) {
+    return args;
+  });
+
+vorpal
+  .command('defaultValues <animal>')
+  .option('-s, --sound [sound]', 'Animal Sound', {
+    default : 'moo',
+  })
   .action(function (args, cb) {
     return args;
   });
@@ -285,6 +295,20 @@ describe('option parsing', function () {
     });
   });
 
+  describe('options with default values', function () {
+    it('should allow for default values', function () {
+      var fixture = obj({ options: { sound: 'moo' }, animal: 'cow' });
+
+      obj(vorpal.execSync('defaultValues cow')).should.equal(fixture);
+    });
+
+    it('should allow for overwriting the default values', function () {
+      var fixture = obj({ options: { sound: 'bark' }, animal: 'dog' });
+
+      obj(vorpal.execSync('defaultValues --sound bark dog')).should.equal(fixture);
+    });
+  });
+
   describe('negated options', function () {
     it('should make a boolean option false', function () {
       var fixture = obj({ options: { bool: false }, args: ['cows'] });
@@ -346,5 +370,33 @@ describe('help menu', function () {
     help.execSync('cows')
     unmute();
     stdout.should.equal(fixture);
+  });
+});
+
+describe('descriptors', function () {
+  var instance;
+
+  beforeEach(function () {
+    instance = Vorpal();
+  });
+
+  it('sets the version', function () {
+    instance.version('1.2.3');
+    assert.equal(instance._version, '1.2.3');
+  });
+
+  it('sets the title', function () {
+    instance.title('Vorpal');
+    assert.equal(instance._title, 'Vorpal');
+  });
+
+  it('sets the description', function () {
+    instance.description('A CLI tool.');
+    assert.equal(instance._description, 'A CLI tool.');
+  });
+
+  it('sets the banner', function () {
+    instance.banner('VORPAL');
+    assert.equal(instance._banner, 'VORPAL');
   });
 });
