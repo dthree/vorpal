@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/dthree/vorpal#readme",
   "devDependencies": {
-    "@milesj/build-tool-config": "^0.11.2",
+    "@milesj/build-tool-config": "^0.14.0",
     "bluebird": "^3.5.0",
     "mocha": "^3.4.2",
     "should": "^11.2.1",
@@ -44,7 +44,7 @@
     "vorpal-repl": "^1.1.8"
   },
   "dependencies": {
-    "chalk": "^1.1.0",
+    "chalk": "^2.0.1",
     "inquirer": "^3.1.1",
     "lodash": "^4.17.0",
     "log-update": "^2.0.0",
