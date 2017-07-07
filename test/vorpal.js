@@ -126,7 +126,7 @@ describe('argument parsing', function () {
 
   it('should throw help when not passed a required arg', function () {
     mute();
-    var fixture = '\n  Missing required argument. Showing Help:';
+    var fixture = '  \nMissing required argument. Showing Help:  ';
     vorpal.execSync('required').should.equal(fixture);
     unmute();
   });
@@ -295,7 +295,7 @@ describe('option parsing', function () {
     });
 
     it('should throw help on a required option without an arg', function () {
-      var fixture = "\n  Missing required value for option --required. Showing Help:";
+      var fixture = "  \nMissing required value for option --required. Showing Help:  ";
       mute();
       vorpal.execSync('foo -r').should.equal(fixture);
       unmute();
@@ -333,14 +333,14 @@ describe('option parsing', function () {
     });
 
     it('should return help on a required option', function () {
-      var fixture = "\n  Missing required value for option --required. Showing Help:";
+      var fixture = "  \nMissing required value for option --required. Showing Help:  ";
       mute();
       vorpal.execSync('foo --no-required cows').should.equal(fixture);
       unmute();
     });
 
     it('should throw help on an unknown option', function() {
-      var fixture = "\n  Invalid option: 'unknown'. Showing Help:";
+      var fixture = "  \nInvalid option: 'unknown'. Showing Help:  ";
       vorpal.execSync('foo --unknown').should.equal(fixture);
     });
 
@@ -350,7 +350,7 @@ describe('option parsing', function () {
     });
 
     it('should allow the allowUnknownOptions state to be set with a boolean', function() {
-        var fixture = "\n  Invalid option: 'unknown'. Showing Help:";
+        var fixture = "  \nInvalid option: 'unknown'. Showing Help:  ";
         vorpal.execSync('baz --unknown').should.equal(fixture);
     });
   });
