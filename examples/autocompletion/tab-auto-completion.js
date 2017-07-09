@@ -10,7 +10,7 @@ vorpal.command('run [file]')
   data: function (input, cb) {
 
   const basename = path.basename(input);
-  const dir = path.dirname(path.resolve(projectRoot + `/${input}`));
+  const dir = path.dirname(path.resolve(process.cwd() + `/${input}`));
 
   fs.readdir(dir, function (err, items) {
     if (err) {
