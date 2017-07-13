@@ -7,7 +7,6 @@
 .*\.test\.js
 
 [libs]
-./flow
 
 [options]
 emoji=true
