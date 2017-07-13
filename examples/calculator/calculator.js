@@ -1,6 +1,6 @@
 'use strict';
 
-var vorpal = require('./../../')();
+var vorpal = require('../../dist/vorpal')();
 var less = require('vorpal-less');
 var repl = require('vorpal-repl');
 vorpal.use(less).use(repl);
@@ -9,6 +9,7 @@ vorpal.command('add [numbers...]', 'Adds numbers together')
   .alias('addition')
   .alias('plus')
   .action(function (args, cb) {
+    console.log(args);
     var numbers = args.numbers;
     var sum = 0;
     for (var i = 0; i < numbers.length; ++i) {
