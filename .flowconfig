@@ -1,5 +1,5 @@
 [include]
-./lib
+./src
 
 [ignore]
 .*/node_modules/.*

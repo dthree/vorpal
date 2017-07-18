@@ -1,4 +1,5 @@
 // @flow
+
 import type { Argument } from '../types';
 
 /**

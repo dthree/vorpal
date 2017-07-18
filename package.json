@@ -4,9 +4,9 @@
   "description": "Node's first framework for building immersive CLI apps.",
   "main": "./lib/vorpal.js",
   "scripts": {
-    "build": "build-lib ./lib -d ./dist",
+    "build": "build-lib ./src -d ./dist",
     "flow": "type-check",
-    "lint": "run-linter ./lib",
+    "lint": "run-linter ./src",
     "lint:only": "run-linter",
     "test": "yarn run build && mocha"
   },

@@ -1,9 +1,10 @@
 // @flow
-import Command from '../command';
+
 import isDefined from './isDefined';
 import padRow from './padRow';
 import parseArgs from './parseArgs';
 
+import type Command from '../Command';
 import type { CommandArgs, CommandExecutionItem } from '../types';
 
 const PAIR_NORMALIZE_PATTERN: RegExp = /(['"]?)(\w+)=(?:(['"])((?:(?!\3).)*)\3|(\S+))\1/g;

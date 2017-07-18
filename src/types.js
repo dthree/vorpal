@@ -1,9 +1,9 @@
 // @flow
 /* eslint-disable no-use-before-define */
 
-import type Command from './command';
-import type CommandInstance from './command-instance';
-import type Session from './session';
+import type Command from './Command';
+import type CommandInstance from '../lib/command-instance';
+import type Session from '../lib/session';
 
 export type ActionCallback = (
   args: CommandArgs,

@@ -1,4 +1,5 @@
 // @flow
+
 import { PADDING } from '../constants';
 
 /**

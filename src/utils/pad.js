@@ -1,4 +1,5 @@
 // @flow
+
 import strip from 'strip-ansi';
 
 /**

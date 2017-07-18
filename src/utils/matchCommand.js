@@ -1,6 +1,6 @@
 // @flow
-import Command from '../command';
 
+import type Command from '../Command';
 import type { InputCommand } from '../types';
 
 /**

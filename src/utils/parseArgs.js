@@ -1,4 +1,5 @@
 // @flow
+
 import minimist from 'minimist';
 
 import type { CLIArgs } from 'minimist';

@@ -1,4 +1,5 @@
 // @flow
+
 import strip from 'strip-ansi';
 import pad from './pad';
 import { PADDING_SIZE } from '../constants';

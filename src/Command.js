@@ -1,7 +1,7 @@
 // @flow
 
 import EventEmitter from 'events';
-import Option from './option';
+import Option from './Option';
 // import camelCase from './utils/camelCase';
 import humanReadableArgName from './utils/humanReadableArgName';
 import pad from './utils/pad';
