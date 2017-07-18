@@ -1,6 +1,6 @@
 // @flow
 
-import type { Argument } from '../types';
+import type Argument from '../Argument';
 
 /**
  * Makes an argument name pretty for help.

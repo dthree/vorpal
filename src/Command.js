@@ -1,6 +1,7 @@
 // @flow
 
 import EventEmitter from 'events';
+import Argument from './Argument';
 import Option from './Option';
 // import camelCase from './utils/camelCase';
 import humanReadableArgName from './utils/humanReadableArgName';
@@ -9,7 +10,6 @@ import padRow from './utils/padRow';
 
 import type {
   ActionCallback,
-  Argument,
   Autocomplete,
   CancelCallback,
   DoneCallback,
@@ -28,7 +28,7 @@ export default class Command extends EventEmitter {
   options: Option[];
   _allowUnknownOptions: boolean;
   _aliases: string[];
-  _args: Argument[];
+  _args: Argument[]; // TODO - Unprivate
   _autocomplete: ?Autocomplete;
   _cancel: ?CancelCallback;
   _catch: boolean;
@@ -384,7 +384,11 @@ export default class Command extends EventEmitter {
       }
 
       if (argDetails.name) {
-        this._args.push(argDetails);
+        this._args.push(new Argument(
+          argDetails.name,
+          argDetails.required,
+          argDetails.variadic,
+        ));
       }
     });
 

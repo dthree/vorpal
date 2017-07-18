@@ -10,12 +10,6 @@ export type ActionCallback = (
   callback: (error: ?Error) => void,
 ) => ?Promise<string>;
 
-export type Argument = {
-  name: string,
-  required: boolean,
-  variadic: boolean,
-};
-
 export type Autocomplete =
   // Array of strings
   string[] |
