@@ -19,6 +19,11 @@ process.on('unhandledRejection', (err, p) => {
   console.log(err.stack);
 });
 
+process.on('uncaughtException', (err, p) => {
+  console.log('An uncaught exception occurred');
+  console.log(err.stack);
+});
+
 // Normalize inputs to objects.
 function obj(inp) {
   if (typeof inp === 'String') {
