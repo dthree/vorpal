@@ -1,6 +1,6 @@
 'use strict';
 
-var vorpal = require('./../../')();
+var vorpal = require('../../dist/vorpal')();
 var chalk = vorpal.chalk;
 
 vorpal
