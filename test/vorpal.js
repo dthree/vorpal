@@ -5,10 +5,10 @@
   * this one.
   */
 
-var Vorpal = require('../');
+var Vorpal = require('../lib/vorpal');
 var should = require('should');
 var assert = require('assert');
-var intercept = require('../dist/intercept');
+var intercept = require('../lib/intercept');
 
 var vorpal;
 
@@ -81,6 +81,15 @@ vorpal
 
 vorpal
   .command('multi word command [variadic...]')
+  .action(function (args, cb) {
+    return args;
+  });
+
+vorpal
+  .command('defaultValues <animal>')
+  .option('-s, --sound [sound]', 'Animal Sound', {
+    default : 'moo',
+  })
   .action(function (args, cb) {
     return args;
   });
@@ -283,6 +292,20 @@ describe('option parsing', function () {
       mute();
       vorpal.execSync('foo -r').should.equal(fixture);
       unmute();
+    });
+  });
+
+  describe('options with default values', function () {
+    it('should allow for default values', function () {
+      var fixture = obj({ options: { sound: 'moo' }, animal: 'cow' });
+
+      obj(vorpal.execSync('defaultValues cow')).should.equal(fixture);
+    });
+
+    it('should allow for overwriting the default values', function () {
+      var fixture = obj({ options: { sound: 'bark' }, animal: 'dog' });
+
+      obj(vorpal.execSync('defaultValues --sound bark dog')).should.equal(fixture);
     });
   });
 
