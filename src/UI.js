@@ -6,6 +6,7 @@ import chalk from 'chalk';
 import inquirer from 'inquirer';
 import logUpdate from 'log-update';
 
+import type { Prompt } from 'inquirer';
 import type Vorpal from '../lib/vorpal';
 
 const INQUIRER_PROMPTS: string[] = [
@@ -14,6 +15,8 @@ const INQUIRER_PROMPTS: string[] = [
 
 class UI extends EventEmitter {
   parent: ?Vorpal;
+  _activePrompt: ?Prompt;
+  _cancel: boolean;
   _cancelled: boolean;
   _midPrompt: boolean;
 
@@ -31,13 +34,14 @@ class UI extends EventEmitter {
     this.parent = null;
 
     // Whether a prompt is currently in cancel mode.
+    this._cancel = false;
     this._cancelled = false;
 
     // Fail-safe to ensure there is no double prompt in odd situations.
     this._midPrompt = false;
 
     // Hook to reference active inquirer prompt.
-    this._activePrompt = undefined;
+    this._activePrompt = null;
 
     // Handle for inquirer's prompt.
     this.inquirer = inquirer;
@@ -331,7 +335,7 @@ class UI extends EventEmitter {
   /**
    * Attaches TTY prompt to a given Vorpal instance.
    */
-  attach(vorpal) {
+  attach(vorpal: Vorpal): this {
     this.parent = vorpal;
     this.refresh();
     this.parent._prompt();
@@ -343,7 +347,7 @@ class UI extends EventEmitter {
    * Detaches UI from a given Vorpal instance.
    */
 
-  detach(vorpal) {
+  detach(vorpal: Vorpal): this {
     if (vorpal === this.parent) {
       this.parent = null;
     }
@@ -388,7 +392,7 @@ class UI extends EventEmitter {
   /**
    * Submits a given prompt.
    */
-  submit() {
+  submit(): this {
     if (this._activePrompt) {
       // this._activePrompt.screen.onClose();
       this._activePrompt.rl.emit('line');
@@ -403,7 +407,7 @@ class UI extends EventEmitter {
    * Does a literal, one-time write to the
    * *current* prompt delimiter.
    */
-  delimiter(delimiter) {
+  delimiter(delimiter: string): this {
     if (!this._activePrompt) {
       return this;
     }
@@ -473,7 +477,7 @@ class UI extends EventEmitter {
   /**
    * Redraws the inquirer prompt with a new string.
    */
-  refresh() {
+  refresh(): this {
     if (!this.parent || !this._activePrompt) {
       return this;
     }
@@ -488,7 +492,7 @@ class UI extends EventEmitter {
   /**
    * Writes over existing logging.
    */
-  redraw(output) {
+  redraw(output: string): this {
     logUpdate(output);
 
     return this;
@@ -503,7 +507,7 @@ const ui = new UI();
 /**
  * Clears logging from `ui.redraw` permanently.
  */
-ui.redraw.clear = function clear() {
+ui.redraw.clear = function clear(): UI {
   logUpdate.clear();
 
   return ui;
@@ -512,7 +516,7 @@ ui.redraw.clear = function clear() {
 /**
  * Prints logging from `ui.redraw` permanently.
  */
-ui.redraw.done = function done() {
+ui.redraw.done = function done(): UI {
   logUpdate.done();
   ui.refresh();
 
