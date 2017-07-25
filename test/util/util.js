@@ -1,4 +1,4 @@
-var Vantage = require('../../');
+var Vorpal = require('../../dist/vorpal');
 var _ = require('lodash');
 var path = require('path');
 
@@ -14,7 +14,7 @@ module.exports = {
     });
 
     for (var i = 0; i < options.ports.length; ++i) {
-      var vorpal = new Vantage();
+      var vorpal = new Vorpal();
       var port = options.ports[i];
       vorpal
         .delimiter(port + ':')

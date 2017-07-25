@@ -1,4 +1,4 @@
-var Vorpal = require('../');
+var Vorpal = require('../dist/vorpal');
 var assert = require('assert');
 var _ = require('lodash');
 var vorpal = new Vorpal();
@@ -33,7 +33,7 @@ describe('session._autocomplete', function () {
     assert.equal(result, 'def ');
   });
 
-  
+
   it('should return the prefix along with the partial match when supplied with a prefix input', function() {
     var result = vorpal.session._autocomplete('foo/de', ['dally','definitive', 'definitop', 'bob']);
     assert.equal(result, "foo/definit");

@@ -1,6 +1,6 @@
 'use strict';
 
-var Vorpal = require('../');
+var Vorpal = require('../dist/vorpal');
 var commands = require('./util/server');
 var BlueBirdPromise = require('bluebird');
 var fs = require('fs');
@@ -657,7 +657,7 @@ describe('integration tests:', function () {
               }
             }, 1000);
             var p = new BlueBirdPromise(function () {});
-            p.cancellable();
+            p.cancel();
             return p;
           });
       });
