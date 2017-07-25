@@ -38,6 +38,7 @@
   "devDependencies": {
     "@milesj/build-tool-config": "^0.15.0",
     "bluebird": "^3.5.0",
+    "flow-bin": "^0.50.0",
     "mocha": "^3.4.2",
     "should": "^11.2.1",
     "vorpal-less": "^0.0.13",

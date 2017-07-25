@@ -1,13 +1,22 @@
+// @flow
 /* eslint-disable no-console, no-param-reassign */
 
-const { EventEmitter } = require('events');
-const chalk = require('chalk');
-const inquirer = require('inquirer');
-const logUpdate = require('log-update');
+import EventEmitter from 'events';
+import chalk from 'chalk';
+import inquirer from 'inquirer';
+import logUpdate from 'log-update';
 
-const INQUIRER_PROMPTS = ['input', 'checkbox', 'confirm', 'expand', 'list', 'password', 'rawlist'];
+import type Vorpal from '../lib/vorpal';
+
+const INQUIRER_PROMPTS: string[] = [
+  'input', 'checkbox', 'confirm', 'expand', 'list', 'password', 'rawlist',
+];
 
 class UI extends EventEmitter {
+  parent: ?Vorpal;
+  _cancelled: boolean;
+  _midPrompt: boolean;
+
   /**
    * Sets intial variables and registers
    * listeners. This is called once in a
@@ -17,27 +26,24 @@ class UI extends EventEmitter {
   constructor() {
     super();
 
-    // Attached vorpal instance. The UI can
-    // only attach to one instance of Vorpal
-    // at a time, and directs all events to that
-    // instance.
-    this.parent = undefined;
+    // Attached vorpal instance. The UI can only attach to one instance of Vorpal
+    // at a time, and directs all events to that instance.
+    this.parent = null;
+
+    // Whether a prompt is currently in cancel mode.
+    this._cancelled = false;
+
+    // Fail-safe to ensure there is no double prompt in odd situations.
+    this._midPrompt = false;
 
     // Hook to reference active inquirer prompt.
     this._activePrompt = undefined;
-
-    // Fail-safe to ensure there is no double
-    // prompt in odd situations.
-    this._midPrompt = false;
 
     // Handle for inquirer's prompt.
     this.inquirer = inquirer;
 
     // prompt history from inquirer
     this.inquirerStdout = [];
-
-    // Whether a prompt is currently in cancel mode.
-    this._cancelled = false;
 
     // Middleware for piping stdout through.
     this._pipeFn = undefined;
@@ -202,10 +208,9 @@ class UI extends EventEmitter {
   }
 
   /**
-   * Returns a boolean as to whether user
-   * is mid another prompt.
+   * Returns a boolean as to whether user is mid another prompt.
    */
-  midPrompt() {
+  midPrompt(): boolean {
     return (this._midPrompt && this.parent);
   }
 
@@ -272,8 +277,7 @@ class UI extends EventEmitter {
   }
 
   /**
-   * Pauses active prompt, returning
-   * the value of what had been typed so far.
+   * Pauses active prompt, returning the value of what had been typed so far.
    */
   pause() {
     if (!this.parent || !this._activePrompt || !this._midPrompt) {
