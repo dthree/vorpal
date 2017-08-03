@@ -1,0 +1,5 @@
+flow-typed/**/*.js
+examples/**/*.js
+dist/**/*.js
+lib/**/*.js
+test/**/*.js
