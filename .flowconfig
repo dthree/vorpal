@@ -2,7 +2,7 @@
 ./src
 
 [ignore]
-.*/node_modules/.*
+.*/node_modules/eslint-plugin-jsx-a11y/.*
 .*/tests/.*
 .*\.test\.js
 
