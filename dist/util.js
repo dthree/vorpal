@@ -368,11 +368,13 @@ var util = {
         if (!valid) {
           break;
         }
-        if (passedArg && matchArg.variadic === true) {
-          args[matchArg.name] = remainingArgs;
-        } else if (passedArg !== undefined) {
-          args[matchArg.name] = passedArg;
-          remainingArgs.shift();
+        if (passedArg !== undefined) {
+          if (matchArg.variadic === true) {
+            args[matchArg.name] = remainingArgs;
+          } else {
+            args[matchArg.name] = passedArg;
+            remainingArgs.shift();
+          }
         }
       }
     }
@@ -516,6 +518,18 @@ var util = {
     delimiter = delimiter || ' ';
     var len = Math.max(0, width - strip(str).length);
     return str + Array(len + 1).join(delimiter);
+  },
+
+  /**
+   * Pad a row on the start and end with spaces.
+   *
+   * @param {String} str
+   * @return {String}
+   */
+  padRow: function padRow(str) {
+    return str.split('\n').map(function (row) {
+      return '  ' + row + '  ';
+    }).join('\n');
   },
 
   // When passing down applied args, we need to turn
