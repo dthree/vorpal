@@ -27,7 +27,7 @@ var autocomplete = {
     var vorpalMatch = getMatch(input.context, commands, { ignoreSlashes: true });
     var freezeTabs = false;
 
-    if ((input.raw === 'e' || input.raw === 'ex') && commands.length === 3) return undefined
+    if ((input.raw === 'e' || input.raw === 'ex') && commands.length === 3) return undefined;
     function end(str) {
       var res = handleTabCounts.call(self, str, freezeTabs);
       cb(undefined, res);
