@@ -465,6 +465,9 @@ session.execCommandSet = function (wrapper, callback) {
     onCompletion(wrapper, valid || null);
     return this;
   }
+  
+  // allow user to access the raw command string
+  wrapper.args && (wrapper.args.command = wrapper.command);
 
   // Call the root command.
   res = wrapper.fn.call(commandInstance, wrapper.args, function () {
