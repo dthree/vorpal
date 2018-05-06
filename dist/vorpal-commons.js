@@ -21,7 +21,7 @@ module.exports = function (vorpal) {
     var self = this;
     if (args.command) {
       args.command = args.command.join(' ');
-      var name = _.find(this.parent.commands, { _name: String(args.command).toLowerCase().trim() });
+      var name = _.find(this.parent.commands, { _name: String(args.command).trim() });
       if (name && !name._hidden) {
         if (_.isFunction(name._help)) {
           name._help(args.command, function (str) {
