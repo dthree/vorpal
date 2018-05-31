@@ -148,6 +148,11 @@ describe('argument parsing', function () {
     var fixture = obj({ options: {}, variadic:  ['and', 'so', 'on'] });
     obj(vorpal.execSync('multi word command and so on')).should.equal(fixture);
   });
+
+  it('should parse command with undefine in it as invalid', function () {
+    var fixture = obj("Invalid command.");
+    obj(vorpal.execSync('has undefine in it')).should.equal(fixture);
+  })
 });
 
 describe('option parsing', function () {
