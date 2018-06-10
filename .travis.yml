@@ -6,6 +6,9 @@ node_js:
   - "4.2.0"
   - "iojs-v2"
 sudo: false
+cache:
+  directories:
+    - "node_modules"
 branches:
   only:
     - master
