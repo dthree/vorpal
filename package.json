@@ -1,6 +1,6 @@
 {
   "name": "vorpal",
-  "version": "1.11.4",
+  "version": "1.11.5",
   "description": "Node's first framework for building immersive CLI apps.",
   "main": "./dist/vorpal.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dthree/vorpal.git"
+    "url": "git+https://github.com/mulesoft/vorpal.git",
   },
   "keywords": [
     "api",
