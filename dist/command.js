@@ -247,9 +247,8 @@ command.delimiter = function (delimiter) {
  */
 
 command.types = function (types) {
-  var supported = ['string', 'boolean'];
   for (var item in types) {
-    if (supported.indexOf(item) === -1) {
+    if (VorpalUtil.supportedTypes.indexOf(item) === -1) {
       throw new Error('An invalid type was passed into command.types(): ' + item);
     }
     types[item] = !_.isArray(types[item]) ? [types[item]] : types[item];

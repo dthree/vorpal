@@ -831,8 +831,14 @@ vorpal._exec = function (item) {
     throw new Error('Fatal Error: No session was passed into command for execution: ' + item);
   }
 
-  if (String(item.command).indexOf('undefine') > -1) {
-    throw new Error('vorpal._exec was called with an undefined command.');
+  // Original vorpal had a bug where it would just blindly check for 'undefine'
+  // See https://www.mulesoft.org/jira/browse/SE-7900. Note that we could simply
+  // remove the check, but are working under the assumption that it serves a
+  // useful purpose somewhere.
+  var containsNakedUndefine = String(item.command).match(/[^('|")]undefine/) || item.command.indexOf('undefine') === 0;
+
+  if (containsNakedUndefine) {
+    throw new Error('vorpal._exec was called with an unquoted "undefine" command.');
   }
 
   // History for our 'up' and 'down' arrows.
