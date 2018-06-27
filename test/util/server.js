@@ -122,11 +122,11 @@ module.exports = function (vorpal) {
     });
 
   vorpal
-    .command('typehappy')
+    .command('typehappy <zip> <age> <codes...>')
     .option('-n, --numberify <that>', 'Should be a number')
     .option('-s, --stringify <me>', 'Should be a string')
     .types({
-      string: ['s', 'stringify']
+      string: ['s', 'stringify', 'zip', 'codes']
     })
     .action(function (args, cb) {
       cb(undefined, args);

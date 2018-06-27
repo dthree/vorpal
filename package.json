@@ -1,6 +1,6 @@
 {
   "name": "vorpal",
-  "version": "1.11.4",
+  "version": "1.12.0",
   "description": "Node's first framework for building immersive CLI apps.",
   "main": "./dist/vorpal.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dthree/vorpal.git"
+    "url": "git+https://github.com/mulesoft/vorpal.git"
   },
   "keywords": [
     "api",
@@ -58,7 +58,7 @@
     "inquirer": "0.11.0",
     "lodash": "^4.5.1",
     "log-update": "^1.0.2",
-    "minimist": "^1.2.0",
+    "minimist": "git://github.com/mulesoft/minimist.git",
     "node-localstorage": "^0.6.0",
     "strip-ansi": "^3.0.0",
     "wrap-ansi": "^2.0.0"

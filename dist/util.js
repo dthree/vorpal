@@ -11,6 +11,9 @@ var minimist = require('minimist');
 var strip = require('strip-ansi');
 
 var util = {
+  // Minimist types supported by vorpal
+  supportedTypes: ['string', 'boolean'],
+
   /**
    * Parses command arguments from multiple
    * sources.
@@ -21,7 +24,7 @@ var util = {
    * @api private
    */
 
-  parseArgs: function parseArgs(str, opts) {
+  parseArgs: function parseArgs(str, opts, cmd) {
     var reg = /"(.*?)"|'(.*?)'|`(.*?)`|([^\s"]+)/gi;
     var arr = [];
     var match = void 0;
@@ -32,9 +35,100 @@ var util = {
       }
     } while (match !== null);
 
+    opts = this.addArgsIndexes(cmd, opts);
+    opts = this.addVariadicIndexes(cmd, opts, arr);
     arr = minimist(arr, opts);
     arr._ = arr._ || [];
     return arr;
+  },
+
+  /**
+   * Adds indexes of positional args, names of which
+   * are present in types specified in opts.
+   * E.g. if first positional argument is named 'age' and
+   * is present in opts.string, index "0" will be added to
+   * opts.string.
+   *
+   * @param {Object} cmd
+   * @param {Object} opts
+   * @return {Object}
+   * @api private
+   */
+
+  addArgsIndexes: function addArgsIndexes(cmd, opts) {
+    var self = this;
+    var argsIdx = self.getCmdArgsIndexes(cmd);
+    _.each(self.supportedTypes, function (type) {
+      var names = opts[type];
+      if (names && names.length) {
+        opts[type] = self.addTypeArgsIndexes(names, argsIdx);
+      }
+    });
+    return opts;
+  },
+
+  /**
+   * Composes map of positional args names to their indexes.
+   *
+   * @param {Object} cmd
+   * @return {Object}
+   * @api private
+   */
+
+  getCmdArgsIndexes: function getCmdArgsIndexes(cmd) {
+    var names = _.map(cmd._args, 'name');
+    var indexes = _.range(cmd._args.length);
+    return _.zipObject(names, indexes);
+  },
+
+  /**
+   * Helps addArgsIndexes to perform action on names list
+   * of one particular type.
+   *
+   * @param {Array} names
+   * @param {Object} argsIdx
+   * @return {Object}
+   * @api private
+   */
+
+  addTypeArgsIndexes: function addTypeArgsIndexes(names, argsIdx) {
+    var indexes = [];
+    _.each(names, function (name) {
+      if (argsIdx.hasOwnProperty(name)) {
+        indexes.push(argsIdx[name]);
+      }
+    });
+    return _.flatten([names, indexes]);
+  },
+
+  /**
+   * Adds indexes for all variadic args provided
+   * if variadic arg name is present in one of opts
+   * types list.
+   *
+   * @param {Object} cmd
+   * @param {Object} opts
+   * @param {Array} parts
+   * @return {Object}
+   * @api private
+   */
+
+  addVariadicIndexes: function addVariadicIndexes(cmd, opts, parts) {
+    var self = this;
+    var nonOpts = _.takeWhile(parts, function (p) {
+      return !p.startsWith('-');
+    });
+    var lastArg = cmd._args[cmd._args.length - 1] || {};
+    if (lastArg.variadic && nonOpts.length > cmd._args.length) {
+      _.each(self.supportedTypes, function (type) {
+        var names = opts[type];
+        if (names && names.length && names.indexOf(lastArg.name) !== -1) {
+          var extraIndexes = _.range(cmd._args.length, nonOpts.length);
+          opts[type] = names.concat(extraIndexes);
+        }
+      });
+    }
+    return opts;
   },
 
   /**
@@ -257,7 +351,7 @@ var util = {
     });
 
     // Use minimist to parse the args.
-    var parsedArgs = this.parseArgs(passedArgs, types);
+    var parsedArgs = this.parseArgs(passedArgs, types, cmd);
 
     function validateArg(arg, cmdArg) {
       return !(arg === undefined && cmdArg.required === true);
