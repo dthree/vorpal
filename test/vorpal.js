@@ -129,7 +129,7 @@ describe('argument parsing', function () {
     var fixture = obj({ options: {},
       req: "a='b'",
       opt: "c='d and e'",
-      variadic:  ["wombat='true'","a","fizz='buzz'","hello='goodbye'"] });
+      variadic:  ["wombat=true","a","fizz='buzz'","hello='goodbye'"] });
     obj(vorpal.execSync('multiple a=\'b\' c="d and e" wombat=true a fizz=\'buzz\' "hello=\'goodbye\'"')).should.equal(fixture);
   });
 
