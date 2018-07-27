@@ -7,7 +7,7 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _ = require('lodash');
-var minimist = require('minimist');
+const argParser = require('yargs-parser');
 var strip = require('strip-ansi');
 
 var util = {
@@ -32,7 +32,7 @@ var util = {
       }
     } while (match !== null);
 
-    arr = minimist(arr, opts);
+    arr = argParser(arr, opts);
     arr._ = arr._ || [];
     return arr;
   },
@@ -216,8 +216,11 @@ var util = {
     }
 
     // Types are custom arg types passed
-    // into `minimist` as per its docs.
+    // into `argParser` as per its docs.
     var types = cmd._types || {};
+    types.configuration = {
+    	"camel-case-expansion": false
+    }
 
     // Make a list of all boolean options
     // registered for this command. These are
@@ -256,7 +259,7 @@ var util = {
       return match;
     });
 
-    // Use minimist to parse the args.
+    // Use argParser to parse the args.
     var parsedArgs = this.parseArgs(passedArgs, types);
 
     function validateArg(arg, cmdArg) {
