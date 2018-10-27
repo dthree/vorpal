@@ -1,10 +1,8 @@
-'use strict';
-
 /**
  * Module dependencies.
  */
 
-var _ = require('lodash');
+import _ from 'lodash'
 
 /**
  * Intercepts stdout, passes thru callback
@@ -15,37 +13,37 @@ var _ = require('lodash');
  * @param {Function} callback
  * @return {Function}
  */
+export default function(callback) {
+    var oldStdoutWrite   = process.stdout.write
+    var oldConsoleError  = console.error
+    process.stdout.write = (function(write) {
+        return function(string) {
+            var args = _.toArray(arguments)
+            args[0]  = interceptor(string)
+            write.apply(process.stdout, args)
+        }
+    }(process.stdout.write))
 
-module.exports = function (callback) {
-  var oldStdoutWrite = process.stdout.write;
-  var oldConsoleError = console.error;
-  process.stdout.write = (function (write) {
-    return function (string) {
-      var args = _.toArray(arguments);
-      args[0] = interceptor(string);
-      write.apply(process.stdout, args);
-    };
-  }(process.stdout.write));
+    console.error = (function() {
+        return function() {
+            var args = _.toArray(arguments)
+            args.unshift('\x1b[31m[ERROR]\x1b[0m')
+            console.log.apply(console.log, args)
+        }
+    }(console.error))
 
-  console.error = (function () {
-    return function () {
-      var args = _.toArray(arguments);
-      args.unshift('\x1b[31m[ERROR]\x1b[0m');
-      console.log.apply(console.log, args);
-    };
-  }(console.error));
-
-  function interceptor(string) {
-    // only intercept the string
-    var result = callback(string);
-    if (typeof result === 'string') {
-      string = result.replace(/\n$/, '') + (result && (/\n$/).test(string) ? '\n' : '');
+    function interceptor(string) {
+        // only intercept the string
+        const result = callback(string)
+        if (typeof result === 'string') {
+            string = result.replace(/\n$/, '') + (result && (/\n$/).test(string) ? '\n' : '')
+        }
+        return string
     }
-    return string;
-  }
-  // puts back to original
-  return function unhook() {
-    process.stdout.write = oldStdoutWrite;
-    console.error = oldConsoleError;
-  };
+
+    // puts back to original
+    return function unhook() {
+        process.stdout.write = oldStdoutWrite
+        console.error        = oldConsoleError
+    }
 };
