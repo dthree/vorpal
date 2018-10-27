@@ -11,7 +11,6 @@
      "rootDir": "./lib",
      "removeComments": false,
     // "noEmit": true,                        /* Do not emit outputs. */
-     "isolatedModules": true,
 
     /* Strict mode */
     "strict": false,                           /* Enable all strict type-checking options. */
