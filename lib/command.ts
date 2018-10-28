@@ -21,6 +21,12 @@ var command = Command.prototype;
 
 module.exports = exports = Command;
 
+export interface Arg {
+    required: boolean
+    name: string
+    variadic: boolean
+}
+
 /**
  * Initialize a new `Command` instance.
  *
@@ -36,7 +42,7 @@ function Command(name, parent) {
   }
   this.commands = [];
   this.options = [];
-  this._args = [];
+  this._args = [] as Arg[];
   this._aliases = [];
   this._name = name;
   this._relay = false;
@@ -528,7 +534,7 @@ command._parseExpectedArgs = function (args) {
   if (!args.length) {
     return;
   }
-  var self = this;
+    var self = this;
   args.forEach(function (arg) {
     var argDetails = {
       required: false,
