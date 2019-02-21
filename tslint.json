@@ -1,0 +1,86 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "rules": {
+    "ban-comma-operator": [true],
+    "cyclomatic-complexity": [true, 8],
+    "deprecation": true,
+    "max-classes-per-file": [true, 1],
+    "member-ordering": [
+      false,
+      {
+        "severity": "warning"
+      }
+    ],
+    "no-duplicate-imports": [true],
+    "no-duplicate-switch-case": [true],
+    "no-duplicate-variable": [true, "check-parameters"],
+    "no-implicit-dependencies": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "no-return-await": [true],
+    "no-sparse-arrays": [true],
+    "no-this-assignment": [true, "allow-destructuring"],
+    "object-literal-sort-keys": [false],
+    "prefer-object-spread": [true],
+    "export-name": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "no-banned-terms": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "no-constant-condition": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "no-delete-expression": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "no-unnecessary-local-variable": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "no-unnecessary-override": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "no-with-statement": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "possible-timing-attack": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "promise-must-complete": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ]
+  },
+  "linterOptions": {
+    "exclude": ["dist"]
+  }
+}
