@@ -7,6 +7,11 @@
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 > Conquer the command-line.
+-------
+> :building_construction: ***This is a Fork aiming at reforging vorpal into typescript, and bringing a 2.0*** :construction:
+
+> :construction_worker: You can join the effort here if you want [:link: on slack](https://join.slack.com/t/vorpal-workspace/shared_invite/enQtNTU3NTU3MTAzNzEyLTE4ODg2YjA1OTg0ZDMyY2I4M2Q3MGZhYjVlZDk1ZDY5NWJiZWFmYjJmYzk1ODdmYmU5ZjAzNGEzNDk5NDFhNWY)
+------
 
 ```text
               (O)
