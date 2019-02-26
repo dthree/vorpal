@@ -2,7 +2,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/vorpal.svg)](https://www.npmjs.com/package/vorpal)
 [![Status](https://img.shields.io/badge/status-Refactor%20in%20progress-yellow.svg)](https://github.com/vorpaljs-reforged/vorpal/projects/1)
-[![Build Status](https://travis-ci.org/dthree/vorpal.svg)](https://travis-ci.org/dthree/vorpal/)
+[![Build Status](https://travis-ci.com/vorpaljs-reforged/vorpal.svg)](https://travis-ci.com/vorpaljs-reforged/vorpal/)
 [![NPM Downloads](https://img.shields.io/npm/dt/vorpal.svg)](https://www.npmjs.com/package/vorpal)
 [![Package Quality](http://npm.packagequality.com/shield/vorpal.svg)](http://packagequality.com/#?package=vorpal)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
