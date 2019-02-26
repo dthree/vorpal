@@ -1,14 +1,9 @@
 # Vorpal
 
-
 [![Build Status](https://travis-ci.org/dthree/vorpal.svg)](https://travis-ci.org/dthree/vorpal/)
-<a href="https://www.npmjs.com/package/vorpal">
-  <img src="https://img.shields.io/npm/dt/vorpal.svg" alt="NPM Downloads" />
-</a>
+[![NPM Downloads](https://img.shields.io/npm/dt/vorpal.svg)](https://www.npmjs.com/package/vorpal)
 [![Package Quality](http://npm.packagequality.com/shield/vorpal.svg)](http://packagequality.com/#?package=vorpal)
-<a href="https://www.npmjs.com/package/vorpal">
-  <img src="https://img.shields.io/npm/v/vorpal.svg" alt="NPM Version" />
-</a>
+[![NPM Version](https://img.shields.io/npm/v/vorpal.svg)](https://www.npmjs.com/package/vorpal)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 > Conquer the command-line.
