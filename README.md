@@ -1,17 +1,20 @@
 # Vorpal
 
-
-[![Build Status](https://travis-ci.org/dthree/vorpal.svg)](https://travis-ci.org/dthree/vorpal/)
-<a href="https://www.npmjs.com/package/vorpal">
-  <img src="https://img.shields.io/npm/dt/vorpal.svg" alt="NPM Downloads" />
-</a>
+[![NPM Version](https://img.shields.io/npm/v/vorpal.svg)](https://www.npmjs.com/package/vorpal)
+[![Forked From](https://img.shields.io/badge/Forked%20From-dthree%2Fvorpal-lightgrey.svg)](https://github.com/dthree/vorpal)
+[![Status](https://img.shields.io/badge/status-Refactor%20in%20progress-yellow.svg)](https://github.com/vorpaljs-reforged/vorpal/projects/1)
+[![Build Status](https://travis-ci.com/vorpaljs-reforged/vorpal.svg)](https://travis-ci.com/vorpaljs-reforged/vorpal/)
+[![NPM Downloads](https://img.shields.io/npm/dt/vorpal.svg)](https://www.npmjs.com/package/vorpal)
 [![Package Quality](http://npm.packagequality.com/shield/vorpal.svg)](http://packagequality.com/#?package=vorpal)
-<a href="https://www.npmjs.com/package/vorpal">
-  <img src="https://img.shields.io/npm/v/vorpal.svg" alt="NPM Version" />
-</a>
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
+[![Gitter](https://badges.gitter.im/dthree/vorpal.svg)](https://gitter.im/dthree/vorpal)
 
-> Conquer the command-line.
+> Conquer the command-line. :crossed_swords:
+-------
+> :building_construction: ***This is a Fork aiming at reforging vorpal into typescript, and bringing a 2.0*** :construction:
+
+> :construction_worker: You can join the effort here if you want [:link: on slack](https://join.slack.com/t/vorpal-workspace/shared_invite/enQtNTU3NTU3MTAzNzEyLTE4ODg2YjA1OTg0ZDMyY2I4M2Q3MGZhYjVlZDk1ZDY5NWJiZWFmYjJmYzk1ODdmYmU5ZjAzNGEzNDk5NDFhNWY)
+------
 
 ```text
               (O)
@@ -20,9 +23,12 @@
   /| ......  /:M\------------------------------------------------,,,,,,
 (O)[ vorpal ]::@+}==========================================------------>
   \| ^^^^^^  \:W/------------------------------------------------''''''
-   o          <W
-              <W
-              (O)
+   o          <W              __                          _ 
+              <W    _ __ ___ / _| ___  _ __ __ _  ___  __| |
+              (O)  | '__/ _ \ |_ / _ \| '__/ _` |/ _ \/ _` |
+                   | | |  __/  _| (_) | | | (_| |  __/ (_| |
+                   |_|  \___|_|  \___/|_|  \__, |\___|\__,_|
+                                           |___/            
 ```
 
 Vorpal is Node's first framework for building interactive CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, immersive CLI environments like [cash](https://github.com/dthree/cash) and [wat](https://github.com/dthree/wat).
