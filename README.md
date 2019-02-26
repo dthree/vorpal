@@ -23,9 +23,12 @@
   /| ......  /:M\------------------------------------------------,,,,,,
 (O)[ vorpal ]::@+}==========================================------------>
   \| ^^^^^^  \:W/------------------------------------------------''''''
-   o          <W
-              <W
-              (O)
+   o          <W              __                          _ 
+              <W    _ __ ___ / _| ___  _ __ __ _  ___  __| |
+              (O)  | '__/ _ \ |_ / _ \| '__/ _` |/ _ \/ _` |
+                   | | |  __/  _| (_) | | | (_| |  __/ (_| |
+                   |_|  \___|_|  \___/|_|  \__, |\___|\__,_|
+                                           |___/            
 ```
 
 Vorpal is Node's first framework for building interactive CLI applications. With a simple and powerful API, Vorpal opens the door to a new breed of rich, immersive CLI environments like [cash](https://github.com/dthree/cash) and [wat](https://github.com/dthree/wat).
