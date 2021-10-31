@@ -739,7 +739,7 @@ describe('integration tests:', function () {
         vorpal.on('client_command_error', function () {
           true.should.be.true; done();
         });
-        vorpal.exec('fail me plzz');
+        vorpal.exec('fail me plzz').catch(function () { });
       });
       it('should handle piped event client_command_error', function (done) {
         var vorpal2 = new Vorpal();
