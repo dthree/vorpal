@@ -657,7 +657,6 @@ describe('integration tests:', function () {
               }
             }, 1000);
             var p = new BlueBirdPromise(function () {});
-            p.cancellable();
             return p;
           });
       });
